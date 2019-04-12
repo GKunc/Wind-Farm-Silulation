@@ -25,6 +25,7 @@ public class Turbine {
     }
 
     public boolean getStatus() { return status; }
+
     public void    turnOn()    { status = true; }
     public void    turnOff()   { status = false; }
 
