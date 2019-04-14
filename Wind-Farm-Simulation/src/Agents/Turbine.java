@@ -8,6 +8,7 @@ public class Turbine {
     private int condition; // 1 - 0 (procentowo)
     private double power;
     private double earnings;
+    private int age; // w latach
     /*
         todo
 
@@ -22,6 +23,7 @@ public class Turbine {
         condition = 1;
         power = 0;
         earnings = 0;
+        age = 0;
     }
 
     public boolean getStatus() { return status; }
@@ -40,9 +42,14 @@ public class Turbine {
 
     }
 
+    public int  getAge() { return age; }
+    public void setAge(int _age) { age = _age; }
+
     public double getEarnings() { return earnings; }
 
+    public static void main(String [] argv) {
 
+    }
 
 
 }

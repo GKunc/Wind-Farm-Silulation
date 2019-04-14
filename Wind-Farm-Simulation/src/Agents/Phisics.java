@@ -11,19 +11,19 @@ public class Phisics {
 
      */
 
-    public Double windAtHeight(double height, Double wind) {
+    public Double windAtHeight(double height, Double wind) { // przeliczenie predkosci wiatru na wysokosci turbiny
         return 0.0;
     }
 
-    public Double preasureAtHeight(double height, Double wind) {
+    public Double preasureAtHeight(double height, Double wind) { // przeliczenie cisnienia na wysokosci turbiny
         return 0.0;
     }
 
-    public Double temperatureAtHeight(double height, Double temperature) {
+    public Double temperatureAtHeight(double height, Double temperature) { // przeliczenie temperatury na wysokosci turbiny
         return 0.0;
     }
 
-    public Weather weatherAtHeight(double height, Weather weather) {
+    public Weather weatherAtHeight(double height, Weather weather) { // modyfikacja pogody dla dnia na odpowieniej wysokosci
         Double wind = windAtHeight(height, weather.getWind());
         Double preassure = preasureAtHeight(height, weather.getPreassure());
         Double temperature = temperatureAtHeight(height, weather.getTemperature());
@@ -31,7 +31,7 @@ public class Phisics {
         return new Weather(wind, preassure, temperature);
     }
 
-    public static void main(String[] args) {
+    public static void main(String [] argv) {
 
     }
 }

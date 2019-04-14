@@ -55,7 +55,7 @@ public class Weather {
     public Double getPreassure()   { return preassure; }
     public Double getTemperature() { return temperature; }
 
-    public Weather downloadWeather() throws Exception {
+    public Weather downloadWeather() throws Exception { // pogoda z jednegodnia
 
         final String appId = "nDC9AG4e";
         final String consumerKey = "dj0yJmk9RXQyMXI0RmNSU2pqJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTRl";
@@ -170,9 +170,9 @@ public class Weather {
     }
 
    public static void main(String args[]) throws Exception {
-       Weather w = new Weather();
+       /*Weather w = new Weather();
        w.downloadWeather();
-        /*ArrayList<Weather> weathers = w.parseWeatherFromFile("./res/weatherGdansk.csv");
+        ArrayList<Weather> weathers = w.parseWeatherFromFile("./res/weatherGdansk.csv");
         for(Weather we : weathers) {
             System.out.println("DANE");
             System.out.println("wind -> " + we.wind);
