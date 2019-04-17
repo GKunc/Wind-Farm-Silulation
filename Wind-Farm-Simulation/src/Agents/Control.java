@@ -9,24 +9,35 @@ public class Control {
         Wysyłanie komunikatów do Agents.Maintanance
      */
 
-    public void checkWind() { // jesli za mala/ duza predkosc wiatru to wylaczenie wiatraka
-
+    public static boolean checkWind(Turbine turbine, Weather weather) { // jesli za mala/ duza predkosc wiatru to wylaczenie wiatraka
+        if(weather.getWind() < 2 || weather.getWind() > 25) {
+            return true; // wiatr w normie
+        }
+        return false; // za maly lub za duzy
     }
 
-    public void checkCondition() { // sprawdzenie w jakim stanie jest wiatrak i ewentualne odeslanie do naprawy
-
+    public boolean checkCondition(Turbine turbine) { // sprawdzenie w jakim stanie jest wiatrak i ewentualne odeslanie do naprawy
+        if(turbine.getCondition() < 0.5) {
+            return false; // slaby stan, do konserwacji
+        }
+        return true;
     }
 
-    public void checkEfficiency() { // jesli zbyt malo wydajny to albo naprawa albo nowy
-
+    public boolean checkEfficiency(Turbine turbine) { // jesli zbyt malo wydajny to albo naprawa albo nowy
+        if(turbine.getEfficiency() < 0.5) {
+            return false; // za mala wydajnosc, do konserwacji
+        }
+        return true;
     }
 
-    public void increaseAge() { // po roku trzeba zwiekszyc wiek turbiny, wplywa na wydajnosc i stan
-
+    public void increaseAge(Turbine turbine) { // po roku trzeba zwiekszyc wiek turbiny, wplywa na wydajnosc i stan
+        turbine.setAge(turbine.getAge() + 1);
+        turbine.setCondition(turbine.getCondition() - 0.2);
+        turbine.setEfficiency(turbine.getEfficiency() - 0.2);
     }
 
-    public void setAlert() { // ustawienie alarmu o awarii
-
+    public void setAlert(Turbine turbine) { // ustawienie alarmu o awarii
+        turbine.setAlert(true); // jesli alarm to do naprawy
     }
 
     public static void main(String [] argv) {

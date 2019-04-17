@@ -15,7 +15,6 @@ import java.net.URLEncoder;
 import java.util.*;
 import java.util.Base64.Encoder;
 
-
 public class Weather {
 
     /*
@@ -34,26 +33,37 @@ public class Weather {
     private Double wind;
     private Double preassure;
     private Double temperature;
+    private Double density;
 
     public Weather() {
         wind = 0.0;
         preassure = 0.0;
         temperature = 0.0;
+        density = calculateDensity(temperature);
     }
+
     public Weather(Double _wind, Double _preassure, Double _temperature) {
         wind = _wind;
         preassure = _preassure;
         temperature = _temperature;
+        density = calculateDensity(temperature);
     }
+
     public Weather(String _wind, String _preassure, String _temperature) {
         wind = (_wind == "") ? 0.0 : Double.parseDouble(_wind);
         preassure = (_preassure == "") ? 0.0 : Double.parseDouble(_preassure);
         temperature = (_temperature == "") ? 0.0 : Double.parseDouble(_temperature);
+        density = calculateDensity(temperature);
     }
 
     public Double getWind()        { return wind; }
     public Double getPreassure()   { return preassure; }
     public Double getTemperature() { return temperature; }
+    public Double getDensity() { return density; }
+
+    public static Double calculateDensity(double temperature) {
+        return 287.05 * (Phisics.celciusToKelvin(temperature));
+    }
 
     public Weather downloadWeather() throws Exception { // pogoda z jednegodnia
 
@@ -155,8 +165,8 @@ public class Weather {
                 data = line.split(";");
 
                 String _wind = data[7].substring(1, data[7].length() - 1);
-                String _preassure = data[1].substring(1, data[1].length() - 1);
-                String _temperature = data[2].substring(1, data[2].length() - 1);
+                String _preassure = data[2].substring(1, data[2].length() - 1);
+                String _temperature = data[1].substring(1, data[1].length() - 1);
 
                 Weather oneHourWeather = new Weather(_wind, _preassure, _temperature);
                 oneYearWeather.add(oneHourWeather);
@@ -169,16 +179,21 @@ public class Weather {
         }
     }
 
+
+    public Weather weatherAtHeight(double turbinHeight) { // modyfikacja pogody dla dnia na odpowieniej wysokosci
+        Double wind = Phisics.windAtHeight(turbinHeight, this.getWind());
+        Double preassure = Phisics.preasureAtHeight(turbinHeight, this.getPreassure(), this.getTemperature());
+        Double temperature = Phisics.temperatureAtHeight(turbinHeight, this.getTemperature());
+
+        return new Weather(wind, preassure, temperature);
+    }
+
    public static void main(String args[]) throws Exception {
        /*Weather w = new Weather();
        w.downloadWeather();
-        ArrayList<Weather> weathers = w.parseWeatherFromFile("./res/weatherGdansk.csv");
+       ArrayList<Weather> weathers = w.parseWeatherFromFile("./res/weatherGdansk.csv");
         for(Weather we : weathers) {
-            System.out.println("DANE");
-            System.out.println("wind -> " + we.wind);
-            System.out.println("preasure -> " + we.preassure);
-            System.out.println("temperature -> " + we.temperature);
-        }
-    }*/
+            we = we.weatherAtHeight(100);
+        }*/
    }
 }
