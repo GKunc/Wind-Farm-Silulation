@@ -172,13 +172,13 @@ public class Weather {
         return new Weather(_wind, _pressure, _temperature);
     }
 
-    public ArrayList<Weather> parseWeatherFromFile(String filePath) throws IOException { // Arraylist dla calego pliku
-        String line;
+    public static ArrayList<Weather> parseWeatherFromFile(String filePath) throws IOException { // Arraylist dla calego pliku
         String data[] = null;
         BufferedReader br = new BufferedReader(new FileReader(filePath));
         ArrayList<Weather> weather = new ArrayList<>();
 
         try {
+            String line;
             while ((line = br.readLine()) != null) {
                 data = line.split(";");
 
@@ -186,18 +186,18 @@ public class Weather {
                 String _preassure = data[2].substring(1, data[2].length() - 1);
                 String _temperature = data[1].substring(1, data[1].length() - 1);
 
-                Weather oneHourWeather = new Weather(_wind, _preassure, _temperature);
-                weather.add(oneHourWeather);
+                weather.add(new Weather(_wind, _preassure, _temperature));
             }
 
         } catch (Exception e) { // wywala na koncu pliku ( nie wiem czemu )
 
         } finally {
+            br.close();
             return weather;
         }
     }
 
-    public static ArrayList<Weather> setWind(String filePath, ArrayList<Weather> weathers) throws FileNotFoundException {
+    public static ArrayList<Weather> setWind(String filePath, ArrayList<Weather> weathers) throws IOException {
         String line;
         String data[] = null;
         BufferedReader br = new BufferedReader(new FileReader(filePath));
@@ -213,6 +213,7 @@ public class Weather {
         } catch (Exception e) { // wywala na koncu pliku ( nie wiem czemu )
 
         } finally {
+            br.close();
             for(int i = 0; i < weathers.size(); ++i) { // ustawienie wiatru dla danych z Linowa
                 Double _wind = Double.parseDouble(wind.get(i*6)); // bo w pliku sa dane co 10m
                 weathers.get(i).setWind(_wind);

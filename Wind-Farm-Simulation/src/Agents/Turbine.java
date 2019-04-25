@@ -49,12 +49,12 @@ public class Turbine {
     }
 
     public Double calculateEarnings(Weather weather) { // cena za MWh 227.4 zł
-        return this.calculatePower(weather) * 227.4 / 1000; // kWaty -> MWaty
+        return this.calculatePower(weather) * 0.405; // gwarantowana
     }
 
-    public Double calculateExpenses() { // 300zł na dzien ( na razie nie wiem ile, tak wpisalem)
+    /*public Double calculateExpenses() { // 300zł na dzien ( na razie nie wiem ile, tak wpisalem)
         return 200.0;
-    }
+    }*/
 
     public int  getAge() { return age; }
     public void setAge(int _age) { age = _age; }
@@ -65,10 +65,9 @@ public class Turbine {
 
     public static void main(String [] argv) {
         Turbine tur = new Turbine();
-        Weather w = new Weather(7.8,1000.0,10.0);
-        System.out.println(tur.calculatePower(w));
+        Weather w = new Weather(7.7,1000.0,10.0);
         System.out.println("Gestosc -> " + w.getDensity());
-        System.out.println("ENERGIA -> " + tur.calculatePower(w)*42.5/60);
+        System.out.println("ENERGIA -> " + tur.calculatePower(w)*24*365);
     }
 
 }

@@ -18,26 +18,31 @@ public class Main {
     // zaladowac pogode
     // zaczac symulacje
 
-    public static void startSimulation(int years, int numberOfTurbines) throws Exception {
+    public static void startSimulation(int years, int numberOfTurbines, String filePath) throws Exception {
         turbines = new ArrayList<>();
 
         for(int i = 0; i < numberOfTurbines; ++i) {
             Main.buildTurbine();
         }
 
-        Weather w = new Weather();
         //weather.downloadWeather();
-        ArrayList<Weather> weathers = w.parseWeatherFromFile("./res/weatherKielce.csv");
+        Double windSum = 0.0;
+        int count = 0;
+        ArrayList<Weather> weathers = Weather.parseWeatherFromFile(filePath);
         Weather.setWind("./res/windLinowo.csv", weathers);
         for(Weather weather : weathers) { // dla kazdego zapisu z pogody
-            System.out.println(weather.getWind());
+            //weather.setWind(8.5);
+            windSum += weather.getWind();
+            count ++;
             for(Turbine turbine : turbines) { // osobno dla kazdej turbiny
                 earnings += turbine.calculateEarnings(weather);
+                //otherExpenses += 200/24;
             }
         }
-
-        earnings = earnings * years / 2; // bo symulacja dla pogody z 2 lat
-        otherExpenses = 1200000.0 * years / 2;
+        System.out.println("Średnia wiatru -> " + (windSum/count));
+        earnings = earnings * years;
+        //otherExpenses = 1200000.0 * years; // z faktury 2546305.0
+        otherExpenses = turbines.size() * turbineExpenses * 0.015 * years; // 1.5% na rok
         total =  earnings - turbineExpenses - otherExpenses;
     }
 
@@ -53,7 +58,7 @@ public class Main {
         System.out.println("         START SYMULACJI");
         System.out.println("====================================");
 
-        Main.startSimulation(200,24);
+        Main.startSimulation(1,1, "./res/weatherKielce.csv");
         System.out.printf("Wydatki Turbiny: %.2f %n", turbineExpenses);
         System.out.printf("Wydatki Inne: %.2f %n", otherExpenses);
         System.out.printf("Zarobione: %.2f %n", earnings);

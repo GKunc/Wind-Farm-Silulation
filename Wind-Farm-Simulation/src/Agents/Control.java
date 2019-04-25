@@ -26,7 +26,6 @@ public class Control {
     public void increaseAge(Turbine turbine) { // po roku trzeba zwiekszyc wiek turbiny, wplywa na wydajnosc i stan
         turbine.setAge(turbine.getAge() + 1);
         turbine.setCondition(turbine.getCondition() - 0.2);
-        turbine.setEfficiency(turbine.getEfficiency() - 0.2);
     }
 
     public void setAlert(Turbine turbine) { // ustawienie alarmu o awarii
