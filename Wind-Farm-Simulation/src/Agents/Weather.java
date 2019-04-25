@@ -35,6 +35,15 @@ public class Weather {
     private Double temperature;
     private Double density;
 
+
+    @Override
+    public String toString() {
+        return "Wind: " + wind + "\n" +
+                "Preasure: " + preassure + "\n" +
+                "Temperature: " + temperature + "\n" +
+                "Density: " + density + "\n";
+    }
+
     public Weather() {
         wind = 0.0;
         preassure = 0.0;
@@ -57,15 +66,21 @@ public class Weather {
     }
 
     public Double getWind()        { return wind; }
+    public void setWind(Double _wind) { wind = _wind; }
+
     public Double getPreassure()   { return preassure; }
+    public void setPresure(Double _preassure) { preassure = _preassure; }
+
     public Double getTemperature() { return temperature; }
+    public void setTemperature(Double _temperature) { temperature = _temperature; }
+
     public Double getDensity() { return density; }
 
     public static Double calculateDensity(double temperature) {
         return 287.05 * (Phisics.celciusToKelvin(temperature));
     }
 
-    public Weather downloadWeather() throws Exception { // pogoda z jednegodnia
+    public static Weather downloadWeather(String city) throws Exception { // pogoda z jednegodnia
 
         final String appId = "nDC9AG4e";
         final String consumerKey = "dj0yJmk9RXQyMXI0RmNSU2pqJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTRl";
@@ -89,7 +104,7 @@ public class Weather {
         parameters.add("oauth_timestamp=" + timestamp);
         parameters.add("oauth_version=1.0");
         // Make sure value is encoded
-        parameters.add("location=" + URLEncoder.encode("sunnyvale,ca", "UTF-8"));
+        parameters.add("location=" + URLEncoder.encode(city, "UTF-8"));
         parameters.add("format=json");
         parameters.add("u=c");
         Collections.sort(parameters);
@@ -124,9 +139,9 @@ public class Weather {
                 "oauth_signature=\"" + signature + "\", " +
                 "oauth_version=\"1.0\"";
 
-        HttpClient client = HttpClient.newHttpClient();
+        HttpClient client = HttpClient.newHttpClient(); // sunnyvale,ca
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url + "?location=sunnyvale,ca&format=json&u=c"))
+                .uri(URI.create(url + "?location=" + city + "&format=json&u=c"))
                 .header("Authorization", authorizationLine)
                 .header("X-Yahoo-App-Id", appId)
                 .header("Content-Type", "application/json")
@@ -135,6 +150,7 @@ public class Weather {
         HttpResponse<String> response = client.send(request, BodyHandler.asString());
         String result = response.body();
         String data[] = result.split("\\{");
+
         for(int i = 0; i < data.length; ++i) {
             if(data[i].contains("wind")) {
                 String[] info = data[i+1].split(",");
@@ -189,11 +205,10 @@ public class Weather {
     }
 
    public static void main(String args[]) throws Exception {
-       /*Weather w = new Weather();
-       w.downloadWeather();
-       ArrayList<Weather> weathers = w.parseWeatherFromFile("./res/weatherGdansk.csv");
-        for(Weather we : weathers) {
-            we = we.weatherAtHeight(100);
-        }*/
+       Weather w = new Weather();
+       w = Weather.downloadWeather("Gdansk");
+       //ArrayList<Weather> weathers = w.parseWeatherFromFile("./res/weatherGdansk.csv");
+       System.out.println(w);
+
    }
 }
