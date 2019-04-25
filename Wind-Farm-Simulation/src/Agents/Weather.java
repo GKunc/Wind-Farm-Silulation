@@ -8,6 +8,7 @@ import jdk.incubator.http.HttpResponse.BodyHandler;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URI;
@@ -48,21 +49,21 @@ public class Weather {
         wind = 0.0;
         preassure = 0.0;
         temperature = 0.0;
-        density = calculateDensity(temperature);
+        density = calculateDensity(preassure, temperature);
     }
 
     public Weather(Double _wind, Double _preassure, Double _temperature) {
         wind = _wind;
         preassure = _preassure;
         temperature = _temperature;
-        density = calculateDensity(temperature);
+        density = calculateDensity(preassure, temperature);
     }
 
     public Weather(String _wind, String _preassure, String _temperature) {
         wind = (_wind == "") ? 0.0 : Double.parseDouble(_wind);
         preassure = (_preassure == "") ? 0.0 : Double.parseDouble(_preassure);
         temperature = (_temperature == "") ? 0.0 : Double.parseDouble(_temperature);
-        density = calculateDensity(temperature);
+        density = calculateDensity(preassure, temperature);
     }
 
     public Double getWind()        { return wind; }
@@ -76,8 +77,8 @@ public class Weather {
 
     public Double getDensity() { return density; }
 
-    public static Double calculateDensity(double temperature) {
-        return 287.05 * (Phisics.celciusToKelvin(temperature));
+    public static Double calculateDensity(double preassure, double temperature) {
+        return preassure * 100 / (287.05 * (Phisics.celciusToKelvin(temperature)));
     }
 
     public static Weather downloadWeather(String city) throws Exception { // pogoda z jednegodnia
@@ -170,11 +171,12 @@ public class Weather {
         //System.out.println("DANE -> " + _wind + _pressure + _temperature);
         return new Weather(_wind, _pressure, _temperature);
     }
-    public ArrayList<Weather> parseWeatherFromFile(String filePath) throws IOException { // Arraylist dla calego roku
+
+    public ArrayList<Weather> parseWeatherFromFile(String filePath) throws IOException { // Arraylist dla calego pliku
         String line;
         String data[] = null;
         BufferedReader br = new BufferedReader(new FileReader(filePath));
-        ArrayList<Weather> oneYearWeather = new ArrayList<>();
+        ArrayList<Weather> weather = new ArrayList<>();
 
         try {
             while ((line = br.readLine()) != null) {
@@ -185,16 +187,39 @@ public class Weather {
                 String _temperature = data[1].substring(1, data[1].length() - 1);
 
                 Weather oneHourWeather = new Weather(_wind, _preassure, _temperature);
-                oneYearWeather.add(oneHourWeather);
+                weather.add(oneHourWeather);
             }
 
         } catch (Exception e) { // wywala na koncu pliku ( nie wiem czemu )
 
         } finally {
-            return oneYearWeather;
+            return weather;
         }
     }
 
+    public static ArrayList<Weather> setWind(String filePath, ArrayList<Weather> weathers) throws FileNotFoundException {
+        String line;
+        String data[] = null;
+        BufferedReader br = new BufferedReader(new FileReader(filePath));
+        ArrayList<String> wind = new ArrayList<>();
+
+        try {
+            while ((line = br.readLine()) != null) {
+                data = line.split(";");
+                String _wind = data[1].replace(",","."); // dane z pierwszej turbiny
+                wind.add(_wind);
+            }
+
+        } catch (Exception e) { // wywala na koncu pliku ( nie wiem czemu )
+
+        } finally {
+            for(int i = 0; i < weathers.size(); ++i) { // ustawienie wiatru dla danych z Linowa
+                Double _wind = Double.parseDouble(wind.get(i*6)); // bo w pliku sa dane co 10m
+                weathers.get(i).setWind(_wind);
+            }
+            return weathers;
+        }
+    }
 
     public Weather weatherAtHeight(double turbinHeight) { // modyfikacja pogody dla dnia na odpowieniej wysokosci
         Double wind = Phisics.windAtHeight(turbinHeight, this.getWind());

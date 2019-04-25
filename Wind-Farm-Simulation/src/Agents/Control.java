@@ -10,7 +10,7 @@ public class Control {
      */
 
     public static boolean checkWind(Turbine turbine, Weather weather) { // jesli za mala/ duza predkosc wiatru to wylaczenie wiatraka
-        if(weather.getWind() < 2 || weather.getWind() > 25) {
+        if(weather.getWind() > 2 || weather.getWind() < 17) {
             return true; // wiatr w normie
         }
         return false; // za maly lub za duzy
@@ -19,13 +19,6 @@ public class Control {
     public boolean checkCondition(Turbine turbine) { // sprawdzenie w jakim stanie jest wiatrak i ewentualne odeslanie do naprawy
         if(turbine.getCondition() < 0.5) {
             return false; // slaby stan, do konserwacji
-        }
-        return true;
-    }
-
-    public boolean checkEfficiency(Turbine turbine) { // jesli zbyt malo wydajny to albo naprawa albo nowy
-        if(turbine.getEfficiency() < 0.5) {
-            return false; // za mala wydajnosc, do konserwacji
         }
         return true;
     }

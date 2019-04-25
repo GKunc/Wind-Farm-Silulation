@@ -5,7 +5,7 @@ public class Turbine {
     private final double sweptArea = 6362; // m^2 dla naszego modelu
     private final double towerHeight= 105;
     private boolean status; // off == false / on == true
-    private double efficiency; // 1 - 0 (procentowo)
+    private double efficiency = 0.45;
     private double condition; // 1 - 0 (procentowo)
     private double power;
     private double expenses;
@@ -21,7 +21,6 @@ public class Turbine {
 
     public Turbine () {
         status = true;
-        efficiency = 1;
         condition = 1;
         power = 0;
         expenses = 0;
@@ -44,17 +43,17 @@ public class Turbine {
 
     public Double calculatePower(Weather weather) {
         if(Control.checkWind(this, weather)) {
-            return (1.2759 * this.efficiency * this.sweptArea * Math.pow(weather.getWind(), 3)) / (2 * 1000);
+            return (this.efficiency * this.sweptArea * Math.pow(weather.getWind(), 3) * weather.getDensity()) / (2 * 1000);
         }
         return 0.0;
     }
 
     public Double calculateEarnings(Weather weather) { // cena za MWh 227.4 zł
-        return this.calculatePower(weather) * 227.4;
+        return this.calculatePower(weather) * 227.4 / 1000; // kWaty -> MWaty
     }
 
     public Double calculateExpenses() { // 300zł na dzien ( na razie nie wiem ile, tak wpisalem)
-        return 300.0;
+        return 200.0;
     }
 
     public int  getAge() { return age; }
@@ -65,8 +64,11 @@ public class Turbine {
     public double getExpenses() { return expenses; }
 
     public static void main(String [] argv) {
-
+        Turbine tur = new Turbine();
+        Weather w = new Weather(7.8,1000.0,10.0);
+        System.out.println(tur.calculatePower(w));
+        System.out.println("Gestosc -> " + w.getDensity());
+        System.out.println("ENERGIA -> " + tur.calculatePower(w)*42.5/60);
     }
-
 
 }

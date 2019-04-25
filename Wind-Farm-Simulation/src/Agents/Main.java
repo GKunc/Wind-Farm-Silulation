@@ -8,8 +8,8 @@ public class Main {
     private static Double earnings = 0.0;
     private static Double turbineExpenses = 0.0;
     private static Double otherExpenses = 0.0;
-    private static ArrayList<Double> dailyExpenses;
-    private static ArrayList<Double> monthlyExpenses;
+    //private static ArrayList<Double> dailyExpenses;
+    //private static ArrayList<Double> monthlyExpenses;
 
     private static double total = 0;
 
@@ -18,24 +18,27 @@ public class Main {
     // zaladowac pogode
     // zaczac symulacje
 
-    public static void startSimulation(int numberOfTurbines) throws Exception {
+    public static void startSimulation(int years, int numberOfTurbines) throws Exception {
         turbines = new ArrayList<>();
 
         for(int i = 0; i < numberOfTurbines; ++i) {
             Main.buildTurbine();
         }
 
-        otherExpenses = 0.36 * turbineExpenses;
         Weather w = new Weather();
         //weather.downloadWeather();
-        ArrayList<Weather> weathers = w.parseWeatherFromFile("./res/weatherGdansk.csv");
+        ArrayList<Weather> weathers = w.parseWeatherFromFile("./res/weatherKielce.csv");
+        Weather.setWind("./res/windLinowo.csv", weathers);
         for(Weather weather : weathers) { // dla kazdego zapisu z pogody
-             for(Turbine turbine : turbines) { // osobno dla kazdej turbiny
-                 earnings += turbine.calculateEarnings(weather);
-                 turbineExpenses += turbine.calculateExpenses();
-             }
+            System.out.println(weather.getWind());
+            for(Turbine turbine : turbines) { // osobno dla kazdej turbiny
+                earnings += turbine.calculateEarnings(weather);
+            }
         }
-        total = earnings - turbineExpenses - otherExpenses;
+
+        earnings = earnings * years / 2; // bo symulacja dla pogody z 2 lat
+        otherExpenses = 1200000.0 * years / 2;
+        total =  earnings - turbineExpenses - otherExpenses;
     }
 
     public static void buildTurbine() {
@@ -45,10 +48,24 @@ public class Main {
     }
 
     public static void main(String [] argv) throws Exception { // glowna klasa ktora bedzie przeliczac sume kostow i zarobkow
-        Main.startSimulation(10);
-        System.out.println("Turbiny: " + turbineExpenses);
-        System.out.println("Inne: " + otherExpenses);
-        System.out.println("Zarobione: " + earnings);
-        System.out.println("Suma: " + Main.total);
+
+        System.out.println("====================================");
+        System.out.println("         START SYMULACJI");
+        System.out.println("====================================");
+
+        Main.startSimulation(200,24);
+        System.out.printf("Wydatki Turbiny: %.2f %n", turbineExpenses);
+        System.out.printf("Wydatki Inne: %.2f %n", otherExpenses);
+        System.out.printf("Zarobione: %.2f %n", earnings);
+        System.out.printf("Soldo: %.2f %n", Main.total);
+
+        System.out.println("====================================");
+
+        System.out.printf("    PROCENT ZWROCONY: %.2f", 100 * (earnings / (turbineExpenses + otherExpenses)));
+        System.out.println("%");
+
+        System.out.println("====================================");
+        System.out.println("         KONIEC SYMULACJI");
+        System.out.println("====================================");
     }
 }
