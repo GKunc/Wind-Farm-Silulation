@@ -25,10 +25,6 @@ public class Weather {
        Pobranie wiatrów
 
        Pobiera dane z miasta podanego jako parametry zapytania. Jednak tylko z jednego dnia i prognoze na tydzien
-
-       App ID: nDC9AG4e
-       Client ID: dj0yJmk9RXQyMXI0RmNSU2pqJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTRl
-       Client secret: bc45a4094dd5b093b47b6fa167266c52740e0b1e
     */
 
     private Double wind;
