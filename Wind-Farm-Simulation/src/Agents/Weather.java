@@ -5,16 +5,11 @@ import jdk.incubator.http.HttpRequest;
 import jdk.incubator.http.HttpResponse;
 import jdk.incubator.http.HttpResponse.BodyHandler;
 
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URI;
-import java.net.URLEncoder;
-import java.util.*;
-import java.util.Base64.Encoder;
+import java.util.ArrayList;
 
 public class Weather {
 
@@ -79,7 +74,7 @@ public class Weather {
 
     public static ArrayList<Weather> downloadWeather(String city) throws Exception { // pogoda z jednegodnia
 
-        final String URL = "http://api.worldweatheronline.com/premium/v1/past-weather.ashx";
+        final String URL = "https://api.worldweatheronline.com/premium/v1/past-weather.ashx";
         final String key = "535406b1d5e648e2b28183352192604";
 
         ArrayList<Weather> weathers = new ArrayList<>();
@@ -95,9 +90,11 @@ public class Weather {
                         + "&format=json"
                         + "&date=2018-01-01"
                         + "&enddate=2019-01-01"))
+                .GET()
                 .build();
 
         HttpResponse<String> response = client.send(request, BodyHandler.asString());
+        //System.out.println(response.statusCode());
         String result = response.body();
         String data[] = result.split("\\{");
 
