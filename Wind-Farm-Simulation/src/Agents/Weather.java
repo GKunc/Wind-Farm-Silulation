@@ -77,10 +77,12 @@ public class Weather {
         return preassure * 100 / (287.05 * (Phisics.celciusToKelvin(temperature)));
     }
 
-    public static Weather downloadWeather(String city) throws Exception { // pogoda z jednegodnia
+    public static ArrayList<Weather> downloadWeather(String city) throws Exception { // pogoda z jednegodnia
 
         final String URL = "http://api.worldweatheronline.com/premium/v1/past-weather.ashx";
         final String key = "535406b1d5e648e2b28183352192604";
+
+        ArrayList<Weather> weathers = new ArrayList<>();
 
         Double _wind = 0.0;
         Double _pressure = 0.0;
@@ -92,23 +94,40 @@ public class Weather {
                         + "&q=" + city
                         + "&format=json"
                         + "&date=2018-01-01"
-                        + "&enddate=2019-01-10"))
+                        + "&enddate=2019-01-01"))
                 .build();
 
         HttpResponse<String> response = client.send(request, BodyHandler.asString());
         String result = response.body();
         String data[] = result.split("\\{");
 
-        /*
-        todo
-        sparsowanie wynikow
-        wybranie wiatru, cisnienia i temperatury
-        wstawienie do listy pogody
-        zmienienie zwracanego typu
-         */
-        for(String s : data) System.out.println(s);
-        //System.out.println("DANE -> " + _wind + _pressure + _temperature);
-        return new Weather(_wind, _pressure, _temperature);
+        for(String s : data) {
+            if(s.contains("time")) {
+                String hourly[] = s.split(",");
+                for(String h : hourly) {
+                    if(h.contains("tempC")) {
+                        _temperature = Double.parseDouble(h.split(":")[1].substring(1, h.split(":")[1].length() - 1));
+                    }
+                    else if(h.contains("windspeedKmph")) {
+                        _wind = Double.parseDouble(h.split(":")[1].substring(1, h.split(":")[1].length() - 1));
+                        _wind = _wind / 3.6;
+                    }
+                }
+            }
+            else if(s.contains("pressure")) {
+                String hourly[] = s.split(",");
+                for(String h : hourly) {
+                    if(h.contains("pressure")) {
+                        _pressure = Double.parseDouble(h.split(":")[1].substring(1, h.split(":")[1].length() - 1));
+
+                        Weather w = new Weather(_wind, _pressure, _temperature);
+                        weathers.add(w.weatherAtHeight(Turbine.towerHeight));
+                    }
+                }
+            }
+        }
+
+        return weathers;
     }
 
     public static ArrayList<Weather> parseWeatherFromFile(String filePath) throws IOException { // Arraylist dla calego pliku
@@ -125,7 +144,8 @@ public class Weather {
                 String _preassure = data[2].substring(1, data[2].length() - 1);
                 String _temperature = data[1].substring(1, data[1].length() - 1);
 
-                weather.add(new Weather(_wind, _preassure, _temperature));
+                Weather w = new Weather(_wind, _preassure, _temperature);
+                weather.add(w.weatherAtHeight(Turbine.towerHeight));
             }
 
         } catch (Exception e) { // wywala na koncu pliku ( nie wiem czemu )
@@ -170,8 +190,9 @@ public class Weather {
     }
 
    public static void main(String args[]) throws Exception {
-       Weather w = new Weather();
-       w = Weather.downloadWeather("Gdańsk");
+       ArrayList<Weather> w = new ArrayList<>();
+       w = Weather.downloadWeather("Linowo");
+       for(Weather we : w) System.out.println(we);
        //ArrayList<Weather> weathers = w.parseWeatherFromFile("./res/weatherGdansk.csv");
        //System.out.println(w);
 

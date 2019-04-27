@@ -1,9 +1,11 @@
 package Agents;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class OneTurbineSimulation {
     Turbine turbine;
-    Weather weather;
-    /*
+    Weather weather;    /*
         todo
 
         Mozliwosc symulacji pracy jednego wiatraka
@@ -20,12 +22,12 @@ public class OneTurbineSimulation {
 
     public OneTurbineSimulation(String city) throws Exception {
         turbine = new Turbine();
-        weather = weather.downloadWeather(city); // pobrana z Yahho z dzisiejszego dnia
+        weather = Weather.downloadWeather(city).get(0); // pobrana z API z pierwszego dnia
 
     }
 
-    public void setWind(Double wind) {
-        weather.setWind(wind);
+    public void setWind(String filePath, ArrayList<Weather> weather) throws IOException {
+        Weather.setWind(filePath, weather);
     }
 
     public void setTemperature(Double temperature) {
@@ -45,6 +47,7 @@ public class OneTurbineSimulation {
     }
 
     public static void main(String [] argv) throws Exception {
-        OneTurbineSimulation sim = new OneTurbineSimulation("Gdańsk");
+        OneTurbineSimulation sim = new OneTurbineSimulation("Warszawa");
+        System.out.println(sim.weather);
     }
 }
