@@ -8,8 +8,9 @@ public class Main {
     private static Double earnings = 0.0;
     private static Double turbineExpenses = 0.0;
     private static Double otherExpenses = 0.0;
-    //private static ArrayList<Double> dailyExpenses;
-    //private static ArrayList<Double> monthlyExpenses;
+    private static ArrayList<Double> monthlyProfits = new ArrayList<Double>();
+    //public static ArrayList<Double> monthlyExpenses = new ArrayList<Double>(); // to do użycia jak będą śmigać awarie
+
 
     private static double total = 0;
 
@@ -17,6 +18,12 @@ public class Main {
     // inne wydatki 36% ceny turbin
     // zaladowac pogode
     // zaczac symulacje
+
+    /*
+    - tutaj modyfikacje zliczanie miescięcznych zysków z produkcji pradu dla danych w plikach .csv
+    - wywołanie kunkcji pobierającej pogdodę z api dla danego miasta (w okreresie i jednego roku)
+     i symulacja po jakim czasie farma się zwróci + jeśli się uda to tez to co robi dla danych z pliku
+     */
 
     public static void startSimulation(int years, int numberOfTurbines, String filePath) throws Exception {
         turbines = new ArrayList<>();
@@ -28,14 +35,20 @@ public class Main {
         //weather.downloadWeather();
         Double windSum = 0.0;
         int count = 0;
+        double oneMonthProfit = 0.0;
         ArrayList<Weather> weathers = Weather.parseWeatherFromFile(filePath);
         Weather.setWind("./res/windLinowo.csv", weathers);
         for(Weather weather : weathers) { // dla kazdego zapisu z pogody
             //weather.setWind(8.5);
             windSum += weather.getWind();
             count ++;
+            if(count%(30*24)==0){ //przyjmuję tutaj, że każdy miesiąc ma 30 dni( dokładną liczbę dni można zrobić w np. Weather.parseWeatherFromFile())
+                monthlyProfits.add(oneMonthProfit);
+                oneMonthProfit = 0;
+            }
             for(Turbine turbine : turbines) { // osobno dla kazdej turbiny
                 earnings += turbine.calculateEarnings(weather);
+                oneMonthProfit +=turbine.calculateEarnings(weather);
                 //otherExpenses += 200/24;
             }
         }
@@ -48,11 +61,11 @@ public class Main {
 
     public static void buildTurbine() {
         turbineExpenses += 8338000; // cena jednej turbiny
-        Turbine turbine = new Turbine(); // stworzenie turbiny ( automatycznie wlaczona
+        Turbine turbine = new Turbine(); // stworzenie turbiny ( automatycznie wlaczona)
         turbines.add(turbine);
     }
 
-    public static void main(String [] argv) throws Exception { // glowna klasa ktora bedzie przeliczac sume kostow i zarobkow
+    public static void main(String [] argv) throws Exception { // glowna klasa ktora bedzie przeliczac sume kosztow i zarobkow
 
         System.out.println("====================================");
         System.out.println("         START SYMULACJI");
@@ -62,7 +75,7 @@ public class Main {
         System.out.printf("Wydatki Turbiny: %.2f %n", turbineExpenses);
         System.out.printf("Wydatki Inne: %.2f %n", otherExpenses);
         System.out.printf("Zarobione: %.2f %n", earnings);
-        System.out.printf("Soldo: %.2f %n", Main.total);
+        System.out.printf("Saldo: %.2f %n", Main.total);
 
         System.out.println("====================================");
 
@@ -72,5 +85,21 @@ public class Main {
         System.out.println("====================================");
         System.out.println("         KONIEC SYMULACJI");
         System.out.println("====================================");
+
+
+        //Visualization vis = new Visualization(first, second);
+        Visualization.main(); // odpalenie wizualizacji dla jednego roku (Kielce - 2018)
+    }
+
+    public static ArrayList<Double> getMonthlyProfits() {
+        return monthlyProfits;
+    }
+
+    public static Double getTurbineExpenses() {
+        return turbineExpenses;
+    }
+
+    public static Double getOtherExpenses() {
+        return otherExpenses;
     }
 }
