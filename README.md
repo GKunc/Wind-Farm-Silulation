@@ -14,5 +14,5 @@
  * Zmiany (rozszerzenia) w wersji Alfa (np. wieksza dowolność w wybieraniu miejsca framy wiatrowej)
  * Możliwość oglądania części turbiny
  * Mozliwość symulacji pracy jedenej turbiny (możliwość zmiany warunków real-time)
- * Wyliczenie kiedy najelpeij byłoby zrobić okno serwisowe
+ * Wyliczenie kiedy najlepiej byłoby zrobić okno serwisowe
  
