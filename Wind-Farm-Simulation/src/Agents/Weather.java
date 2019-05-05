@@ -88,8 +88,10 @@ public class Weather {
                 .uri(URI.create(URL + "?key=" + key
                         + "&q=" + city
                         + "&format=json"
-                        + "&date=2018-01-01"
-                        + "&enddate=2019-01-01"))
+                        + "&date=2018-04-01"
+                        + "&enddate=2018-04-30"
+                        + "&tp=3" //status pogodowy raz na 3 godziny
+                ))
                 .GET()
                 .build();
 
