@@ -51,7 +51,8 @@ public class Turbine {
     }
 
     public Double calculateEarnings(Weather weather) { // cena za MWh 227.4 zł
-        return this.calculatePower(weather) * 0.405; // gwarantowana
+        if(this.getStatus() == true) return this.calculatePower(weather) * 0.405; // gwarantowana
+        else return 0.0;
     }
 
     /*public Double calculateExpenses() { // 300zł na dzien ( na razie nie wiem ile, tak wpisalem)
