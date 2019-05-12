@@ -53,8 +53,6 @@ public class Maintanance {
     public static void main(String [] argv) throws IOException {
         /* float earnings = 0;
 
-<<<<<<< HEAD
-=======
         ArrayList<Turbine> turbines = new ArrayList<>();
 
         for(int i = 0; i < 1; i ++) {
