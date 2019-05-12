@@ -10,13 +10,7 @@ public class Maintanance {
         Przyblizone oszty naprawy
      */
 
-    /*
-        OPIS!!
-        Koszt bedzie wliczony w ubezpieczenie, a czas to tak na oko xd
-        tutaj trzeba przeanalizowac dane z dysku google
-     */
-
-    public void preventiveMaintanance() { // sprawdzenie stanu i ewentualne drobne naprawy
+    public void preventiveMaintanance() { // polroczny lub coroczny przeglad
 
     }
 
@@ -24,7 +18,7 @@ public class Maintanance {
 
     }
 
-    public void choseRepairTime() { // wybranie czasu konserwacji aby byly jak najmniejsze straty
+    public void choseRepairTime() { // wybranie czasu konserwacji
 
     }
 
