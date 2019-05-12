@@ -12,9 +12,17 @@ public class Maintanance {
 
     public void preventiveMaintanance(Turbine turbine, int daysPassed) { // polroczny lub coroczny przeglad
         if(daysPassed % 365 == 0)
-            Maintanance.annualMaintanance();
+            Maintanance.annualMaintanance(turbine);
         else if(daysPassed % 180 == 0 && daysPassed % 360 != 0)
-            Maintanance.halfYearMaintanance();
+            Maintanance.halfYearMaintanance(turbine);
+    }
+
+    public static void annualMaintanance(Turbine turbine) {
+        
+    }
+
+    public static void halfYearMaintanance(Turbine turbine) {
+
     }
 
     public void alertMaintanance() { // naprawa jakiejs awarii
