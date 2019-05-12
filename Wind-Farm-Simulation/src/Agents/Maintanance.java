@@ -1,5 +1,8 @@
 package Agents;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class Maintanance {
 
     /*
@@ -10,7 +13,7 @@ public class Maintanance {
         Przyblizone oszty naprawy
      */
 
-    public void preventiveMaintanance(Turbine turbine, int daysPassed) { // polroczny lub coroczny przeglad
+    public static void preventiveMaintanance(Turbine turbine, double daysPassed) { // polroczny lub coroczny przeglad
         if(daysPassed % 365 == 0 || turbine.getAnnualMaintanance() != 0) {
             Maintanance.annualMaintanance(turbine);
         }
@@ -20,7 +23,7 @@ public class Maintanance {
     }
 
     public static void annualMaintanance(Turbine turbine) {
-        if(turbine.getAnnualMaintanance() > 24) {
+        if(turbine.getAnnualMaintanance() > 23) {
             turbine.setAnnualMaintanance(0);
             turbine.turnOn();
         } else {
@@ -30,7 +33,7 @@ public class Maintanance {
     }
 
     public static void halfYearMaintanance(Turbine turbine) {
-        if(turbine.getHalfYearMaintanance() > 8) {
+        if(turbine.getHalfYearMaintanance() > 7) {
             turbine.setHalfYearMaintanance(0);
             turbine.turnOn();
         } else {
@@ -47,8 +50,39 @@ public class Maintanance {
 
     }
 
-    public static void main(String [] argv) {
+    public static void main(String [] argv) throws IOException {
+        /* float earnings = 0;
 
+        ArrayList<Turbine> turbines = new ArrayList<>();
+
+        for(int i = 0; i < 1; i ++) {
+            Turbine turbine = new Turbine(); // stworzenie turbiny ( automatycznie wlaczona)
+            turbines.add(turbine);
+        }
+
+        int count = 0;
+        int year = 0;
+        int hoursPassed = 1;
+        String filePath = "./res/weatherKielce.csv";
+        ArrayList<Weather> weathers = Weather.parseWeatherFromFile(filePath);
+        while(year < 5) {
+            for (Weather weather : weathers) {
+                count++;
+                System.out.println("DZIEN!!! --->>> " + count);
+                hoursPassed++;
+                for (Turbine turbine : turbines) {
+                    Maintanance.preventiveMaintanance(turbine, (double) hoursPassed / 24);
+                    earnings += turbine.calculateEarnings(weather);
+                    if (turbine.getAnnualMaintanance() != 0)
+                        System.out.println("NAPRAWA ROCZNA!!!!");
+                    else if (turbine.getHalfYearMaintanance() != 0)
+                        System.out.println("NAPRAWA POLLLLLL ROCZNA!!!!");
+                    else
+                        System.out.println(earnings);
+                }
+            }
+            year++;
+        }*/
     }
 
 }
