@@ -10,15 +10,18 @@ public class Maintanance {
         Przyblizone oszty naprawy
      */
 
-    public void preventiveMaintanance() { // polroczny lub coroczny przeglad
-
+    public void preventiveMaintanance(Turbine turbine, int daysPassed) { // polroczny lub coroczny przeglad
+        if(daysPassed % 365 == 0)
+            Maintanance.annualMaintanance();
+        else if(daysPassed % 180 == 0 && daysPassed % 360 != 0)
+            Maintanance.halfYearMaintanance();
     }
 
     public void alertMaintanance() { // naprawa jakiejs awarii
 
     }
 
-    public void choseRepairTime() { // wybranie czasu konserwacji
+    public void choseRepairTime(int time) { // wybranie czasu konserwacji
 
     }
 
