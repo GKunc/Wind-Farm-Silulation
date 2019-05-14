@@ -11,14 +11,15 @@ import java.io.IOException;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("fxml/guiWindow.fxml"));
-        primaryStage.setTitle("KeepToo SMSys");
-        primaryStage.setTitle("Model farmy wiatrowej");
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
-    }
+    public void start(Stage stage) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/DashBoard.fxml"));
 
+        Scene scene = new Scene(root);
+
+        stage.setTitle("Model farmy wiatrowej");
+        stage.setScene(scene);
+        stage.show();
+    }
 
     public static void main(String[] args) {
         launch(args);

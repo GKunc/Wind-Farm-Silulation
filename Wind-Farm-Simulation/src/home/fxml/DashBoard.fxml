@@ -8,8 +8,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.Controllers.DashBoardController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.Controllers.DashBoardController">
     <children>
-        <Button fx:id="btn1" layoutX="51.0" layoutY="44.0" mnemonicParsing="false" text="SHOW"/>
+        <Button fx:id="btnHowItWorks" layoutX="51.0" layoutY="44.0" mnemonicParsing="false" onAction="#handleButtonClicks" text="How it works"/>
+        <Button fx:id="btnSimulation" layoutX="51.0" layoutY="144.0" mnemonicParsing="false" onAction="#handleButtonClicks" text="Simulation"/>
+        <Button fx:id="btnDocumentation" layoutX="51.0" layoutY="244.0" mnemonicParsing="false" onAction="#handleButtonClicks" text="Documentation"/>
     </children>
 </AnchorPane>
