@@ -1,5 +1,6 @@
-package Agents;
+package home.Controllers;
 
+import home.Agents.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

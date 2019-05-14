@@ -12,7 +12,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("fxml/DashBoard.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/guiWindow.fxml"));
         primaryStage.setTitle("KeepToo SMSys");
         primaryStage.setTitle("Model farmy wiatrowej");
         primaryStage.setScene(new Scene(root));
