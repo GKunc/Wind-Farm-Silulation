@@ -57,6 +57,7 @@
          </children>
       </VBox>
    </center>
+
    <top>
       <Label text="Model farmy wiatrowej" textFill="#074eeb" BorderPane.alignment="CENTER">
          <font>

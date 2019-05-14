@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.Controllers.DashBoardController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.Controllers.DashBoardController">
     <children>
-        <Button fx:id="btnHowItWorks" layoutX="51.0" layoutY="44.0" mnemonicParsing="false" onAction="#handleButtonClicks" text="How it works"/>
-        <Button fx:id="btnSimulation" layoutX="51.0" layoutY="144.0" mnemonicParsing="false" onAction="#handleButtonClicks" text="Simulation"/>
-        <Button fx:id="btnDocumentation" layoutX="51.0" layoutY="244.0" mnemonicParsing="false" onAction="#handleButtonClicks" text="Documentation"/>
+        <Label fx:id="my_title" layoutX="40.0" layoutY="20.0" stylesheets="@../css/stylesheet.css" text="Symulacja Farmy Wiatrowej" />
+        <Button fx:id="btnSimulation" layoutX="51.0" layoutY="144.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="121.0" prefWidth="126.0" stylesheets="@../css/stylesheet.css" text="Simulation" />
+        <Button fx:id="btnHowItWorks" layoutX="237.0" layoutY="144.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="121.0" prefWidth="126.0" stylesheets="@../css/stylesheet.css" text="How it works" />
+        <Button fx:id="btnDocumentation" layoutX="424.0" layoutY="144.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="121.0" prefWidth="126.0" stylesheets="@../css/stylesheet.css" text="Documentation" />
     </children>
 </AnchorPane>

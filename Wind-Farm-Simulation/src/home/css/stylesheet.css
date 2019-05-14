@@ -1,0 +1,43 @@
+.root
+{
+    -fx-background-color: rgba(32, 45, 76, 1);
+}
+
+.button
+{
+    -fx-background-radius: 20;
+    -fx-background-color: rgba(41, 58, 97, 0.3);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.button:hover
+{
+    -fx-background-color: rgba(41, 58, 97, 0.8);
+}
+
+.radio-button
+{
+    -fx-text-fill: white;
+}
+
+#startButton
+{
+    -fx-background-color: rgba(161, 27, 27, 1);
+}
+
+#btnDashBoard
+{
+    -fx-background-image: url("arrow_back.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 40 40;
+    -fx-opacity: 1;
+}
+
+#my_title
+{
+    -fx-text-alignment: center;
+    -fx-text-fill: rgba(161, 27, 27, 1);
+    -fx-font-size: 40px;
+}
+
