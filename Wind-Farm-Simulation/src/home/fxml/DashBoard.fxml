@@ -2,13 +2,44 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.Controllers.DashBoardController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.Controllers.DashBoardController">
     <children>
-        <Label fx:id="my_title" layoutX="40.0" layoutY="20.0" stylesheets="@../css/stylesheet.css" text="Symulacja Farmy Wiatrowej" />
-        <Button fx:id="btnSimulation" layoutX="51.0" layoutY="144.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="121.0" prefWidth="126.0" stylesheets="@../css/stylesheet.css" text="Simulation" />
-        <Button fx:id="btnHowItWorks" layoutX="237.0" layoutY="144.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="121.0" prefWidth="126.0" stylesheets="@../css/stylesheet.css" text="How it works" />
-        <Button fx:id="btnDocumentation" layoutX="424.0" layoutY="144.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="121.0" prefWidth="126.0" stylesheets="@../css/stylesheet.css" text="Documentation" />
+        <Label fx:id="my_title" layoutX="10.0" layoutY="10.0" stylesheets="@../css/stylesheet.css" text="Menu" AnchorPane.rightAnchor="450.0" AnchorPane.topAnchor="10.0" />
+
+        <Button fx:id="btnSimulation" contentDisplay="TOP" layoutX="100.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/stylesheet.css" text="Simulation" AnchorPane.rightAnchor="670" AnchorPane.topAnchor="200.0">
+         <graphic>
+            <ImageView fitHeight="96.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../css/wind_turbine.png" />
+               </image>
+            </ImageView>
+         </graphic>
+        </Button>
+
+        <Button fx:id="btnHowItWorks" contentDisplay="TOP" layoutX="350.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/stylesheet.css" text="How it works" AnchorPane.rightAnchor="400" AnchorPane.topAnchor="200.0">
+        <graphic>
+            <ImageView fitHeight="96.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../css/how_it_works.png" />
+                </image>
+            </ImageView>
+        </graphic>
+        </Button>
+
+        <Button fx:id="btnDocumentation" contentDisplay="TOP" layoutX="600.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/stylesheet.css" text="Documentation" AnchorPane.rightAnchor="120" AnchorPane.topAnchor="200.0">
+        <graphic>
+            <ImageView fitHeight="96.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../css/documents.png" />
+                </image>
+            </ImageView>
+        </graphic>
+        </Button>
+
+        <Label fx:id="footer" stylesheets="@../css/stylesheet.css" text="\@Copyright 2019" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="450.0" />
     </children>
 </AnchorPane>
