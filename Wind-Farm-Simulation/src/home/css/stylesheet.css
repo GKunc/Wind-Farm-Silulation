@@ -8,7 +8,7 @@
     -fx-background-radius: 20;
     -fx-background-color: rgba(41, 58, 97, 0.3);
     -fx-text-fill: white;
-    -fx-font-size: 14px;
+    -fx-font-size: 20px;
 }
 
 .button:hover
@@ -39,5 +39,11 @@
     -fx-text-alignment: center;
     -fx-text-fill: rgba(161, 27, 27, 1);
     -fx-font-size: 40px;
+}
+
+#footer
+{
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
 }
 
