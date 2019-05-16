@@ -6,9 +6,15 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../css/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.Controllers.DashBoardController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../css/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.Controllers.oneController">
     <children>
-        <Label fx:id="my_title" layoutX="10.0" layoutY="10.0" stylesheets="@../../css/stylesheet.css" text="ONE"/>
+        <Label fx:id="my_title" layoutX="180.0" layoutY="10.0" stylesheets="@../../css/stylesheet.css" text="Fundamenty"/>
 
-  </children>
+        <ImageView layoutX="100" layoutY="70" fitHeight="300" fitWidth="400">
+            <Image url="@../../css/fundamenty.jpg"/>
+        </ImageView>
+        <Button fx:id="prev" layoutX="20.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="40.0" prefWidth="40.0" stylesheets="@../../css/stylesheet.css" text="" />
+        <Button fx:id="next" layoutX="540.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="40.0" prefWidth="40.0" stylesheets="@../../css/stylesheet.css" text="" />
+
+    </children>
 </AnchorPane>
