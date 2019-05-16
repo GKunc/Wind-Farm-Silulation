@@ -90,7 +90,7 @@ public class Weather {
                         + "&format=json"
                         + "&date=2018-04-01"
                         + "&enddate=2018-04-30"
-                        + "&tp=3" //status pogodowy raz na 3 godziny
+                        + "&tp=1" //status pogodowy raz na godzinę
                 ))
                 .GET()
                 .build();
