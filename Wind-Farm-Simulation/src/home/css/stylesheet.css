@@ -32,11 +32,21 @@
     -fx-background-color: rgba(161, 27, 27, 1);
 }
 
-#btnDashBoard
+#btnDashBoard, #prev
 {
-    -fx-background-image: url("arrow_back.png");
+    -fx-background-position: center;
+    -fx-background-image: url("back.png");
     -fx-background-repeat: stretch;
-    -fx-background-size: 40 40;
+    -fx-background-size: 30 30;
+    -fx-opacity: 1;
+}
+
+#next
+{
+    -fx-background-position: center;
+    -fx-background-image: url("next.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 30 30;
     -fx-opacity: 1;
 }
 
