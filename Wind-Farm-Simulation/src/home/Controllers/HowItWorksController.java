@@ -9,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,15 +24,67 @@ public class HowItWorksController implements Initializable {
     public Button btnDashBoard;
 
     @FXML
+    public Button one;
+    public Button two;
+    public Button three;
+    public Button four;
+    public Button five;
+    public Button six;
+    public Button seven;
+    public Button eight;
+    public Button nine;
+    public Button ten;
+    public Button eleven;
+    public Button twelve;
+    public Button thirteen;
+
+
+
+    @FXML
     public void handleButtonClicks(javafx.event.ActionEvent mouseEvent) throws IOException {
         if (mouseEvent.getSource() == btnDashBoard) {
             loadStage(mouseEvent,"/home/fxml/DashBoard.fxml");
+        } else if (mouseEvent.getSource() == one) {
+            openNewWindow(mouseEvent, "/home/fxml/Turbine/one.fxml");
+        } else if (mouseEvent.getSource() == two) {
+            openNewWindow(mouseEvent, "/home/fxml/Turbine/two.fxml");
+        } else if (mouseEvent.getSource() == three) {
+            openNewWindow(mouseEvent, "/home/fxml/Turbine/three.fxml");
+        } else if (mouseEvent.getSource() == four) {
+            openNewWindow(mouseEvent, "/home/fxml/Turbine/four.fxml");
+        } else if (mouseEvent.getSource() == five) {
+            openNewWindow(mouseEvent, "/home/fxml/Turbine/five.fxml");
+        } else if (mouseEvent.getSource() == six) {
+            openNewWindow(mouseEvent, "/home/fxml/Turbine/six.fxml");
+        } else if (mouseEvent.getSource() == seven) {
+            openNewWindow(mouseEvent, "/home/fxml/Turbine/seven.fxml");
+        } else if (mouseEvent.getSource() == eight) {
+            openNewWindow(mouseEvent, "/home/fxml/Turbine/eight.fxml");
+        } else if (mouseEvent.getSource() == nine) {
+            openNewWindow(mouseEvent, "/home/fxml/Turbine/nine.fxml");
+        } else if (mouseEvent.getSource() == ten) {
+            openNewWindow(mouseEvent, "/home/fxml/Turbine/ten.fxml");
+        } else if (mouseEvent.getSource() == eleven) {
+            openNewWindow(mouseEvent, "/home/fxml/Turbine/eleven.fxml");
+        } else if (mouseEvent.getSource() == twelve) {
+            openNewWindow(mouseEvent, "/home/fxml/Turbine/twelve.fxml");
+        } else if (mouseEvent.getSource() == thirteen) {
+            openNewWindow(mouseEvent, "/home/fxml/Turbine/thirteen.fxml");
         }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+    }
+
+    @FXML
+    public void openNewWindow(ActionEvent event, String fxml) throws IOException {
+        Parent screenToLoad = FXMLLoader.load(getClass().getResource(fxml));
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(screenToLoad));
+        stage.show();
     }
 
     @FXML
