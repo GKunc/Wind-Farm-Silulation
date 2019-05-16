@@ -21,6 +21,12 @@
     -fx-text-fill: white;
 }
 
+.label
+{
+    -fx-text-fill: pink;
+    -fx-font-size: 20px;
+}
+
 #startButton
 {
     -fx-background-color: rgba(161, 27, 27, 1);
@@ -47,3 +53,23 @@
     -fx-font-size: 12px;
 }
 
+#authors
+{
+    -fx-text-fill: white;
+    -fx-font-size: 30px;
+}
+
+#gitText
+{
+    -fx-text-fill: white;
+    -fx-font-size: 30px;
+}
+
+#btnGitHub
+{
+    -fx-background-image: url("GitHub.png");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 60 60;
+    -fx-background-radius: 30;
+    -fx-opacity: 1;
+}

@@ -3,6 +3,7 @@ module Wind.Farm {
     requires javafx.graphics;
     requires javafx.fxml;
     requires javafx.controls;
+    requires java.desktop;
 
     exports home;
     exports home.Agents;
