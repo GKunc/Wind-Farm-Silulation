@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.Controllers.DisplayResultsController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.Controllers.DisplayResultsController">
     <Button fx:id="btnDashBoard" layoutX="10.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="40.0" prefWidth="40.0" stylesheets="@../css/stylesheet.css" text="" />
 
     <RadioButton fx:id="takeFromApi" layoutX="100.0" layoutY="50.0" mnemonicParsing="false" onAction="#takeDataFromApi" text="Pobierz dane pogodowe">
