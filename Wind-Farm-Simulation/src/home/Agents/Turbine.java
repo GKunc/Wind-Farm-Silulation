@@ -1,4 +1,4 @@
-package Agents;
+package home.Agents;
 
 public class Turbine {
 

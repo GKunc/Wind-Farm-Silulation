@@ -1,4 +1,4 @@
-package Agents;
+package home.Agents;
 
 import java.util.ArrayList;
 
@@ -151,6 +151,7 @@ public class Main {
 
         return msgToReturn.toString();
     }
+
 
     /*
     public static void main(String[] argv) throws Exception { // glowna klasa ktora bedzie przeliczac sume kosztow i zarobkow

@@ -1,4 +1,4 @@
-package Agents;
+package home.Agents;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

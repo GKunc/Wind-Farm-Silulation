@@ -1,4 +1,4 @@
-package Agents;
+package home.Agents;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
