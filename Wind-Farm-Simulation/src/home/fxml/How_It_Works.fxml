@@ -15,7 +15,7 @@
         </AnchorPane>
 
         <ImageView layoutX="100.0" layoutY="10.0">
-            <Image url="@../css/wind_turbine_schema.png" />
+            <Image url="@../img/wind_turbine_schema.png" />
         </ImageView>
 
         <Label layoutX="500.0" layoutY="100.0" stylesheets="@../css/stylesheet.css" text="1. Fundament" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="100.0" />
