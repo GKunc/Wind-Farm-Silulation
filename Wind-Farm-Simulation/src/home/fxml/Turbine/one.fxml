@@ -13,7 +13,7 @@
         <Label fx:id="my_title" layoutX="180.0" layoutY="10.0" stylesheets="@../../css/stylesheet.css" text="Fundamenty"/>
 
         <ImageView layoutX="100" layoutY="70" fitHeight="300" fitWidth="400">
-            <Image url="@../../css/fundamenty.jpg"/>
+            <Image url="@../../img/fundamenty.jpg"/>
         </ImageView>
         <Button fx:id="prev" layoutX="20.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="40.0" prefWidth="40.0" stylesheets="@../../css/stylesheet.css" text="" />
         <Button fx:id="next" layoutX="540.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="40.0" prefWidth="40.0" stylesheets="@../../css/stylesheet.css" text="" />
