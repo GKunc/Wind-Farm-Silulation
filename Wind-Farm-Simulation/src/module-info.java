@@ -8,4 +8,6 @@ module Wind.Farm {
     exports home;
     exports home.Agents;
     exports home.Controllers;
+    exports home.Controllers.numberBtnsController;
+
 }
