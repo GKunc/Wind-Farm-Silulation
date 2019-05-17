@@ -3,6 +3,11 @@
     -fx-background-color: rgba(32, 45, 76, 1);
 }
 
+.normalText
+{
+    -fx-fill: white;
+}
+
 .button
 {
     -fx-background-radius: 20;
@@ -84,7 +89,7 @@
     -fx-opacity: 1;
 }
 
-#one, #two, #three, #four, #five, #six, #seven, #eight, #nine, #ten, #eleven, #twelve, #thirteen
+.numberBtn
 {
     -fx-opacity: 0;
     -fx-background-radius: 5em;
