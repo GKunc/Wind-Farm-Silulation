@@ -14,7 +14,7 @@
          <graphic>
             <ImageView fitHeight="96.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../css/wind_turbine.png" />
+                  <Image url="@../img/wind_turbine.png" />
                </image>
             </ImageView>
          </graphic>
@@ -24,7 +24,7 @@
         <graphic>
             <ImageView fitHeight="96.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                    <Image url="@../css/how_it_works.png" />
+                    <Image url="@../img/how_it_works.png" />
                 </image>
             </ImageView>
         </graphic>
@@ -34,7 +34,7 @@
         <graphic>
             <ImageView fitHeight="96.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                    <Image url="@../css/documents.png" />
+                    <Image url="@../img/documents.png" />
                 </image>
             </ImageView>
         </graphic>
