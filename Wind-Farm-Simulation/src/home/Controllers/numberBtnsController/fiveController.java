@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class oneController implements Initializable {
+public class fiveController implements Initializable {
 
     @FXML
     public AnchorPane rootPane;
@@ -30,9 +30,9 @@ public class oneController implements Initializable {
     @FXML
     public void handleButtonClicks(ActionEvent mouseEvent) throws IOException {
        if (mouseEvent.getSource() == prev) {
-           loadStage(mouseEvent,"/home/fxml/Turbine/five.fxml");
+           loadStage(mouseEvent,"/home/fxml/Turbine/four.fxml");
        } else if (mouseEvent.getSource() == next) {
-           loadStage(mouseEvent,"/home/fxml/Turbine/two.fxml");
+           loadStage(mouseEvent,"/home/fxml/Turbine/one.fxml");
        }
     }
 
