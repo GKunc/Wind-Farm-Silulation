@@ -35,7 +35,7 @@
 #btnDashBoard, #prev
 {
     -fx-background-position: center;
-    -fx-background-image: url("back.png");
+    -fx-background-image: url("@../img/back.png");
     -fx-background-repeat: stretch;
     -fx-background-size: 30 30;
     -fx-opacity: 1;
@@ -44,7 +44,7 @@
 #next
 {
     -fx-background-position: center;
-    -fx-background-image: url("next.png");
+    -fx-background-image: url("@../img/next.png");
     -fx-background-repeat: stretch;
     -fx-background-size: 30 30;
     -fx-opacity: 1;
@@ -77,7 +77,7 @@
 
 #btnGitHub
 {
-    -fx-background-image: url("GitHub.png");
+    -fx-background-image: url("@../img/GitHub.png");
     -fx-background-repeat: stretch;
     -fx-background-size: 60 60;
     -fx-background-radius: 30;
