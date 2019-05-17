@@ -55,21 +55,21 @@ public class HowItWorksController implements Initializable {
         } else if (mouseEvent.getSource() == five) {
             openNewWindow(mouseEvent, "/home/fxml/Turbine/five.fxml");
         } else if (mouseEvent.getSource() == six) {
-            openNewWindow(mouseEvent, "/home/fxml/Turbine/six.fxml");
+            openNewWindow(mouseEvent, "/home/fxml/Turbine/five.fxml");
         } else if (mouseEvent.getSource() == seven) {
-            openNewWindow(mouseEvent, "/home/fxml/Turbine/seven.fxml");
+            openNewWindow(mouseEvent, "/home/fxml/Turbine/five.fxml");
         } else if (mouseEvent.getSource() == eight) {
-            openNewWindow(mouseEvent, "/home/fxml/Turbine/eight.fxml");
+            openNewWindow(mouseEvent, "/home/fxml/Turbine/five.fxml");
         } else if (mouseEvent.getSource() == nine) {
-            openNewWindow(mouseEvent, "/home/fxml/Turbine/nine.fxml");
+            openNewWindow(mouseEvent, "/home/fxml/Turbine/five.fxml");
         } else if (mouseEvent.getSource() == ten) {
-            openNewWindow(mouseEvent, "/home/fxml/Turbine/ten.fxml");
+            openNewWindow(mouseEvent, "/home/fxml/Turbine/five.fxml");
         } else if (mouseEvent.getSource() == eleven) {
-            openNewWindow(mouseEvent, "/home/fxml/Turbine/eleven.fxml");
+            openNewWindow(mouseEvent, "/home/fxml/Turbine/five.fxml");
         } else if (mouseEvent.getSource() == twelve) {
-            openNewWindow(mouseEvent, "/home/fxml/Turbine/twelve.fxml");
+            openNewWindow(mouseEvent, "/home/fxml/Turbine/five.fxml");
         } else if (mouseEvent.getSource() == thirteen) {
-            openNewWindow(mouseEvent, "/home/fxml/Turbine/thirteen.fxml");
+            openNewWindow(mouseEvent, "/home/fxml/Turbine/five.fxml");
         }
     }
 
