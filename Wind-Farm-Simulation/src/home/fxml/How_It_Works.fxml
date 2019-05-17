@@ -32,18 +32,18 @@
         <Label layoutX="500.0" layoutY="440.0" stylesheets="@../css/stylesheet.css" text="12. Siłownik mechanizmu przestawiania łopat " wrapText="true" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="430.0" />
         <Label layoutX="500.0" layoutY="480.0" stylesheets="@../css/stylesheet.css" text="13. Piasta" wrapText="true" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="460.0" />
 
-        <Button fx:id="one" layoutX="405.0" layoutY="465.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
-        <Button fx:id="two" layoutX="358.0" layoutY="414.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
-        <Button fx:id="three" layoutX="395.0" layoutY="275.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
-        <Button fx:id="four" layoutX="395.0" layoutY="225.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
-        <Button fx:id="five" layoutX="395.0" layoutY="180.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
-        <Button fx:id="six" layoutX="395.0" layoutY="140.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
-        <Button fx:id="seven" layoutX="390.0" layoutY="95.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
-        <Button fx:id="eight" layoutX="370.0" layoutY="60.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
-        <Button fx:id="nine" layoutX="335.0" layoutY="50.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
-        <Button fx:id="ten" layoutX="295.0" layoutY="45.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
-        <Button fx:id="eleven" layoutX="188.0" layoutY="50.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
-        <Button fx:id="twelve" layoutX="185.0" layoutY="90.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
-        <Button fx:id="thirteen" layoutX="185.0" layoutY="160.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
+        <Button fx:id="one" styleClass="numberBtn" layoutX="405.0" layoutY="465.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
+        <Button fx:id="two" styleClass="numberBtn" layoutX="358.0" layoutY="414.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
+        <Button fx:id="three" styleClass="numberBtn" layoutX="395.0" layoutY="275.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
+        <Button fx:id="four" styleClass="numberBtn" layoutX="395.0" layoutY="225.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
+        <Button fx:id="five" styleClass="numberBtn" layoutX="395.0" layoutY="180.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
+        <Button fx:id="six" styleClass="numberBtn" layoutX="395.0" layoutY="140.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
+        <Button fx:id="seven" styleClass="numberBtn" layoutX="390.0" layoutY="95.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
+        <Button fx:id="eight" styleClass="numberBtn" layoutX="370.0" layoutY="60.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
+        <Button fx:id="nine" styleClass="numberBtn" layoutX="335.0" layoutY="50.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
+        <Button fx:id="ten" styleClass="numberBtn" layoutX="295.0" layoutY="45.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
+        <Button fx:id="eleven" styleClass="numberBtn" layoutX="188.0" layoutY="50.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
+        <Button fx:id="twelve" styleClass="numberBtn" layoutX="185.0" layoutY="90.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
+        <Button fx:id="thirteen" styleClass="numberBtn" layoutX="185.0" layoutY="160.0" onAction="#handleButtonClicks" stylesheets="@../css/stylesheet.css"/>
     </children>
 </AnchorPane>
