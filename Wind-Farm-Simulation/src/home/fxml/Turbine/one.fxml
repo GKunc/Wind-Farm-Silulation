@@ -6,7 +6,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../css/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.Controllers.oneController">
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.StackPane?>
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="600.0" stylesheets="@../../css/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.Controllers.oneController">
     <children>
         <Label fx:id="my_title" layoutX="180.0" layoutY="10.0" stylesheets="@../../css/stylesheet.css" text="Fundamenty"/>
 
@@ -16,5 +18,17 @@
         <Button fx:id="prev" layoutX="20.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="40.0" prefWidth="40.0" stylesheets="@../../css/stylesheet.css" text="" />
         <Button fx:id="next" layoutX="540.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="40.0" prefWidth="40.0" stylesheets="@../../css/stylesheet.css" text="" />
 
+        <StackPane alignment="CENTER" layoutY="300" prefHeight="400" prefWidth="600">
+            <children>
+                <Text  wrappingWidth="480" text="JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
+                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
+                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
+                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
+                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
+                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
+                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
+                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE" />
+            </children>
+        </StackPane>
     </children>
 </AnchorPane>
