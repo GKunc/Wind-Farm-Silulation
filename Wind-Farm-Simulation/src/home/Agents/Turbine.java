@@ -1,5 +1,7 @@
 package home.Agents;
 
+import java.util.ArrayList;
+
 public class Turbine {
 
     private final double sweptArea = 6362; // m^2 dla naszego modelu
@@ -11,6 +13,7 @@ public class Turbine {
     private boolean alert;
     private int annualMaintanance;
     private int halfYearMaintanance;
+    public ArrayList<String> failuresList;
 
     /*
         todo
@@ -27,6 +30,7 @@ public class Turbine {
         alert = false;
         annualMaintanance = 0;
         halfYearMaintanance = 0;
+        failuresList = new ArrayList<String>();
     }
 
     public boolean getStatus() { return status; }

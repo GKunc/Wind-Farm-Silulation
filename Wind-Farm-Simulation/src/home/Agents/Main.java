@@ -1,6 +1,7 @@
 package home.Agents;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Main {
     private static ArrayList<Turbine> turbines;
@@ -55,7 +56,7 @@ public class Main {
                 oneMonthProfit = 0;
             }
             for (Turbine turbine : turbines) { // osobno dla kazdej turbiny
-                Maintanance.preventiveMaintanance(turbine,(double) count/24);
+                Maintanance.preventiveMaintanance(turbine, (double) count / 24);
                 earnings += turbine.calculateEarnings(weather);
                 oneMonthProfit += turbine.calculateEarnings(weather);
                 //otherExpenses += 200/24;
@@ -63,10 +64,21 @@ public class Main {
         }
         System.out.println("Średnia wiatru -> " + (windSum / count));
         earnings = earnings * years;
+
+        /*
+        W tej częsci potrzebuję od długości czasu z jakiego mamy dane do symulacji.
+        Przyjmuję, że miesiąc trwa 30 dni, a każdego dni mamy 24 pomiary pogody.
+        */
+
+        for (int i = 0; i < (weathers.size() / (30 * 24)); i++) {
+            for (Turbine turbine : turbines) {
+                failuresExpenses += failuresGenerator(turbine, earnings / count);
+            }
+        }
         //otherExpenses = 1200000.0 * years; // z faktury 2546305.0
         otherExpenses = turbines.size() * turbineExpenses * 0.015 * years; // 1.5% na rok
-        failuresExpenses = failuresCosts(years, numberOfTurbines, earnings/count);
         total = earnings - turbineExpenses - otherExpenses - failuresExpenses;
+
 
     }
 
@@ -91,21 +103,30 @@ public class Main {
         for (Weather weather : weathers) { // dla kazdego zapisu z pogody
             windSum += weather.getWind();
             count++;
-            if ((count-1) % (24) == 0) { //pomiary są co  godzinę
+            if ((count - 1) % (24) == 0) { //pomiary są co  godzinę
                 monthlyProfits.add(oneDayProfit);
                 oneDayProfit = 0;
             }
             for (Turbine turbine : turbines) { // osobno dla kazdej turbiny
-                Maintanance.preventiveMaintanance(turbine, (double)count/24);
+                Maintanance.preventiveMaintanance(turbine, (double) count / 24);
                 earnings += turbine.calculateEarnings(weather);
                 oneDayProfit += turbine.calculateEarnings(weather);
             }
         }
         System.out.println("Średnia wiatru -> " + (windSum / count));
         earnings = earnings * years;
+
+        /*
+        W tej częsci potrzebuję od długości czasu z jakiego mamy dane do symulacji.
+        Przyjmuję, że miesiąc trwa 30 dni, a każdego dni mamy 24 pomiary pogody.
+        */
+        for (int i = 0; i < (weathers.size() / (30 * 24)); i++) {
+            for (Turbine turbine : turbines) {
+                failuresExpenses += failuresGenerator(turbine, earnings / count);
+            }
+        }
         //otherExpenses = 1200000.0 * years; // z faktury 2546305.0
         otherExpenses = turbines.size() * turbineExpenses * 0.015 * years; // 1.5% na rok
-        failuresExpenses = failuresCosts(years, numberOfTurbines, earnings/count);
         total = earnings - turbineExpenses - otherExpenses - failuresExpenses;
     }
 
@@ -115,27 +136,65 @@ public class Main {
         turbines.add(turbine);
     }
 
-    public static double failuresCosts(double years, int numberOfTurbines, double averageHourlyProfit){
-        /*
-        * Każda z wymienionych w dokumentacji awarii została uwzględniona
-        * (te w których długość nie przekraczała godziny przyjmuję, że trwały najdłuższy przewidywany czas)
-        * w pozostałych przypadkach czas będzie generowany losowo z uwzglednieniem minimalnej długości awarii.
-        *
-        * Zostanie obliczona średnia miesięczna strata na awariach dla jednej turbiny
-        * (więc jeszcze trzeba uwzglednić czas symulacji i faktyczną liczbę turbin).
-        * Zostanie użyty wspólczynnik proporcjonalności - 24 - bo dla tylu turbin przeprowadono badania.
-        */
-         return 12 * years * numberOfTurbines * averageHourlyProfit * (
-                //ilość tego typu awarii w miesiącu * czas trwania [h]
-                ( 19 * 5/6) +
-                        (1 * 2/3) +
-                        (18 * (2 + Math.random() *3.5 )) +
-                        (2 * 2/3) +
-                        (2 * (1 + Math.random()*0.5)) +
-                        (9 * 5/60) +
-                        (1 * (4+ Math.random())) +
-                        (1 * (3+ Math.random()))
-        )/24;
+
+/*
+         * Każda z wymienionych w dokumentacji awarii została uwzględniona
+         * (te w których długość nie przekraczała godziny przyjmuję, że trwały najdłuższy przewidywany czas)
+         * w pozostałych przypadkach czas będzie generowany losowo z uwzglednieniem minimalnej długości awarii.
+         *
+         * Losuję liczbę z przedziału 0-1,
+         * która następnie jest porównywana z prawdopodobieństwem danej awarii dla jednej turbiny.
+         *
+         * Mozliwe ulepszenia:
+         * - obiekty klasy Turbine będzie mieć zamiast listy String mapę <String, String> z nazwą awarii i jej datą
+         * - obliczanie kosztów zwiazanych z awarią nie na podstawie średniej godzinowej stawki, ale dokładnych danych.
+         *
+*/
+    public static double failuresGenerator(Turbine examineTurbine, double averageHourlyProfit) {
+        double failuresCost = 0.0;
+        double tmp_probability;
+        tmp_probability = new Random().nextDouble();
+        if (tmp_probability < (19.0 / 24)) {
+            examineTurbine.failuresList.add("Za duże napięcie (sieć)");
+            failuresCost += (5 / 6) * averageHourlyProfit;
+        }
+        tmp_probability = new Random().nextDouble();
+        if (tmp_probability < (1.0 / 24)) {
+            examineTurbine.failuresList.add("Awaryjne hamowanie (za duży wiatr)");
+            failuresCost += (2 / 3) * averageHourlyProfit;
+        }
+        tmp_probability = new Random().nextDouble();
+        if (tmp_probability < (18.0 / 24)) {
+            examineTurbine.failuresList.add("Pauza kliknięta na klawiaturze");
+            failuresCost += (2 + Math.random() * 3.5) * averageHourlyProfit;
+        }
+        tmp_probability = new Random().nextDouble();
+        if (tmp_probability < (2.0 / 24)) {
+            examineTurbine.failuresList.add("Wysoka temperatura");
+            failuresCost += (2 / 3) * averageHourlyProfit;
+        }
+        tmp_probability = new Random().nextDouble();
+        if (tmp_probability < (2.0 / 24)) {
+            examineTurbine.failuresList.add("Awaria konwertera napięcia");
+            failuresCost += (1 + Math.random() * 0.5) * averageHourlyProfit;
+        }
+        tmp_probability = new Random().nextDouble();
+        if (tmp_probability < (9.0 / 24)) {
+            examineTurbine.failuresList.add("Za wysoka moc");
+            failuresCost += (5 / 60) * averageHourlyProfit;
+        }
+        tmp_probability = new Random().nextDouble();
+        if (tmp_probability < (1.0 / 24)) {
+            examineTurbine.failuresList.add("Awaria skrzyni biegów");
+            failuresCost += (4 + Math.random()) * averageHourlyProfit;
+        }
+        tmp_probability = new Random().nextDouble();
+        if (tmp_probability < (1.0 / 24)) {
+            examineTurbine.failuresList.add("Awaria łopat");
+            failuresCost += (3 + Math.random()) * averageHourlyProfit;
+        }
+
+        return failuresCost;
     }
 
     public static ArrayList<Double> getMonthlyProfits() {
@@ -154,9 +213,9 @@ public class Main {
         StringBuilder msgToReturn = new StringBuilder();
         if (args[1] == "fromApi") {
             Main.startSimulation(1.00 / 12, 1, args[0]);
-//
+
         } else if (args[1] == "fromFile") {
-//            Main.startSimulation(1,1,"C:\\Users\\Zuzanna\\Desktop\\AGH\\Infa\\Semestr 4\\Wind-Farm-Simulation\\Wind-Farm-Simulation\\res\\weatherKielce.csv");
+//            Main.startSimulation(1, 1, "C:\\Users\\Zuzanna\\Desktop\\AGH\\Infa\\Semestr 4\\Wind-Farm-Simulation\\Wind-Farm-Simulation\\res\\weatherKielce.csv");
             Main.startSimulation(1, 1, "./res/weatherKielce.csv");
         }
         msgToReturn.append("====================================\n");
