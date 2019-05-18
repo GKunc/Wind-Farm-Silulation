@@ -3,6 +3,15 @@
     -fx-background-color: rgba(32, 45, 76, 1);
 }
 
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane {
+    -fx-background-color: rgba(32, 45, 76, 1);
+    -fx-padding: 50;
+}
+
 .normalText
 {
     -fx-fill: white;
@@ -43,6 +52,7 @@
     -fx-background-image: url("../img/back.png");
     -fx-background-repeat: stretch;
     -fx-background-size: 30 30;
+    -fx-background-color: rgb(242, 242, 242);
     -fx-opacity: 1;
 }
 
@@ -52,7 +62,13 @@
     -fx-background-image: url("../img/next.png");
     -fx-background-repeat: stretch;
     -fx-background-size: 30 30;
+    -fx-background-color: rgb(242, 242, 242);
     -fx-opacity: 1;
+}
+
+#next:hover, #prev:hover, #btnDashBoard:hover
+{
+    -fx-background-color: rgb(153, 153, 153);
 }
 
 #my_title
@@ -98,4 +114,11 @@
     -fx-max-width: 40px;
     -fx-max-height: 40px;
     -fx-cursor: hand;
+}
+
+.subtitle
+{
+    -fx-text-alignment: center;
+    -fx-text-fill: rgba(161, 27, 27, 1);
+    -fx-font-size: 20px;
 }
