@@ -22,14 +22,7 @@
 
         <StackPane alignment="CENTER" layoutY="300" prefHeight="400" prefWidth="600"  stylesheets="@../../css/stylesheet.css">
             <children >
-                <Text styleClass="normalText" wrappingWidth="480" text="JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE" />
+                <Text styleClass="normalText" wrappingWidth="480" textAlignment="JUSTIFY" text="Aby turbina wiatrowa mogła pracować, musi być podłączona do sieci energetycznej. Istniejąca infrastruktura energetyczna, a także sama specyfika urządzenia pozwalają na zrealizowanie takiego podłączenia w oparciu o istniejącą sieć 15kV lub 110kV. W przypadku inwestycji o wyższej mocy niż 4MW zakłady energetyczne wymagają wybudowania oddzielnej linii energetycznej oraz stacji przekaˇnikowej 15kV/110kV zwanej również Głównym Punktem Zasilania (GPZ)" />
             </children>
         </StackPane>
     </children>

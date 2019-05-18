@@ -22,14 +22,7 @@
 
         <StackPane alignment="CENTER" layoutY="300" prefHeight="400" prefWidth="600"  stylesheets="@../../css/stylesheet.css">
             <children >
-                <Text styleClass="normalText" wrappingWidth="480" text="JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE" />
+                <Text styleClass="normalText" wrappingWidth="480" textAlignment="JUSTIFY" text="Wieże dla większych turbin są wykonane w postaci stalowej rury, kratownicy, lub żelbetonowej rury. Rozwiązanie w postaci masztu, utrzymywanego w poziomie za pomocą lin, jest stosowane tylko w małych turbinach (służących na przykład do ładowania baterii akumulatorów). Większość dużych elektrowni wiatrowych jest wykonana ze stalowymi wieżami, o przekroju 20-30 metrów kwadratowych, które są dostarczane w częściach na miejsce budowy. Wieże mają stożkowy kształt, ze średnicą rosnącą ku podstawie. Taki kształt zapewnia dużą wytrzymałość oraz oszczędność materiału. Wieża o wysokości 50 m. waży ok. 40 ton." />
             </children>
         </StackPane>
     </children>
