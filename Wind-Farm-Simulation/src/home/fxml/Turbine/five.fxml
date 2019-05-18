@@ -8,6 +8,10 @@
 
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="600.0" stylesheets="@../../css/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.Controllers.numberBtnsController.fiveController">
     <children>
         <StackPane alignment="CENTER" layoutY="0" prefHeight="100" prefWidth="600"  stylesheets="@../../css/stylesheet.css">
@@ -20,16 +24,35 @@
         <Button fx:id="prev" layoutX="20.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="40.0" prefWidth="40.0" stylesheets="@../../css/stylesheet.css" text="" />
         <Button fx:id="next" layoutX="540.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="40.0" prefWidth="40.0" stylesheets="@../../css/stylesheet.css" text="" />
 
-        <StackPane alignment="CENTER" layoutY="300" prefHeight="400" prefWidth="600"  stylesheets="@../../css/stylesheet.css">
+        <StackPane alignment="CENTER" layoutX="10" layoutY="400" prefHeight="240" prefWidth="580"  stylesheets="@../../css/stylesheet.css">
             <children >
-                <Text styleClass="normalText" wrappingWidth="480" text="JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE" />
+                <ScrollPane fx:id="scrollScreen" vbarPolicy="NEVER" prefWidth="600" stylesheets="@../../css/stylesheet.css">
+                   <VBox spacing="10">
+                       <children>
+                            <Label styleClass="subtitle" textAlignment="JUSTIFY" text="Serwomechanizm kierowania turbiny"/>
+                            <Text styleClass="normalText" wrappingWidth="460" textAlignment="JUSTIFY" text="Ustawia turbinę tak, aby była skierowana pod wiatr."/>
+                           <Label styleClass="subtitle" textAlignment="JUSTIFY" text="Gondola"/>
+                           <Text styleClass="normalText" wrappingWidth="460" textAlignment="JUSTIFY" text="Generator, przekładnia, a także monitorujący siłownię system sterowania oraz układy smarowania, chłodzenia i hamulec umieszczone są w gondoli, zamocowanej wraz z wirnikiem na stalowej wieży o wysokości od 30 do 100 m. Na szczycie wieży znajduje się silnik i przekładnia zębata, których zadaniem jest obracanie wirnika i gondoli w kierunku wiatru." />
+                           <Label styleClass="subtitle" textAlignment="JUSTIFY" text="Generator"/>
+                           <Text styleClass="normalText" wrappingWidth="460" textAlignment="JUSTIFY" text="Często mylony z samą elektrownią jest tylko jej częścią i to wcale nie najistotniejszą. Generatory służą jedynie do zamiany energii mechanicznej (najczęściej obrotów wału) na energię elektryczną. Generatory dzielą się na wysokoobrotowe (powyżej 600 obr/min), średnioobrotowe (90-600 obr/min) i wolnoobrotowe (15-90 obr/min). " />
+                           <Label styleClass="subtitle" textAlignment="JUSTIFY" text="Anemometr"/>
+                           <Text styleClass="normalText" wrappingWidth="460" textAlignment="JUSTIFY" text="przyrząd do wskazywania siły wiatru, najczęściej z kolektorem danych." />
+                           <Label styleClass="subtitle" textAlignment="JUSTIFY" text="Hamulec postojowy"/>
+                           <Text styleClass="normalText" wrappingWidth="460" textAlignment="JUSTIFY" text="W razie niebiezbieczeństwa zatrzymuje łopaty turbiny elektrycznie, mechanicznie lub hydraulicznie." />
+                           <Label styleClass="subtitle" textAlignment="JUSTIFY" text="Skrzynia przekładniowa"/>
+                           <Text styleClass="normalText" wrappingWidth="460" textAlignment="JUSTIFY" text="Zamienia ruch obrotowy łopat (30-60 obrotów na minutę) i zwieksza go do wartości 1,000-1,800 poprzez wał. Na końcu przekształca energię w mechaniczną w elektryczną." />
+                           <Label styleClass="subtitle" textAlignment="JUSTIFY" text="Łopata wirnika"/>
+                           <Text styleClass="normalText" wrappingWidth="460" textAlignment="JUSTIFY" text="Większość nowoczesnych łopat w elektrowniach wiatrowych zrobiona jest z włókna szklanego wzmocnionego poliestrem lub żywicą epoksydową. Łopaty współczesnych siłowni wiatrowych osiągają rozmiary kilkudziesięciu metrów. Oznacza to poważne problemy techniczne i logistyczne przy organizowaniu ich transportu na miejsce montażu elektrowni." />
+                           <Label styleClass="subtitle" textAlignment="JUSTIFY" text="Przestawnica łopat"/>
+                           <Text styleClass="normalText" wrappingWidth="460" textAlignment="JUSTIFY" text="Pracą mechanizmu ustawienia łopat, i kierunkowania elektrowni zarządza układ mikroprocesorowy na podstawie danych wejściowych (np. prędkości i kierunku wiatru). Gondola musi mieć możliwość obracania się o 360 stopni, aby zawsze można ustawić ją pod wiatr. " />
+                           <Label styleClass="subtitle" textAlignment="JUSTIFY" text="Piasta"/>
+                           <Text styleClass="normalText" wrappingWidth="460" textAlignment="JUSTIFY" text="Piasta jest częścią wirnika osadzoną na wale lub osi, do której przymocowane są skrzydła. Korpus piasty wykonano z blachy stalowej o grubości 10mm. Jest on przymocowany śrubami do tarczy wału skrzydłowego." />
+
+
+
+                       </children>
+                   </VBox>
+                </ScrollPane>
             </children>
         </StackPane>
     </children>

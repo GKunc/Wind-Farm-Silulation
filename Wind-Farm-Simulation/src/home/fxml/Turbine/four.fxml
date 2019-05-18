@@ -22,14 +22,7 @@
 
         <StackPane alignment="CENTER" layoutY="300" prefHeight="400" prefWidth="600"  stylesheets="@../../css/stylesheet.css">
             <children >
-                <Text styleClass="normalText" wrappingWidth="480" text="JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE" />
+                <Text styleClass="normalText" wrappingWidth="480" textAlignment="JUSTIFY" text="W obecnych czasach większość turbin posiada windy, jednak ze względów bezpieczenistaw oraz dostępu do wewnętrznych częsci turbiny nadal jest wymagana drabinka wejściowa. Ten system pozwala się wspinać używając zabezpiczeń chroniącym przed spadkiem z dużej wysokości. Regularne inspekcje oraz konserwacje są obowiązkowa ale także krytyczne jeśli chodzi o bezpieczeństwo i wygodę konserwacji turbiny." />
             </children>
         </StackPane>
     </children>

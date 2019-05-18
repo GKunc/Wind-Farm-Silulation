@@ -22,14 +22,7 @@
 
         <StackPane alignment="CENTER" layoutY="300" prefHeight="400" prefWidth="600"  stylesheets="@../../css/stylesheet.css">
             <children >
-                <Text styleClass="normalText" wrappingWidth="480" text="JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE
-                            JAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJEJAKIS OPIS DOAJE" />
+                <Text styleClass="normalText" wrappingWidth="480" textAlignment="JUSTIFY" text="Schematem statycznym wieży elektrowni jest wspornik w for- mie grubościennej rury stalowej, zakotwiony w fundamencie  i przekazujący obciążenia na monolityczny fundament będący  stopą płytową lub podporą palową. Fundament swoją masą  zapewnia stateczność układu i przekazuje obciążenia na pod- łoże gruntowe. Podłoże gruntowe należy sprawdzić zarówno  dla warunku nośności, jak i dla warunku użytkowności, tj.  pod  względem  nierównomiernego  osiadania  i podatności  na  obciążenia dynamiczne." />
             </children>
         </StackPane>
     </children>
