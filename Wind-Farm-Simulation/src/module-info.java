@@ -4,10 +4,9 @@ module Wind.Farm {
     requires javafx.fxml;
     requires javafx.controls;
     requires java.desktop;
+    requires com.jfoenix;
 
-    exports home;
-    exports home.Agents;
-    exports home.Controllers;
     exports home.Controllers.numberBtnsController;
-
+    exports home;
+    exports home.Controllers;
 }
