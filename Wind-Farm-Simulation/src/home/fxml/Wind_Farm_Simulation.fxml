@@ -16,11 +16,11 @@
 
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.control.Button?>
-<AnchorPane fx:id="parent" prefHeight="600" prefWidth="900.0" styleClass="parent" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.Controllers.SimulationController">
+<AnchorPane fx:id="parent" prefHeight="640" prefWidth="960.0" styleClass="parent" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.Controllers.SimulationController">
     <children>
 
 
-        <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="300.0" styleClass="sidebar">
+        <VBox alignment="TOP_CENTER" prefHeight="640.0" prefWidth="300.0" styleClass="sidebar">
 
             <children>
 
@@ -156,7 +156,7 @@
             </children>
         </VBox>
 
-        <VBox layoutX="300.0" prefHeight="600.0" prefWidth="724.0">
+        <VBox layoutX="300.0" prefHeight="640.0" prefWidth="660.0">
             <children>
                 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="724.0" style="-fx-background-color: #fff;">
                     <effect>
@@ -171,7 +171,7 @@
                     </children>
                 </Pane>
 
-                <ImageView fitHeight="250.0" fitWidth="724.0" pickOnBounds="true" smooth="false">
+                <ImageView fitHeight="250.0" fitWidth="660.0" pickOnBounds="true" smooth="false">
                     <image>
                     </image>
                 </ImageView>

@@ -13,7 +13,7 @@
             </children>
         </AnchorPane>
 
-        <Label fx:id="authors" layoutX="300.0" layoutY="100.0" stylesheets="@../css/stylesheet.css" text="Authors:" AnchorPane.rightAnchor="420.0" AnchorPane.topAnchor="100.0" />
+        <Label fx:id="authors" layoutX="300.0" layoutY="100.0" stylesheets="@../css/stylesheet.css" text="Autorzy:" AnchorPane.rightAnchor="420.0" AnchorPane.topAnchor="100.0" />
         <Label layoutX="300.0" layoutY="350.0" stylesheets="@../css/stylesheet.css" text="Grzegorz Kunc" AnchorPane.rightAnchor="407.0" AnchorPane.topAnchor="200.0" />
         <Label layoutX="300.0" layoutY="380.0" stylesheets="@../css/stylesheet.css" text="Zuzanna Śmiech" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="250.0" />
 

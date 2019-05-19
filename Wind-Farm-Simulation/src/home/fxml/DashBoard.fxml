@@ -10,7 +10,7 @@
     <children>
         <Label fx:id="my_title" layoutX="10.0" layoutY="10.0" stylesheets="@../css/stylesheet.css" text="Menu" AnchorPane.rightAnchor="450.0" AnchorPane.topAnchor="10.0" />
 
-        <Button fx:id="btnSimulation" contentDisplay="TOP" layoutX="100.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/stylesheet.css" text="Simulation" AnchorPane.rightAnchor="670" AnchorPane.topAnchor="200.0">
+        <Button fx:id="btnSimulation" contentDisplay="TOP" layoutX="100.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/stylesheet.css" text="Symulacja" AnchorPane.rightAnchor="670" AnchorPane.topAnchor="200.0">
          <graphic>
             <ImageView fitHeight="96.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -20,7 +20,7 @@
          </graphic>
         </Button>
 
-        <Button fx:id="btnHowItWorks" contentDisplay="TOP" layoutX="350.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/stylesheet.css" text="How it works" AnchorPane.rightAnchor="400" AnchorPane.topAnchor="200.0">
+        <Button fx:id="btnHowItWorks" contentDisplay="TOP" layoutX="350.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/stylesheet.css" text="Jak to działa?" AnchorPane.rightAnchor="400" AnchorPane.topAnchor="200.0">
         <graphic>
             <ImageView fitHeight="96.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                 <image>
@@ -30,7 +30,7 @@
         </graphic>
         </Button>
 
-        <Button fx:id="btnDocumentation" contentDisplay="TOP" layoutX="600.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/stylesheet.css" text="Documentation" AnchorPane.rightAnchor="120" AnchorPane.topAnchor="200.0">
+        <Button fx:id="btnDocumentation" contentDisplay="TOP" layoutX="600.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/stylesheet.css" text="Dokumentacja" AnchorPane.rightAnchor="120" AnchorPane.topAnchor="200.0">
         <graphic>
             <ImageView fitHeight="96.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                 <image>
