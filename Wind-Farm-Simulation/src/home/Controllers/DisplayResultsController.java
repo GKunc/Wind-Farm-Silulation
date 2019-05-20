@@ -18,9 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 public class DisplayResultsController {
     // lista dostepnych miast dla których mamy dane historyczne
@@ -71,7 +69,7 @@ public class DisplayResultsController {
             windowConsole.setDisable(false);
             windowConsole.appendText(Main.showSimulationResults(new String[]{cityName.getText(), "fromApi"}));
 
-            sumOfProfits = Main.getMonthlyProfits();
+            sumOfProfits = Main.getPeriodProfits();
             allExpences = Main.getOtherExpenses() + Main.getTurbineExpenses();
 
             Stage stage_chats = new Stage();
@@ -113,7 +111,7 @@ public class DisplayResultsController {
             windowConsole.setDisable(false);
             windowConsole.appendText(Main.showSimulationResults(new String[]{chooseCity.getValue(), "fromFile"}));
 
-            sumOfProfits = Main.getMonthlyProfits();
+            sumOfProfits = Main.getPeriodProfits();
             allExpences = Main.getOtherExpenses() + Main.getTurbineExpenses();
 
             Stage stage_chats = new Stage();

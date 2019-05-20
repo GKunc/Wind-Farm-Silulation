@@ -22,7 +22,8 @@ public class OneTurbineSimulation {
 
     public OneTurbineSimulation(String city) throws Exception {
         turbine = new Turbine();
-        weather = Weather.downloadWeather(city).get(0); // pobrana z API z pierwszego dnia
+        //weather = Weather.downloadWeather(city).get(0); // pobrana z API z pierwszego dnia
+        // tutaj jeszcze nie agrnełam gdzie to wykorzystujemy ale trzeab dodać datę pocztąku i końca symulacji
 
     }
 

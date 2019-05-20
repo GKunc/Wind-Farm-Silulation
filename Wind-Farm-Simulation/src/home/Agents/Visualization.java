@@ -12,8 +12,8 @@ import java.util.ArrayList;
 
 
 public class Visualization extends Application {
-    private ArrayList<Double> monthlySumProfits = Main.getMonthlyProfits();
-    //private ArrayList<Double> monthlySumExpenses = Main.getMonthlyProfits();
+    private ArrayList<Double> monthlySumProfits = Main.getPeriodProfits();
+    //private ArrayList<Double> monthlySumExpenses = Main.getPeriodProfits();
     private Double allExpences = Main.getOtherExpenses() + Main.getTurbineExpenses();
     @Override public void start(Stage stage) {
         stage.setTitle("Wykres 1.");
