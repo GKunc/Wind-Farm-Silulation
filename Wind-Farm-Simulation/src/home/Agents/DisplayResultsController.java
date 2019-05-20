@@ -53,7 +53,7 @@ public class DisplayResultsController {
 
     public void startSimulation() throws Exception {
         ArrayList<Double> sumOfProfits ;
-        //private ArrayList<Double> monthlySumExpenses = Main.getMonthlyProfits();
+        //private ArrayList<Double> monthlySumExpenses = Main.getPeriodProfits();
         Double allExpences ;
 
         if(!cityName.isDisable()) {
@@ -62,7 +62,7 @@ public class DisplayResultsController {
             windowConsole.setDisable(false);
             windowConsole.appendText(Main.showSimulationResults(new String[]{cityName.getText(), "fromApi"}));
 
-            sumOfProfits = Main.getMonthlyProfits();
+            sumOfProfits = Main.getPeriodProfits();
             allExpences = Main.getOtherExpenses() + Main.getTurbineExpenses();
 
             Stage stage_chats = new Stage();
@@ -104,7 +104,7 @@ public class DisplayResultsController {
             windowConsole.setDisable(false);
             windowConsole.appendText(Main.showSimulationResults(new String[]{chooseCity.getValue(), "fromFile"}));
 
-            sumOfProfits = Main.getMonthlyProfits();
+            sumOfProfits = Main.getPeriodProfits();
             allExpences = Main.getOtherExpenses() + Main.getTurbineExpenses();
 
             Stage stage_chats = new Stage();

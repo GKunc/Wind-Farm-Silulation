@@ -70,7 +70,7 @@ public class Turbine {
 
     public static void main(String [] argv) {
         Turbine tur = new Turbine();
-        Weather w = new Weather(7.7,1000.0,10.0);
+        Weather w = new Weather(7.7,1000.0,10.0, "0000-00-00");
         System.out.println("Gestosc -> " + w.getDensity());
         System.out.println("ENERGIA -> " + tur.calculatePower(w)*24*365);
     }

@@ -10,9 +10,11 @@ public class Main {
     private static Double turbineExpenses = 0.0;
     private static Double otherExpenses = 0.0;
     private static Double failuresExpenses = 0.0;
-    private static ArrayList<Double> monthlyProfits = new ArrayList<Double>(); //miesieczny(z pliku) lub dzienny(z api) zysk
+    private static ArrayList<Double> periodProfits = new ArrayList<Double>(); //miesieczny(z pliku) lub dzienny(z api) zysk
     //public static ArrayList<Double> monthlyExpenses = new ArrayList<Double>(); // to do użycia jak będą śmigać awarie
-
+    private static ArrayList<String> namesForXAxis;
+    public static String startDate;
+    public static String endDate;
 
     private static double total = 0;
 
@@ -34,7 +36,9 @@ public class Main {
         turbineExpenses = 0.0;
         otherExpenses = 0.0;
         failuresExpenses = 0.0;
-        monthlyProfits = new ArrayList<Double>();
+        periodProfits = new ArrayList<Double>();
+        namesForXAxis = new ArrayList<String>();
+
 
         for (int i = 0; i < numberOfTurbines; ++i) {
             Main.buildTurbine();
@@ -45,14 +49,19 @@ public class Main {
         int count = 1;
         double oneMonthProfit = 0.0;
         ArrayList<Weather> weathers = Weather.parseWeatherFromFile(filePath);
-        Weather.setWind("./res/windLinowo.csv", weathers);
+//        Weather.setWind("./res/windLinowo.csv", weathers);
 //        Weather.setWind("C:\\Users\\Zuzanna\\Desktop\\AGH\\Infa\\Semestr 4\\Wind-Farm-Simulation\\Wind-Farm-Simulation\\res\\windLinowo.csv", weathers);
+
+        String prev_date = weathers.get(0).getDate();
+        startDate = prev_date;
+        endDate = weathers.get(weathers.size() - 1).getDate();
         for (Weather weather : weathers) { // dla kazdego zapisu z pogody
             //weather.setWind(8.5);
             windSum += weather.getWind();
             count++;
-            if (count % (30 * 24) == 0) { //przyjmuję tutaj, że każdy miesiąc ma 30 dni( dokładną liczbę dni można zrobić w np. Weather.parseWeatherFromFile())
-                monthlyProfits.add(oneMonthProfit);
+            if (!((prev_date.split("-")[1]).equals(weather.getDate().split("-")[1]))) { //przyjmuję tutaj, że każdy miesiąc ma 30 dni( dokładną liczbę dni można zrobić w np. Weather.parseWeatherFromFile())
+                periodProfits.add(oneMonthProfit);
+                namesForXAxis.add(prev_date.split("-")[1]);
                 oneMonthProfit = 0;
             }
             for (Turbine turbine : turbines) { // osobno dla kazdej turbiny
@@ -61,7 +70,10 @@ public class Main {
                 oneMonthProfit += turbine.calculateEarnings(weather);
                 //otherExpenses += 200/24;
             }
+            prev_date = weather.getDate();
         }
+        periodProfits.add(oneMonthProfit); //dodanie ostatniej sumy miesięcznych dochodów
+        namesForXAxis.add(prev_date.split("-")[1]); //dodatnie znacznika ostatniego miesiąca
         System.out.println("Średnia wiatru -> " + (windSum / count));
         earnings = earnings * years;
 
@@ -83,13 +95,17 @@ public class Main {
     }
 
 
-    public static void startSimulation(double years, int numberOfTurbines, String location) throws Exception {
+    public static void startSimulation(double years, int numberOfTurbines, String location, String beginDate, String endingDate) throws Exception {
         turbines = new ArrayList<>();
         earnings = 0.0;
         turbineExpenses = 0.0;
         otherExpenses = 0.0;
         failuresExpenses = 0.0;
-        monthlyProfits = new ArrayList<Double>();
+        periodProfits = new ArrayList<Double>();
+        namesForXAxis = new ArrayList<String>();
+        startDate = beginDate;
+        endDate = endingDate;
+
 
         for (int i = 0; i < numberOfTurbines; ++i) {
             Main.buildTurbine();
@@ -99,13 +115,15 @@ public class Main {
         int count = 1;
         double oneDayProfit = 0.0;
 
-        ArrayList<Weather> weathers = Weather.downloadWeather(location);
+        ArrayList<Weather> weathers = Weather.downloadWeather(location, beginDate, endDate);
+
         for (Weather weather : weathers) { // dla kazdego zapisu z pogody
             windSum += weather.getWind();
             count++;
             if ((count - 1) % (24) == 0) { //pomiary są co  godzinę
-                monthlyProfits.add(oneDayProfit);
+                periodProfits.add(oneDayProfit);
                 oneDayProfit = 0;
+                namesForXAxis.add(weather.getDate().split("-")[2]);
             }
             for (Turbine turbine : turbines) { // osobno dla kazdej turbiny
                 Maintanance.preventiveMaintanance(turbine, (double) count / 24);
@@ -120,6 +138,7 @@ public class Main {
         W tej częsci potrzebuję od długości czasu z jakiego mamy dane do symulacji.
         Przyjmuję, że miesiąc trwa 30 dni, a każdego dni mamy 24 pomiary pogody.
         */
+
         for (int i = 0; i < (weathers.size() / (30 * 24)); i++) {
             for (Turbine turbine : turbines) {
                 failuresExpenses += failuresGenerator(turbine, earnings / count);
@@ -137,19 +156,19 @@ public class Main {
     }
 
 
-/*
-         * Każda z wymienionych w dokumentacji awarii została uwzględniona
-         * (te w których długość nie przekraczała godziny przyjmuję, że trwały najdłuższy przewidywany czas)
-         * w pozostałych przypadkach czas będzie generowany losowo z uwzglednieniem minimalnej długości awarii.
-         *
-         * Losuję liczbę z przedziału 0-1,
-         * która następnie jest porównywana z prawdopodobieństwem danej awarii dla jednej turbiny.
-         *
-         * Mozliwe ulepszenia:
-         * - obiekty klasy Turbine będzie mieć zamiast listy String mapę <String, String> z nazwą awarii i jej datą
-         * - obliczanie kosztów zwiazanych z awarią nie na podstawie średniej godzinowej stawki, ale dokładnych danych.
-         *
-*/
+    /*
+     * Każda z wymienionych w dokumentacji awarii została uwzględniona
+     * (te w których długość nie przekraczała godziny przyjmuję, że trwały najdłuższy przewidywany czas)
+     * w pozostałych przypadkach czas będzie generowany losowo z uwzglednieniem minimalnej długości awarii.
+     *
+     * Losuję liczbę z przedziału 0-1,
+     * która następnie jest porównywana z prawdopodobieństwem danej awarii dla jednej turbiny.
+     *
+     * Mozliwe ulepszenia:
+     * - obiekty klasy Turbine będzie mieć zamiast listy String mapę <String, String> z nazwą awarii i jej datą
+     * - obliczanie kosztów zwiazanych z awarią nie na podstawie średniej godzinowej stawki, ale dokładnych danych.
+     *
+     */
     public static double failuresGenerator(Turbine examineTurbine, double averageHourlyProfit) {
         double failuresCost = 0.0;
         double tmp_probability;
@@ -197,8 +216,12 @@ public class Main {
         return failuresCost;
     }
 
-    public static ArrayList<Double> getMonthlyProfits() {
-        return monthlyProfits;
+    public static ArrayList<Double> getPeriodProfits() {
+        return periodProfits;
+    }
+
+    public static ArrayList<String> getNamesForXAxis() {
+        return namesForXAxis;
     }
 
     public static Double getTurbineExpenses() {
@@ -211,12 +234,12 @@ public class Main {
 
     public static String showSimulationResults(String[] args) throws Exception {
         StringBuilder msgToReturn = new StringBuilder();
-        if (args[1] == "fromApi") {
-            Main.startSimulation(1.00 / 12, 1, args[0]);
+        if (args[0] == "fromApi") {
+            Main.startSimulation(1.00 / 12, new Integer(args[1]), args[2], args[3], args[4]);
 
-        } else if (args[1] == "fromFile") {
-//            Main.startSimulation(1, 1, "C:\\Users\\Zuzanna\\Desktop\\AGH\\Infa\\Semestr 4\\Wind-Farm-Simulation\\Wind-Farm-Simulation\\res\\weatherKielce.csv");
-            Main.startSimulation(1, 1, "./res/weatherKielce.csv");
+        } else if (args[0] == "fromFile") {
+//            Main.startSimulation(1, new Integer(args[1]), "C:\\Users\\Zuzanna\\Desktop\\AGH\\Infa\\Semestr 4\\Wind-Farm-Simulation\\Wind-Farm-Simulation\\res\\weather"+args[2]+".csv");
+            Main.startSimulation(1, new Integer(args[1]), "./res/weather"+args[2]+".csv");
         }
         msgToReturn.append("====================================\n");
         msgToReturn.append("         START SYMULACJI\n");

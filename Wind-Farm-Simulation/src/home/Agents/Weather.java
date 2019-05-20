@@ -26,6 +26,7 @@ public class Weather {
     private Double preassure;
     private Double temperature;
     private Double density;
+    private String date;
 
 
     @Override
@@ -33,7 +34,8 @@ public class Weather {
         return "Wind: " + wind + "\n" +
                 "Preasure: " + preassure + "\n" +
                 "Temperature: " + temperature + "\n" +
-                "Density: " + density + "\n";
+                "Density: " + density + "\n" +
+                "Date: " + date + "\n";
     }
 
     public Weather() {
@@ -43,36 +45,63 @@ public class Weather {
         density = calculateDensity(preassure, temperature);
     }
 
-    public Weather(Double _wind, Double _preassure, Double _temperature) {
+    public Weather(Double _wind, Double _preassure, Double _temperature, String _date) {
         wind = _wind;
         preassure = _preassure;
         temperature = _temperature;
         density = calculateDensity(preassure, temperature);
+        date = _date;
     }
 
-    public Weather(String _wind, String _preassure, String _temperature) {
+    public Weather(String _wind, String _preassure, String _temperature, String _date) {
         wind = (_wind == "") ? 0.0 : Double.parseDouble(_wind);
         preassure = (_preassure == "") ? 0.0 : Double.parseDouble(_preassure);
         temperature = (_temperature == "") ? 0.0 : Double.parseDouble(_temperature);
         density = calculateDensity(preassure, temperature);
+        date = _date;
     }
 
-    public Double getWind()        { return wind; }
-    public void setWind(Double _wind) { wind = _wind; }
+    public Double getWind() {
+        return wind;
+    }
 
-    public Double getPreassure()   { return preassure; }
-    public void setPresure(Double _preassure) { preassure = _preassure; }
+    public void setWind(Double _wind) {
+        wind = _wind;
+    }
 
-    public Double getTemperature() { return temperature; }
-    public void setTemperature(Double _temperature) { temperature = _temperature; }
+    public Double getPreassure() {
+        return preassure;
+    }
 
-    public Double getDensity() { return density; }
+    public void setPresure(Double _preassure) {
+        preassure = _preassure;
+    }
+
+    public Double getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(Double _temperature) {
+        temperature = _temperature;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String _date) {
+        date = _date;
+    }
+
+    public Double getDensity() {
+        return density;
+    }
 
     public static Double calculateDensity(double preassure, double temperature) {
         return preassure * 100 / (287.05 * (Phisics.celciusToKelvin(temperature)));
     }
 
-    public static ArrayList<Weather> downloadWeather(String city) throws Exception { // pogoda z jednegodnia
+    public static ArrayList<Weather> downloadWeather(String city, String startDate, String endDate) throws Exception { // pogoda z jednegodnia
 
         final String URL = "https://api.worldweatheronline.com/premium/v1/past-weather.ashx";
         final String key = "535406b1d5e648e2b28183352192604";
@@ -82,14 +111,15 @@ public class Weather {
         Double _wind = 0.0;
         Double _pressure = 0.0;
         Double _temperature = 0.0;
+        String _date = "NaN";
 
         HttpClient client = HttpClient.newHttpClient(); // sunnyvale,ca
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(URL + "?key=" + key
                         + "&q=" + city
                         + "&format=json"
-                        + "&date=2018-04-01"
-                        + "&enddate=2018-04-30"
+                        + "&date=" + startDate
+                        + "&enddate=" + endDate
                         + "&tp=1" //status pogodowy raz na godzinę
                 ))
                 .GET()
@@ -98,29 +128,36 @@ public class Weather {
         HttpResponse<String> response = client.send(request, BodyHandler.asString());
         //System.out.println(response.statusCode());
         String result = response.body();
+        //System.out.println(result);
         String data[] = result.split("\\{");
 
-        for(String s : data) {
-            if(s.contains("time")) {
+        for (String s : data) {
+            if (s.contains("time")) {
                 String hourly[] = s.split(",");
-                for(String h : hourly) {
-                    if(h.contains("tempC")) {
+                for (String h : hourly) {
+                    if (h.contains("tempC")) {
                         _temperature = Double.parseDouble(h.split(":")[1].substring(1, h.split(":")[1].length() - 1));
-                    }
-                    else if(h.contains("windspeedKmph")) {
+                    } else if (h.contains("windspeedKmph")) {
                         _wind = Double.parseDouble(h.split(":")[1].substring(1, h.split(":")[1].length() - 1));
                         _wind = _wind / 3.6;
                     }
                 }
-            }
-            else if(s.contains("pressure")) {
+            } else if (s.contains("pressure")) {
                 String hourly[] = s.split(",");
-                for(String h : hourly) {
-                    if(h.contains("pressure")) {
+                for (String h : hourly) {
+                    if (h.contains("pressure")) {
                         _pressure = Double.parseDouble(h.split(":")[1].substring(1, h.split(":")[1].length() - 1));
 
-                        Weather w = new Weather(_wind, _pressure, _temperature);
+                        Weather w = new Weather(_wind, _pressure, _temperature, _date);
                         weathers.add(w.weatherAtHeight(Turbine.towerHeight));
+                        System.out.println(w);
+                    }
+                }
+            } else if (s.contains("date")) {
+                String hourly[] = s.split(",");
+                for (String h : hourly) {
+                    if (h.contains("date")) {
+                        _date = h.split(":")[1].substring(1, h.split(":")[1].length() - 1);
                     }
                 }
             }
@@ -142,8 +179,12 @@ public class Weather {
                 String _wind = data[7].substring(1, data[7].length() - 1);
                 String _preassure = data[2].substring(1, data[2].length() - 1);
                 String _temperature = data[1].substring(1, data[1].length() - 1);
+                String _date = data[0].split(" ")[1].substring(1, 11); //teraz data w fromacie dd.mm.rrrr
+                //unifikacja do rrrr-mm-dd
+                String tmp_data[] = _date.split("\\.");
+                _date = new String(tmp_data[2] + "-" + tmp_data[1] + "-" + tmp_data[0]);
 
-                Weather w = new Weather(_wind, _preassure, _temperature);
+                Weather w = new Weather(_wind, _preassure, _temperature, _date);
                 weather.add(w.weatherAtHeight(Turbine.towerHeight));
             }
 
@@ -164,7 +205,7 @@ public class Weather {
         try {
             while ((line = br.readLine()) != null) {
                 data = line.split(";");
-                String _wind = data[1].replace(",","."); // dane z pierwszej turbiny
+                String _wind = data[1].replace(",", "."); // dane z pierwszej turbiny
                 wind.add(_wind);
             }
 
@@ -172,8 +213,8 @@ public class Weather {
 
         } finally {
             br.close();
-            for(int i = 0; i < weathers.size(); ++i) { // ustawienie wiatru dla danych z Linowa
-                Double _wind = Double.parseDouble(wind.get(i*6)); // bo w pliku sa dane co 10m
+            for (int i = 0; i < weathers.size(); ++i) { // ustawienie wiatru dla danych z Linowa
+                Double _wind = Double.parseDouble(wind.get(i * 6)); // bo w pliku sa dane co 10m
                 weathers.get(i).setWind(_wind);
             }
             return weathers;
@@ -185,15 +226,15 @@ public class Weather {
         Double preassure = Phisics.preasureAtHeight(turbinHeight, this.getPreassure(), this.getTemperature());
         Double temperature = Phisics.temperatureAtHeight(turbinHeight, this.getTemperature());
 
-        return new Weather(wind, preassure, temperature);
+        return new Weather(wind, preassure, temperature, this.date);
     }
 
-   public static void main(String args[]) throws Exception {
-       ArrayList<Weather> w = new ArrayList<>();
-       w = Weather.downloadWeather("Linowo");
-       for(Weather we : w) System.out.println(we);
-       //ArrayList<Weather> weathers = w.parseWeatherFromFile("./res/weatherGdansk.csv");
-       //System.out.println(w);
+    public static void main(String args[]) throws Exception {
+        ArrayList<Weather> w = new ArrayList<>();
+        w = Weather.downloadWeather("Linowo","2018-04-01","2018-04-30");
+        for (Weather we : w) System.out.println(we);
+        //ArrayList<Weather> weathers = w.parseWeatherFromFile("./res/weatherGdansk.csv");
+        //System.out.println(w);
 
-   }
+    }
 }
