@@ -30,7 +30,9 @@ public class SimulationController implements Initializable {
     public TextField cityName;
     public ChoiceBox<String> chooseCity;
     public Button startButton;
-    public TextArea windowConsole;
+    public TextField startDate;
+    public TextField endDate;
+    public TextField turbineNumber;
 
     ObservableList<String> dataFromFile = FXCollections.observableArrayList("Kielce", "Linowo", "Gdańsk");
 
@@ -40,13 +42,18 @@ public class SimulationController implements Initializable {
         cityName.setDisable(false);
         chooseCity.setDisable(true);
         startButton.setDisable(false);
+        startDate.setDisable(false);
+        endDate.setDisable(false);
+        turbineNumber.setDisable(false);
     }
 
     public void takeDataFromFile() {
         cityName.setDisable(true);
         chooseCity.setDisable(false);
         startButton.setDisable(false);
-
+        startDate.setDisable(true);
+        endDate.setDisable(true);
+        turbineNumber.setDisable(false);
     }
 
     @FXML
