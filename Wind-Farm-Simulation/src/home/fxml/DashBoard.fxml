@@ -8,7 +8,7 @@
 
 <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="960.0" stylesheets="@../css/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.Controllers.DashBoardController">
     <children>
-        <Label fx:id="my_title" layoutX="10.0" layoutY="10.0" stylesheets="@../css/stylesheet.css" text="Menu" AnchorPane.rightAnchor="450.0" AnchorPane.topAnchor="10.0" />
+        <Label fx:id="my_title" layoutX="10.0" layoutY="10.0" stylesheets="@../css/stylesheet.css" text="" AnchorPane.rightAnchor="450.0" AnchorPane.topAnchor="10.0" />
 
         <Button fx:id="btnSimulation" contentDisplay="TOP" layoutX="100.0" layoutY="200.0" mnemonicParsing="false" onAction="#handleButtonClicks" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/stylesheet.css" text="Symulacja" AnchorPane.rightAnchor="670" AnchorPane.topAnchor="200.0">
          <graphic>
