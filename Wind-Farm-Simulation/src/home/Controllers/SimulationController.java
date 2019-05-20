@@ -1,5 +1,7 @@
 package home.Controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,7 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -23,6 +25,29 @@ public class SimulationController implements Initializable {
     @FXML
     public Button btnDashBoard;
 
+    public RadioButton takeFromApi;
+    public RadioButton takeFromFile;
+    public TextField cityName;
+    public ChoiceBox<String> chooseCity;
+    public Button startButton;
+    public TextArea windowConsole;
+
+    ObservableList<String> dataFromFile = FXCollections.observableArrayList("Kielce", "Linowo", "Gdańsk");
+
+    final ToggleGroup group = new ToggleGroup();
+
+    public void takeDataFromApi() {
+        cityName.setDisable(false);
+        chooseCity.setDisable(true);
+        startButton.setDisable(false);
+    }
+
+    public void takeDataFromFile() {
+        cityName.setDisable(true);
+        chooseCity.setDisable(false);
+        startButton.setDisable(false);
+
+    }
 
     @FXML
     public void handleButtonClicks(javafx.event.ActionEvent mouseEvent) throws IOException {
@@ -33,7 +58,10 @@ public class SimulationController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        takeFromApi.setToggleGroup(group);
+        takeFromFile.setToggleGroup(group);
 
+        chooseCity.setItems(dataFromFile);
     }
 
     @FXML
