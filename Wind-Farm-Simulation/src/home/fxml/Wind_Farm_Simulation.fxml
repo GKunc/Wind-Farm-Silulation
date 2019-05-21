@@ -49,7 +49,7 @@
 
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
                     <children>
-                        <Label text="Dashboard" textFill="#7c8184">
+                        <Label text="Podsumowanie" textFill="#7c8184">
                             <font>
                                 <Font name="Calibri Light" size="15.0" />
                             </font>
@@ -70,7 +70,7 @@
                 </HBox>
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="132.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
                     <children>
-                        <Label text="Projects" textFill="#7c8184">
+                        <Label text="Produkcja energii" textFill="#7c8184">
                             <font>
                                 <Font name="Calibri Light" size="15.0" />
                             </font>
@@ -88,25 +88,7 @@
                 </HBox>
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="132.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
                     <children>
-                        <Label text="Users" textFill="#7c8184">
-                            <font>
-                                <Font name="Calibri Light" size="15.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                        </Label>
-                    </children>
-                    <padding>
-                        <Insets left="10.0" />
-                    </padding>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </HBox>
-                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="172.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
-                    <children>
-                        <Label text="Resource" textFill="#7c8184">
+                        <Label text="Lista awarii" textFill="#7c8184">
                             <font>
                                 <Font name="Calibri Light" size="15.0" />
                             </font>
@@ -124,7 +106,7 @@
                 </HBox>
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="252.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
                     <children>
-                        <Label text="Documents" textFill="#7c8184">
+                        <Label text="Symulacja real - time" textFill="#7c8184">
                             <font>
                                 <Font name="Calibri Light" size="15.0" />
                             </font>
@@ -140,11 +122,28 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </HBox>
-
+                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="172.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
+                    <children>
+                        <Label text="Prognoza pogody" textFill="#7c8184">
+                            <font>
+                                <Font name="Calibri Light" size="15.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </HBox>
             </children>
         </VBox>
 
-        <VBox layoutX="300.0" prefHeight="640.0" prefWidth="660.0">
+        <VBox alignment="TOP_CENTER" layoutX="300.0" prefHeight="640.0" prefWidth="660.0">
             <children>
                 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="724.0" style="-fx-background-color: #fff;">
                     <effect>
@@ -158,28 +157,6 @@
                         </Label>
                     </children>
                 </Pane>
-
-                <HBox alignment="CENTER" layoutX="10.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0">
-                    <children>
-                        <TextField fx:id="turbineNumber" disable="true" layoutX="110.0" layoutY="80.0" prefHeight="30.0" prefWidth="180.0" promptText="Ilość turbin">
-                            <font>
-                                <Font name="Calibri Light" size="15.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                        </TextField>
-                    </children>
-                    <padding>
-                        <Insets left="10.0" />
-                    </padding>
-                    <VBox.margin>
-                        <Insets top="10.0" />
-                    </VBox.margin>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </HBox>
 
                 <HBox alignment="CENTER" layoutX="10.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0">
                     <children>
@@ -228,7 +205,7 @@
 
                 <HBox alignment="CENTER" layoutX="10.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0">
                     <children>
-                  <DatePicker fx:id="startDataPicker" />
+                  <DatePicker fx:id="startDataPicker" promptText="Wybierz date początkową"/>
                     </children>
                     <padding>
                         <Insets left="10.0" />
@@ -243,7 +220,7 @@
 
                 <HBox alignment="CENTER" layoutX="10.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0">
                     <children>
-                  <DatePicker fx:id="endDataPicker" />
+                  <DatePicker fx:id="endDataPicker" promptText="Wybierz date końcową" />
                     </children>
                     <padding>
                         <Insets left="10.0" />
@@ -290,9 +267,32 @@
                         <Insets left="10.0" />
                     </padding>
                     <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="10.0"/>
+
                     </VBox.margin>
 
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </HBox>
+
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0">
+                    <children>
+                        <TextField fx:id="turbineNumber" disable="true" layoutX="110.0" layoutY="80.0" prefHeight="30.0" prefWidth="180.0" promptText="Ilość turbin">
+                            <font>
+                                <Font name="Calibri Light" size="15.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                    <VBox.margin>
+                        <Insets top="20.0" bottom="50.0" />
+                    </VBox.margin>
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
@@ -312,7 +312,6 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </JFXButton>
-            <TextArea fx:id="windowConsole" prefHeight="146.0" prefWidth="433.0" />
 
             </children>
         </VBox>
