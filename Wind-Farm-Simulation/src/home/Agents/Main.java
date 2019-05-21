@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Main {
+
     private static ArrayList<Turbine> turbines;
 
     private static Double earnings = 0.0;
@@ -15,6 +16,7 @@ public class Main {
     private static ArrayList<String> namesForXAxis;
     public static String startDate;
     public static String endDate;
+    private static ArrayList<FailuresInfo> listOfFailures;
 
     private static double total = 0;
 
@@ -38,6 +40,7 @@ public class Main {
         failuresExpenses = 0.0;
         periodProfits = new ArrayList<Double>();
         namesForXAxis = new ArrayList<String>();
+        listOfFailures = new ArrayList<FailuresInfo>();
 
 
         for (int i = 0; i < numberOfTurbines; ++i) {
@@ -85,6 +88,7 @@ public class Main {
         for (int i = 0; i < (weathers.size() / (30 * 24)); i++) {
             for (Turbine turbine : turbines) {
                 failuresExpenses += failuresGenerator(turbine, earnings / count);
+                listOfFailures.addAll(turbine.failuresList);
             }
         }
         //otherExpenses = 1200000.0 * years; // z faktury 2546305.0
@@ -105,6 +109,7 @@ public class Main {
         namesForXAxis = new ArrayList<String>();
         startDate = beginDate;
         endDate = endingDate;
+        listOfFailures = new ArrayList<>();
 
 
         for (int i = 0; i < numberOfTurbines; ++i) {
@@ -142,6 +147,7 @@ public class Main {
         for (int i = 0; i < (weathers.size() / (30 * 24)); i++) {
             for (Turbine turbine : turbines) {
                 failuresExpenses += failuresGenerator(turbine, earnings / count);
+                listOfFailures.addAll(turbine.failuresList);
             }
         }
         //otherExpenses = 1200000.0 * years; // z faktury 2546305.0
@@ -174,46 +180,50 @@ public class Main {
         double tmp_probability;
         tmp_probability = new Random().nextDouble();
         if (tmp_probability < (19.0 / 24)) {
-            examineTurbine.failuresList.add("Za duże napięcie (sieć)");
+            examineTurbine.failuresList.add(new FailuresInfo(0,"Za duże napięcie (sieć)","1"));
             failuresCost += (5 / 6) * averageHourlyProfit;
         }
         tmp_probability = new Random().nextDouble();
         if (tmp_probability < (1.0 / 24)) {
-            examineTurbine.failuresList.add("Awaryjne hamowanie (za duży wiatr)");
+            examineTurbine.failuresList.add(new FailuresInfo(0,"Awaryjne hamowanie (za duży wiatr)","1"));
             failuresCost += (2 / 3) * averageHourlyProfit;
         }
         tmp_probability = new Random().nextDouble();
         if (tmp_probability < (18.0 / 24)) {
-            examineTurbine.failuresList.add("Pauza kliknięta na klawiaturze");
+            examineTurbine.failuresList.add(new FailuresInfo(0,"Pauza kliknięta na klawiaturze","1"));
             failuresCost += (2 + Math.random() * 3.5) * averageHourlyProfit;
         }
         tmp_probability = new Random().nextDouble();
         if (tmp_probability < (2.0 / 24)) {
-            examineTurbine.failuresList.add("Wysoka temperatura");
+            examineTurbine.failuresList.add(new FailuresInfo(0,"Wysoka temperatura","1"));
             failuresCost += (2 / 3) * averageHourlyProfit;
         }
         tmp_probability = new Random().nextDouble();
         if (tmp_probability < (2.0 / 24)) {
-            examineTurbine.failuresList.add("Awaria konwertera napięcia");
+            examineTurbine.failuresList.add(new FailuresInfo(0,"Awaria konwertera napięcia","1"));
             failuresCost += (1 + Math.random() * 0.5) * averageHourlyProfit;
         }
         tmp_probability = new Random().nextDouble();
         if (tmp_probability < (9.0 / 24)) {
-            examineTurbine.failuresList.add("Za wysoka moc");
+            examineTurbine.failuresList.add(new FailuresInfo(0,"Za wysoka moc","1"));
             failuresCost += (5 / 60) * averageHourlyProfit;
         }
         tmp_probability = new Random().nextDouble();
         if (tmp_probability < (1.0 / 24)) {
-            examineTurbine.failuresList.add("Awaria skrzyni biegów");
+            examineTurbine.failuresList.add(new FailuresInfo(0,"Awaria skrzyni biegów","1"));
             failuresCost += (4 + Math.random()) * averageHourlyProfit;
         }
         tmp_probability = new Random().nextDouble();
         if (tmp_probability < (1.0 / 24)) {
-            examineTurbine.failuresList.add("Awaria łopat");
+            examineTurbine.failuresList.add(new FailuresInfo(0,"Awaria łopat","1"));
             failuresCost += (3 + Math.random()) * averageHourlyProfit;
         }
 
         return failuresCost;
+    }
+
+    public static ArrayList<FailuresInfo> getListOfFailures() {
+        return listOfFailures;
     }
 
     public static ArrayList<Double> getPeriodProfits() {
@@ -238,8 +248,8 @@ public class Main {
             Main.startSimulation(1.00 / 12, new Integer(args[1]), args[2], args[3], args[4]);
 
         } else if (args[0] == "fromFile") {
-//            Main.startSimulation(1, new Integer(args[1]), "C:\\Users\\Zuzanna\\Desktop\\AGH\\Infa\\Semestr 4\\Wind-Farm-Simulation\\Wind-Farm-Simulation\\res\\weather"+args[2]+".csv");
-            Main.startSimulation(1, new Integer(args[1]), "./res/weather"+args[2]+".csv");
+            Main.startSimulation(1, new Integer(args[1]), "C:\\Users\\Zuzanna\\Desktop\\AGH\\Infa\\Semestr 4\\Wind-Farm-Simulation\\Wind-Farm-Simulation\\res\\weather"+args[2]+".csv");
+//            Main.startSimulation(1, new Integer(args[1]), "./res/weather"+args[2]+".csv");
         }
         msgToReturn.append("====================================\n");
         msgToReturn.append("         START SYMULACJI\n");

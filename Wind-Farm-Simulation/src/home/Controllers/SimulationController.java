@@ -1,5 +1,6 @@
 package home.Controllers;
 
+import home.Agents.FailuresInfo;
 import home.Agents.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,6 +16,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -41,6 +43,7 @@ public class SimulationController implements Initializable {
     public TextArea windowConsole;
     public DatePicker startDataPicker;
     public DatePicker endDataPicker;
+    public TableView<FailuresInfo> failuresTable;
 
     ObservableList<String> dataFromFile = FXCollections.observableArrayList("Kielce", "Linowo", "Gdansk");
 
@@ -84,6 +87,35 @@ public class SimulationController implements Initializable {
         takeFromFile.setToggleGroup(group);
 
         chooseCity.setItems(dataFromFile);
+
+        ArrayList<FailuresInfo> listOfFailures = new ArrayList<FailuresInfo>();
+        listOfFailures.add(new FailuresInfo(1, "geugogeo", "dbwugf"));
+        listOfFailures.add(new FailuresInfo(2, "ebwbt", "dbwhtv5hugf"));
+        listOfFailures.add(new FailuresInfo(3, "54yv5vh6h", "crgth"));
+
+        final ObservableList<FailuresInfo> data =
+                FXCollections.observableArrayList(
+//                        new FailuresInfo(1, "geugogeo", "dbwugf"),
+//                        new FailuresInfo(2, "ebwbt", "dbwhtv5hugf"),
+//                        new FailuresInfo(3, "54yv5vh6h", "crgth")
+                        listOfFailures
+                );
+
+        TableColumn turbineNo = new TableColumn<FailuresInfo,Integer>("Nr turbiny");
+        TableColumn failureDescription = new TableColumn<FailuresInfo,String>("Opis awarii");
+        TableColumn failureTime = new TableColumn<FailuresInfo,String>("Czas trwania");
+//
+        failureTime.setCellValueFactory(
+                new PropertyValueFactory<FailuresInfo, Integer>("time"));
+
+        turbineNo.setCellValueFactory(
+                new PropertyValueFactory<FailuresInfo, String>("turbineNo"));
+
+        failureDescription.setCellValueFactory(
+                new PropertyValueFactory<FailuresInfo, String>("description"));
+
+        //failuresTable.setItems(data);
+        failuresTable.getColumns().addAll(turbineNo, failureDescription, failureTime);
     }
 
     @FXML
@@ -138,6 +170,12 @@ public class SimulationController implements Initializable {
 
             stage_chats.setScene(scene);
             stage_chats.show();
+
+            final ObservableList<FailuresInfo> data =
+                    FXCollections.observableArrayList(
+                            Main.getListOfFailures()
+                    );
+            failuresTable.setItems(data);
         } else if (!chooseCity.isDisable()) {
             windowConsole.clear();
             windowConsole.setVisible(true);
@@ -172,6 +210,12 @@ public class SimulationController implements Initializable {
 
             stage_chats.setScene(scene);
             stage_chats.show();
+
+            final ObservableList<FailuresInfo> data =
+                    FXCollections.observableArrayList(
+                            Main.getListOfFailures()
+                    );
+            failuresTable.setItems(data);
         }
     }
 }
