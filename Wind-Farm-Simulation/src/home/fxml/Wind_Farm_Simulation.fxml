@@ -296,7 +296,7 @@
 
                 <HBox alignment="CENTER" layoutX="10.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="300.0">
                     <children>
-                        <ChoiceBox fx:id="chooseCity" disable="true" layoutX="310.0" layoutY="80.0" prefHeight="20.0" prefWidth="180.0" style="-fx-fill: black;">
+                        <ChoiceBox fx:id="chooseCity" disable="true" layoutX="310.0" layoutY="80.0" prefHeight="20.0" prefWidth="180.0" style="">
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin>
@@ -308,6 +308,7 @@
                     <VBox.margin>
                         <Insets top="10.0" />
                     </VBox.margin>
+
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
@@ -328,6 +329,7 @@
                     </cursor>
                 </JFXButton>
             <TextArea fx:id="windowConsole" prefHeight="146.0" prefWidth="433.0" />
+
             </children>
         </VBox>
     </children>

@@ -159,3 +159,8 @@
     -fx-border-radius: 100%;
     -fx-border-width: 5px;
 }
+
+#chooseCity .label
+{
+    -fx-text-fill: black;
+}
