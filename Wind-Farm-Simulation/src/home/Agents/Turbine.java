@@ -13,7 +13,7 @@ public class Turbine {
     private boolean alert;
     private int annualMaintanance;
     private int halfYearMaintanance;
-    public ArrayList<String> failuresList;
+    public ArrayList<FailuresInfo> failuresList;
 
     /*
         todo
@@ -30,7 +30,7 @@ public class Turbine {
         alert = false;
         annualMaintanance = 0;
         halfYearMaintanance = 0;
-        failuresList = new ArrayList<String>();
+        failuresList = new ArrayList<FailuresInfo>();
     }
 
     public boolean getStatus() { return status; }
