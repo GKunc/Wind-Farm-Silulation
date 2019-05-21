@@ -21,6 +21,7 @@
  - wstawienie jakolwiek(za co soreczki :( ) potrzebych w gui elementów 
  - czarne napisy w menu (wybór miast) 
  - daty do pobierania danych muszą byc w innym polu niż textField -> dodałam propozycję DataPicker 
+ - wypisywanie info o awariach (dalej w trakcie, trochę problemów -> nowy punkt w to be done)
  
  #### To be done
  - napewno spreparować plik dla Linowa o takiej samej nazwie i formacie jak pozostałe
@@ -33,4 +34,6 @@
  - poprawić odpowiednią kolejność doblokowywania się przycików w GUI
  - pewnie o czymś jeszcze zapomniałam, ale chyba wiekszość już tutaj jest :) 
  - wykresy statystku i awarie w osobnych zakładkach w menu simulation 
+ - zmiana przechowywania info o awariach, nie należą do pojednczej Turbiny tylko do symulacji, bo tylko wtedy będę je umiała sensownie przedstawić w tabeli + wetdy nie ma problemu z nr. turbiny 
+ - (bug) failures generator uruchami się tylko jeśli pomiar był dłuższy niż 30 dni (trochę słabo) **powiazane z polem year w funkcjach start simulation**
  
