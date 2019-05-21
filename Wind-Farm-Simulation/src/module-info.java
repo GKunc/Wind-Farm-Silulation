@@ -9,4 +9,5 @@ module Wind.Farm {
     exports home.Controllers.numberBtnsController;
     exports home;
     exports home.Controllers;
+    exports home.Agents;
 }
