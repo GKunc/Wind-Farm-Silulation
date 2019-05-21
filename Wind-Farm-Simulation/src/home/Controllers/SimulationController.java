@@ -10,13 +10,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.*;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -33,10 +37,10 @@ public class SimulationController implements Initializable {
     public TextField cityName;
     public ChoiceBox<String> chooseCity;
     public Button startButton;
-    public TextField startDate;
-    public TextField endDate;
     public TextField turbineNumber;
     public TextArea windowConsole;
+    public DatePicker startDataPicker;
+    public DatePicker endDataPicker;
 
     ObservableList<String> dataFromFile = FXCollections.observableArrayList("Kielce", "Linowo", "Gdansk");
 
@@ -46,8 +50,8 @@ public class SimulationController implements Initializable {
         cityName.setDisable(false);
         chooseCity.setDisable(true);
         startButton.setDisable(false);
-        startDate.setDisable(false);
-        endDate.setDisable(false);
+        startDataPicker.setDisable(false);
+        endDataPicker.setDisable(false);
         turbineNumber.setDisable(false);
     }
 
@@ -55,8 +59,8 @@ public class SimulationController implements Initializable {
         cityName.setDisable(true);
         chooseCity.setDisable(false);
         startButton.setDisable(false);
-        startDate.setDisable(true);
-        endDate.setDisable(true);
+        startDataPicker.setDisable(true);
+        endDataPicker.setDisable(true);
         turbineNumber.setDisable(false);
     }
 
@@ -101,7 +105,10 @@ public class SimulationController implements Initializable {
             windowConsole.clear();
             windowConsole.setVisible(true);
             windowConsole.setDisable(false);
-            windowConsole.appendText(Main.showSimulationResults(new String[]{"fromApi",  turbineNumber.getText(), cityName.getText(), startDate.getText(), endDate.getText()}));
+            String firstData = startDataPicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            String lastData = endDataPicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+            windowConsole.appendText(Main.showSimulationResults(new String[]{"fromApi", turbineNumber.getText(), cityName.getText(), firstData, lastData}));
 
             sumOfProfits = Main.getPeriodProfits();
             namesForXAxis = Main.getNamesForXAxis();
@@ -135,7 +142,7 @@ public class SimulationController implements Initializable {
             windowConsole.clear();
             windowConsole.setVisible(true);
             windowConsole.setDisable(false);
-            windowConsole.appendText(Main.showSimulationResults(new String[]{"fromFile", turbineNumber.getText(),chooseCity.getValue()}));
+            windowConsole.appendText(Main.showSimulationResults(new String[]{"fromFile", turbineNumber.getText(), chooseCity.getValue()}));
 
             sumOfProfits = Main.getPeriodProfits();
             namesForXAxis = Main.getNamesForXAxis();

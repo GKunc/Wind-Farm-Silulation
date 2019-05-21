@@ -228,15 +228,7 @@
 
                 <HBox alignment="CENTER" layoutX="10.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0">
                     <children>
-                        <TextField fx:id="startDate" disable="true" layoutX="110.0" layoutY="80.0" prefHeight="30.0" prefWidth="180.0" promptText="Początek symulacji">
-                            <font>
-                                <Font name="Calibri Light" size="15.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                        </TextField>
-                  <DatePicker />
+                  <DatePicker fx:id="startDataPicker" />
                     </children>
                     <padding>
                         <Insets left="10.0" />
@@ -251,15 +243,7 @@
 
                 <HBox alignment="CENTER" layoutX="10.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0">
                     <children>
-                        <TextField fx:id="endDate" disable="true" layoutX="110.0" layoutY="80.0" prefHeight="30.0" prefWidth="180.0" promptText="Koniec Symulacji">
-                            <font>
-                                <Font name="Calibri Light" size="15.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                        </TextField>
-                  <DatePicker />
+                  <DatePicker fx:id="endDataPicker" />
                     </children>
                     <padding>
                         <Insets left="10.0" />

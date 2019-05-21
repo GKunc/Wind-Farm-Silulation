@@ -15,10 +15,12 @@
  * Mozliwość symulacji pracy jedenej turbiny (możliwość zmiany warunków real-time)
  * Wyliczenie kiedy najlepiej byłoby zrobić okno serwisowe
  
- ####Done
+ #### Done
  - apka czyta juz wszystkie dane od użytkowanika i działa na nich(co ma konsekwencje czyt. to be done)
  - zmiana polskich znaków na ogólne w wyborze nazwy miejscowości z danymi historycznymi
  - wstawienie jakolwiek(za co soreczki :( ) potrzebych w gui elementów 
+ - czarne napisy w menu (wybór miast) 
+ - daty do pobierania danych muszą byc w innym polu niż textField -> dodałam propozycję DataPicker 
  
  #### To be done
  - napewno spreparować plik dla Linowa o takiej samej nazwie i formacie jak pozostałe
@@ -27,8 +29,8 @@
  - w Main.startSimulation nie potrzebujemy już pola years (daty można już pobierać )=> zmiany w kodzie 
  - nie zdążyłam zrobić wylistownia w gui awarii (ale spoczko zrobię to)
  - !!! w OneTurbineSimulation(String city) musiałam zakomentować pobieranie pogody, nie zauważyłam żebyśmy gdzieś tego narazie używali, ale piszę żeby pozniej nie było jakiejś gafy z tego powodu
- - daty do pobierania danych muszą byc w innym polu niż textField -> dodałam propozycję DataPicker 
  - jakiś modern look na info jakie są wyświetlane po symulacji + koniecznie dopisanie jednosek i jakieś sensowne zaokrąglanie liczb
  - poprawić odpowiednią kolejność doblokowywania się przycików w GUI
  - pewnie o czymś jeszcze zapomniałam, ale chyba wiekszość już tutaj jest :) 
+ - wykresy statystku i awarie w osobnych zakładkach w menu simulation 
  
