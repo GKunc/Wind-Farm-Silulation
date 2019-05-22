@@ -85,7 +85,7 @@ public class Main {
         Przyjmuję, że miesiąc trwa 30 dni, a każdego dni mamy 24 pomiary pogody.
         */
 
-        for (int i = 0; i < (weathers.size() / (30 * 24)); i++) {
+        for (int i = 0; i <= (weathers.size() / (30 * 24)); i++) {
             for(int j=0; j<turbines.size();j++){
                 failuresExpenses += failuresGenerator(turbines.get(j),j+1, earnings / count);
                 listOfFailures.addAll((turbines.get(j)).failuresList);
@@ -144,10 +144,10 @@ public class Main {
         Przyjmuję, że miesiąc trwa 30 dni, a każdego dni mamy 24 pomiary pogody.
         */
 
-        for (int i = 0; i < (weathers.size() / (30 * 24)); i++) {
-            for (int j=1; j<=turbines.size(); j++) {
+        for (int i = 0; i <= (weathers.size() / (30 * 24)); i++) {
+            for (int j=0; j<turbines.size(); j++) {
                 failuresExpenses += failuresGenerator(turbines.get(j),j+1, earnings / count);
-                listOfFailures.addAll(turbines.get(j).failuresList);
+                listOfFailures.addAll((turbines.get(j)).failuresList);
             }
         }
         //otherExpenses = 1200000.0 * years; // z faktury 2546305.0

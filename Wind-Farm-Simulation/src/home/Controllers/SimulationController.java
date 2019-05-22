@@ -158,7 +158,7 @@ public class SimulationController implements Initializable {
             stage_chats.setScene(scene);
             stage_chats.show();
 
-            final ObservableList<FailuresInfo> data =FXCollections.observableArrayList();
+            final ObservableList<FailuresInfo> data =
                     FXCollections.observableArrayList(
                             Main.getListOfFailures()
                     );
