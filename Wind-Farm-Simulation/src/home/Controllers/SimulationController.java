@@ -88,23 +88,10 @@ public class SimulationController implements Initializable {
 
         chooseCity.setItems(dataFromFile);
 
-        ArrayList<FailuresInfo> listOfFailures = new ArrayList<FailuresInfo>();
-        listOfFailures.add(new FailuresInfo(1, "geugogeo", "dbwugf"));
-        listOfFailures.add(new FailuresInfo(2, "ebwbt", "dbwhtv5hugf"));
-        listOfFailures.add(new FailuresInfo(3, "54yv5vh6h", "crgth"));
-
-        final ObservableList<FailuresInfo> data =
-                FXCollections.observableArrayList(
-//                        new FailuresInfo(1, "geugogeo", "dbwugf"),
-//                        new FailuresInfo(2, "ebwbt", "dbwhtv5hugf"),
-//                        new FailuresInfo(3, "54yv5vh6h", "crgth")
-                        listOfFailures
-                );
-
         TableColumn turbineNo = new TableColumn<FailuresInfo,Integer>("Nr turbiny");
         TableColumn failureDescription = new TableColumn<FailuresInfo,String>("Opis awarii");
         TableColumn failureTime = new TableColumn<FailuresInfo,String>("Czas trwania");
-//
+
         failureTime.setCellValueFactory(
                 new PropertyValueFactory<FailuresInfo, Integer>("time"));
 
@@ -149,7 +136,7 @@ public class SimulationController implements Initializable {
             stage_chats.setTitle("Wykres 1.");
             final CategoryAxis xAxis = new CategoryAxis();
             final NumberAxis yAxis = new NumberAxis();
-            xAxis.setLabel("Dzień");
+            xAxis.setLabel("Dzień miesiąca");
             yAxis.setLabel("PLN");
             final BarChart<String, Number> lineChart =
                     new BarChart<String, Number>(xAxis, yAxis);
@@ -171,10 +158,11 @@ public class SimulationController implements Initializable {
             stage_chats.setScene(scene);
             stage_chats.show();
 
-            final ObservableList<FailuresInfo> data =
+            final ObservableList<FailuresInfo> data =FXCollections.observableArrayList();
                     FXCollections.observableArrayList(
                             Main.getListOfFailures()
                     );
+
             failuresTable.setItems(data);
         } else if (!chooseCity.isDisable()) {
             windowConsole.clear();
