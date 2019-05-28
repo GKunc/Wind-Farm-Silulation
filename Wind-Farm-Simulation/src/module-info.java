@@ -7,6 +7,7 @@ module Wind.Farm {
     requires com.jfoenix;
 
     exports home.Controllers.numberBtnsController;
+    exports home.Controllers.sideBarMenuController;
     exports home;
     exports home.Controllers;
     exports home.Agents;
