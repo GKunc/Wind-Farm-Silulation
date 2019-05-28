@@ -262,8 +262,8 @@ public class Main {
             Main.startSimulation(1.00 / 12, new Integer(args[1]), args[2], args[3], args[4]);
 
         } else if (args[0] == "fromFile") {
-            Main.startSimulation(1, new Integer(args[1]), "C:\\Users\\Zuzanna\\Desktop\\AGH\\Infa\\Semestr 4\\Wind-Farm-Simulation\\Wind-Farm-Simulation\\res\\weather" + args[2] + ".csv");
-//            Main.startSimulation(1, new Integer(args[1]), "./res/weather"+args[2]+".csv");
+          //  Main.startSimulation(1, new Integer(args[1]), "C:\\Users\\Zuzanna\\Desktop\\AGH\\Infa\\Semestr 4\\Wind-Farm-Simulation\\Wind-Farm-Simulation\\res\\weather" + args[2] + ".csv");
+           Main.startSimulation(1, new Integer(args[1]), "./res/weather"+args[2]+".csv");
         }
         msgToReturn.append("====================================\n");
         msgToReturn.append("         START SYMULACJI\n");
