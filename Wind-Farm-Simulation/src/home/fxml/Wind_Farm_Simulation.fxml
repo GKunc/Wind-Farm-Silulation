@@ -50,14 +50,14 @@
 
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
                     <children>
-                        <Label text="Opcje symulacji" textFill="#7c8184">
+                        <Button fx:id="optionsBtn" onAction="#handleButtonClicks" text="Opcje symulacji" textFill="white" styleClass="btns">
                             <font>
                                 <Font name="Calibri Light" size="15.0" />
                             </font>
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin>
-                        </Label>
+                        </Button>
                     </children>
                     <padding>
                         <Insets left="10.0" />
@@ -71,14 +71,14 @@
                 </HBox>
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="132.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
                     <children>
-                        <Label text="Podsumowanie" textFill="#7c8184">
+                        <Button fx:id="summaryBtn" onAction="#handleButtonClicks" text="Podsumowanie" textFill="white" styleClass="btns">
                             <font>
                                 <Font name="Calibri Light" size="15.0" />
                             </font>
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin>
-                        </Label>
+                        </Button>
                     </children>
                     <padding>
                         <Insets left="10.0" />
@@ -87,16 +87,17 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </HBox>
+
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="132.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
                     <children>
-                        <Label text="Lista awarii" textFill="#7c8184">
+                        <Button fx:id="failuresBtn" onAction="#handleButtonClicks" text="Lista awarii" textFill="white" styleClass="btns">
                             <font>
                                 <Font name="Calibri Light" size="15.0" />
                             </font>
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin>
-                        </Label>
+                        </Button>
                     </children>
                     <padding>
                         <Insets left="10.0" />
@@ -107,14 +108,14 @@
                 </HBox>
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="172.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
                     <children>
-                        <Label text="Pogoda" textFill="#7c8184">
+                        <Button fx:id="weatherBtn" onAction="#handleButtonClicks" text="Pogoda" textFill="white" styleClass="btns">
                             <font>
                                 <Font name="Calibri Light" size="15.0" />
                             </font>
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin>
-                        </Label>
+                        </Button>
                     </children>
                     <padding>
                         <Insets left="10.0" />
@@ -125,14 +126,14 @@
                 </HBox>
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="252.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
                     <children>
-                        <Label text="Symulacja real-time?!?" textFill="#7c8184">
+                        <Button fx:id="realTimeBtn" onAction="#handleButtonClicks" text="Symulacja real-time?!?!" textFill="white" styleClass="btns">
                             <font>
                                 <Font name="Calibri Light" size="15.0" />
                             </font>
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin>
-                        </Label>
+                        </Button>
                     </children>
                     <padding>
                         <Insets left="10.0" />
