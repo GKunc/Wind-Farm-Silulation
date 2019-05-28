@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class FailuresList  implements Initializable {
+public class Weather implements Initializable {
 
     @FXML
     public AnchorPane rootPane;
