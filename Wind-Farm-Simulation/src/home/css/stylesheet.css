@@ -17,7 +17,7 @@
     -fx-fill: white;
 }
 
-.button
+.button_main
 {
     -fx-background-radius: 20;
     -fx-background-color: rgba(41, 58, 97, 0.3);
@@ -134,6 +134,7 @@
 .btns
 {
     -fx-background-color: transparent;
+    -fx-font-size: 20px;
 }
 
 .btns:hover

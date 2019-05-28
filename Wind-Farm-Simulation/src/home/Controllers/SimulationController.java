@@ -18,6 +18,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -44,6 +45,14 @@ public class SimulationController implements Initializable {
     public DatePicker startDataPicker;
     public DatePicker endDataPicker;
     public TableView<FailuresInfo> failuresTable;
+
+    public Button optionsBtn;
+    public Button summaryBtn;
+    public Button failuresBtn;
+    public Button weatherBtn;
+    public Button realTimeBtn;
+
+
 
     ObservableList<String> dataFromFile = FXCollections.observableArrayList("Kielce", "Linowo", "Gdansk");
 
@@ -72,7 +81,22 @@ public class SimulationController implements Initializable {
         if (mouseEvent.getSource() == btnDashBoard) {
             loadStage(mouseEvent, "/home/fxml/DashBoard.fxml");
         }
-        if (mouseEvent.getSource() == startButton) {
+        else if (mouseEvent.getSource() == optionsBtn) {
+            loadStage(mouseEvent, "/home/fxml/Wind_Farm_Simulation.fxml");
+        }
+        else if (mouseEvent.getSource() == summaryBtn) {
+            loadStage(mouseEvent, "/home/fxml/sideBar/Summary.fxml");
+        }
+        else if (mouseEvent.getSource() == failuresBtn) {
+            loadStage(mouseEvent, "/home/fxml/sideBar/FailuresList.fxml");
+        }
+        else if (mouseEvent.getSource() == realTimeBtn) {
+            loadStage(mouseEvent, "/home/fxml/sideBar/RealTimeSimulation.fxml");
+        }
+        else if (mouseEvent.getSource() == weatherBtn) {
+            loadStage(mouseEvent, "/home/fxml/sideBar/Weather.fxml");
+        }
+        else if (mouseEvent.getSource() == startButton) {
             try {
                 startSimulation();
             } catch (Exception e) {
