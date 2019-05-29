@@ -36,7 +36,7 @@
  - zmiana przechowywania info o awariach, nie należą do pojednczej Turbiny tylko do symulacji, bo tylko wtedy będę je umiała sensownie przedstawić w tabeli + wetdy nie ma problemu z nr. turbiny 
 
  
- - w oknie symulacji klikamy start. Przenosi to nas na podstronę podsumowanie, gdzie będzie można wybrać jaki wykres chcemy zobaczyć.
+ - w oknie symulacji klikamy start. Przenosi to nas na podstronę podsumowanie, gdzie podsumowanie liczbowe i mozliwosc wyboru jaki wykres chcemy zobaczyć.
     - wykres słupkowy z zarobionymi pieniedzmi w miesiacu
     - wykres kolowy pokazyjacymi procent wydatkow na poszczegolne elementy (naprawa, konserwacja)
     - wykres slupkowy ilosci awarii w okresie
