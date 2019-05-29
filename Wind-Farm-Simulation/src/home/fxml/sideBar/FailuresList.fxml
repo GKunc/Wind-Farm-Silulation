@@ -142,8 +142,6 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </HBox>
-                <TextArea fx:id="windowConsole" prefHeight="71.0" prefWidth="724.0" visible="false"/>
-
             </children>
         </VBox>
 
@@ -160,6 +158,25 @@
                             </font>
                         </Label>
                     </children>
+
+
+
+
+                    <HBox alignment="CENTER" layoutX="20.0" layoutY="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+                        <children>
+                            <TableView fx:id="failuresTable" prefHeight="200.0" prefWidth="200.0" visible="true"/>
+                        </children>
+                        <padding>
+                            <Insets left="100.0" />
+                        </padding>
+                        <VBox.margin>
+                            <Insets top="10.0" />
+                        </VBox.margin>
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </HBox>
+
                 </Pane>
             </children>
         </VBox>
