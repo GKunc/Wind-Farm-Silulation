@@ -99,6 +99,7 @@ public class SimulationController implements Initializable {
         else if (mouseEvent.getSource() == startButton) {
             try {
                 startSimulation();
+                loadStage(mouseEvent, "/home/fxml/sideBar/Summary.fxml");
             } catch (Exception e) {
                 e.printStackTrace();
             }
