@@ -149,7 +149,7 @@
 
         <VBox layoutX="300.0" prefHeight="640.0" prefWidth="660.0">
             <children>
-                <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="724.0" style="-fx-background-color: #fff;">
+                <Pane fx:id="mainScreen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="724.0" style="-fx-background-color: #fff;">
                     <effect>
                         <DropShadow blurType="ONE_PASS_BOX" color="#e8e4e4" height="10.0" radius="4.5" width="10.0" />
                     </effect>

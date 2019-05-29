@@ -190,7 +190,7 @@ public class SimulationController implements Initializable {
             failuresTable.setItems(data);
         } else if (!chooseCity.isDisable()) {
             windowConsole.clear();
-            windowConsole.setVisible(true);
+            windowConsole.setVisible(false);
             windowConsole.setDisable(false);
             windowConsole.appendText(Main.showSimulationResults(new String[]{"fromFile", turbineNumber.getText(), chooseCity.getValue()}));
 
