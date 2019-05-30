@@ -63,13 +63,13 @@ public class Summary implements Initializable {
         windowConsole.clear();
         windowConsole.setVisible(true);
         windowConsole.setDisable(false);
-        String firstData = "1884-11-01";
-        String lastData = "1884-11-23";
 
         try {
-            windowConsole.appendText(Main.showSimulationResults(new String[]{"fromApi", "12", "KRAKÓW", firstData, lastData}));
+            windowConsole.appendText(Main.showSimulationResults(new String[]{"fromApi", Main.numberOfTurbines, Main.cityName, Main.startDate, Main.endDate}));
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
+            // todo
+            // dodac otwerajace sie okno aby wybrac opcje wymulacji
         }
 
     }
