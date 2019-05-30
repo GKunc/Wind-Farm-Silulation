@@ -2,6 +2,7 @@ package home.Controllers;
 
 import home.Agents.FailuresInfo;
 import home.Agents.Main;
+import home.ExceptionScreen;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +20,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -101,7 +103,7 @@ public class SimulationController implements Initializable {
                 startSimulation();
                 loadStage(mouseEvent, "/home/fxml/sideBar/Summary.fxml");
             } catch (Exception e) {
-                e.printStackTrace();
+                ExceptionScreen exceptionScreen = new ExceptionScreen("Uzupełnij wszystkie pola!");
             }
         }
     }

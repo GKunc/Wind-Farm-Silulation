@@ -40,9 +40,14 @@ public class Summary implements Initializable {
     public Button weatherBtn;
     public Button realTimeBtn;
 
-    public Label suma_txt;
-    public Label wydatki_txt;
+    public Label turbiny_wydatki_txt;
+    public Label naprawy_wydatki_txt;
+    public Label inne_wydatki_txt;
     public Label zarobki_txt;
+    public Label suma_txt;
+    public Label turbiny_txt;
+    public Label wiatr_txt;
+
 
     @FXML
     public void handleButtonClicks(javafx.event.ActionEvent mouseEvent) throws IOException {
@@ -72,9 +77,14 @@ public class Summary implements Initializable {
         // zainicjalizowac danymi z ekranu opcji symulacji
 
 
-        wydatki_txt.setText("" + (Main.getOtherExpenses() + Main.getTurbineExpenses()));
+        turbiny_wydatki_txt.setText("" + Main.turbineExpenses);
+        naprawy_wydatki_txt.setText("" + Main.failuresExpenses);
+        inne_wydatki_txt.setText("" + Main.otherExpenses);
         zarobki_txt.setText("" + Main.earnings);
         suma_txt.setText("" + Main.total);
+
+        turbiny_txt.setText("" + Main.numberOfTurbines);
+        wiatr_txt.setText("" + (double)Math.round(Main.averageWind * 100000d) / 100000d);
 
         try {
            // windowConsole.appendText(Main.showSimulationResults(new String[]{"fromApi", Main.numberOfTurbines, Main.cityName, Main.startDate, Main.endDate}));
