@@ -16,6 +16,9 @@ public class Main {
     private static ArrayList<String> namesForXAxis;
     public static String startDate;
     public static String endDate;
+    public static String numberOfTurbines;
+    public static String cityName;
+
     private static ArrayList<FailuresInfo> listOfFailures;
 
     private static double total = 0;
@@ -120,7 +123,7 @@ public class Main {
         int count = 1;
         double oneDayProfit = 0.0;
 
-        ArrayList<Weather> weathers = Weather.downloadWeather(location, beginDate, endDate);
+        ArrayList<Weather> weathers = Weather.downloadWeather(location, startDate, endDate);
 
         for (Weather weather : weathers) { // dla kazdego zapisu z pogody
             windSum += weather.getWind();
