@@ -7,11 +7,11 @@ public class Main {
 
     private static ArrayList<Turbine> turbines;
 
-    private static Double earnings = 0.0;
-    private static Double turbineExpenses = 0.0;
-    private static Double otherExpenses = 0.0;
-    private static Double failuresExpenses = 0.0;
-    private static ArrayList<Double> periodProfits = new ArrayList<Double>(); //miesieczny(z pliku) lub dzienny(z api) zysk
+    public static Double earnings = 0.0;
+    public static Double turbineExpenses = 0.0;
+    public static Double otherExpenses = 0.0;
+    public static Double failuresExpenses = 0.0;
+    public static ArrayList<Double> periodProfits = new ArrayList<Double>(); //miesieczny(z pliku) lub dzienny(z api) zysk
     //public static ArrayList<Double> monthlyExpenses = new ArrayList<Double>(); // to do użycia jak będą śmigać awarie
     private static ArrayList<String> namesForXAxis;
     public static String startDate;
@@ -21,7 +21,7 @@ public class Main {
 
     private static ArrayList<FailuresInfo> listOfFailures;
 
-    private static double total = 0;
+    public static double total = 0;
 
     // stworzyc zadana ilosc turbin
     // inne wydatki 36% ceny turbin
