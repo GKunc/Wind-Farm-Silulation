@@ -18,7 +18,7 @@ public class Main {
     public static String endDate;
     public static String numberOfTurbines;
     public static String cityName;
-
+    public static Double averageWind = 0.0;
     private static ArrayList<FailuresInfo> listOfFailures;
 
     public static double total = 0;
@@ -80,7 +80,8 @@ public class Main {
         }
         periodProfits.add(oneMonthProfit); //dodanie ostatniej sumy miesięcznych dochodów
         namesForXAxis.add(prev_date.split("-")[1]); //dodatnie znacznika ostatniego miesiąca
-        System.out.println("Średnia wiatru -> " + (windSum / count));
+        averageWind = (windSum / count);
+       // System.out.println("Średnia wiatru -> " + (windSum / count));
         earnings = earnings * years;
 
         /*
