@@ -159,23 +159,47 @@
                         </Label>
                     </children>
 
+                            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="500.0">
+                                <children>
+                                    <Label style="-fx-text-fill: black; -fx-font-size: 20;" text="Wydatki: " textFill="black"/>
+                                    <Label layoutX="50" fx:id="wydatki_txt" style="-fx-text-fill: red; -fx-font-size: 20;" text="" textFill="red">
+                                        <font>
+                                            <Font name="Calibri Light" size="15.0" />
+                                        </font>
+                                    </Label>
+                                </children>
+                                <padding>
+                                    <Insets left="10.0" />
+                                </padding>
+                            </HBox>
 
+                            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="130.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="500.0">
+                                <children>
+                                    <Label style="-fx-text-fill: black; -fx-font-size: 20;" text="Zarobki: " textFill="black"/>
+                                    <Label layoutX="50" fx:id="zarobki_txt" style="-fx-text-fill: green; -fx-font-size: 20;" text="" textFill="green">
+                                        <font>
+                                            <Font name="Calibri Light" size="15.0" />
+                                        </font>
+                                    </Label>
+                                </children>
+                                <padding>
+                                    <Insets left="10.0" />
+                                </padding>
+                            </HBox>
 
-                    <HBox alignment="CENTER" layoutX="20.0" layoutY="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+                    <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="500.0">
                         <children>
-                            <TextArea fx:id="windowConsole" prefHeight="400.0" prefWidth="604.0" visible="true"/>
+                            <Label style="-fx-text-fill: black; -fx-font-size: 20;" text="Suma: " textFill="black"/>
+                            <Label layoutX="50" fx:id="suma_txt" style="-fx-text-fill: purple; -fx-font-size: 20;" text="" textFill="purple">
+                                <font>
+                                    <Font name="Calibri Light" size="15.0" />
+                                </font>
+                            </Label>
                         </children>
                         <padding>
-                            <Insets left="100.0" />
+                            <Insets left="10.0" />
                         </padding>
-                        <VBox.margin>
-                            <Insets top="10.0" />
-                        </VBox.margin>
-                        <cursor>
-                            <Cursor fx:constant="HAND" />
-                        </cursor>
                     </HBox>
-
                 </Pane>
             </children>
         </VBox>

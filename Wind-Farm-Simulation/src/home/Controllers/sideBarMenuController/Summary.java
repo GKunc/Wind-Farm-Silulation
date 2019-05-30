@@ -5,12 +5,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -32,7 +40,9 @@ public class Summary implements Initializable {
     public Button weatherBtn;
     public Button realTimeBtn;
 
-    public TextArea windowConsole;
+    public Label suma_txt;
+    public Label wydatki_txt;
+    public Label zarobki_txt;
 
     @FXML
     public void handleButtonClicks(javafx.event.ActionEvent mouseEvent) throws IOException {
@@ -60,12 +70,14 @@ public class Summary implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         // todo
         // zainicjalizowac danymi z ekranu opcji symulacji
-        windowConsole.clear();
-        windowConsole.setVisible(true);
-        windowConsole.setDisable(false);
+
+
+        wydatki_txt.setText("" + (Main.getOtherExpenses() + Main.getTurbineExpenses()));
+        zarobki_txt.setText("" + Main.earnings);
+        suma_txt.setText("" + Main.total);
 
         try {
-            windowConsole.appendText(Main.showSimulationResults(new String[]{"fromApi", Main.numberOfTurbines, Main.cityName, Main.startDate, Main.endDate}));
+           // windowConsole.appendText(Main.showSimulationResults(new String[]{"fromApi", Main.numberOfTurbines, Main.cityName, Main.startDate, Main.endDate}));
         } catch (Exception e) {
             // e.printStackTrace();
             // todo
