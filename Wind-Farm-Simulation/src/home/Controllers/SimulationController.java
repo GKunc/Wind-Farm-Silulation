@@ -52,8 +52,6 @@ public class SimulationController implements Initializable {
     public Button weatherBtn;
     public Button realTimeBtn;
 
-
-
     ObservableList<String> dataFromFile = FXCollections.observableArrayList("Kielce", "Linowo", "Gdansk");
 
     final ToggleGroup group = new ToggleGroup();
@@ -97,6 +95,8 @@ public class SimulationController implements Initializable {
             loadStage(mouseEvent, "/home/fxml/sideBar/Weather.fxml");
         }
         else if (mouseEvent.getSource() == startButton) {
+            Main.numberOfTurbines = turbineNumber.getText();
+            Main.cityName = chooseCity.getValue();
             try {
                 startSimulation();
                 loadStage(mouseEvent, "/home/fxml/sideBar/Summary.fxml");
