@@ -22,6 +22,7 @@ public class Main {
     public static String cityName;
     public static Double averageWind = 0.0;
     private static ArrayList<FailuresInfo> listOfFailures;
+    private static Double years = 0.0;
 
     public static double total = 0;
 
@@ -36,7 +37,7 @@ public class Main {
      i symulacja po jakim czasie farma się zwróci + jeśli się uda to tez to co robi dla danych z pliku
      */
 
-    public static void startSimulation(int years, int numberOfTurbines, String filePath) throws Exception {
+    public static void startSimulation(int numberOfTurbines, String filePath) throws Exception {
 
         turbines = new ArrayList<>();
         earnings = 0.0;
@@ -46,6 +47,7 @@ public class Main {
         periodProfits = new ArrayList<Double>();
         namesForXAxis = new ArrayList<String>();
         listOfFailures = new ArrayList<FailuresInfo>();
+        years =0.0;
 
 
         for (int i = 0; i < numberOfTurbines; ++i) {
@@ -63,6 +65,8 @@ public class Main {
         String prev_date = weathers.get(0).getDate();
         startDate = prev_date;
         endDate = weathers.get(weathers.size() - 1).getDate();
+        years = new Double((LocalDate.parse(startDate).until(LocalDate.parse(endDate), ChronoUnit.DAYS))/365.0);
+        System.out.println("YEARs "+years );
         for (Weather weather : weathers) { // dla kazdego zapisu z pogody
             //weather.setWind(8.5);
             windSum += weather.getWind();
@@ -106,7 +110,7 @@ public class Main {
     }
 
 
-    public static void startSimulation(double years, int numberOfTurbines, String location, String beginDate, String endingDate) throws Exception {
+    public static void startSimulation(int numberOfTurbines, String location, String beginDate, String endingDate) throws Exception {
         turbines = new ArrayList<>();
         earnings = 0.0;
         turbineExpenses = 0.0;
@@ -117,6 +121,8 @@ public class Main {
         startDate = beginDate;
         endDate = endingDate;
         listOfFailures = new ArrayList<FailuresInfo>();
+        years = new Double((LocalDate.parse(startDate).until(LocalDate.parse(endDate), ChronoUnit.DAYS))/365.0);
+        System.out.println("YEARs "+years );
 
 
         for (int i = 0; i < numberOfTurbines; ++i) {
@@ -130,7 +136,7 @@ public class Main {
 
         LocalDate startDate_tmp = LocalDate.parse(startDate);
         LocalDate endDate_tmp = startDate_tmp.plus(30, ChronoUnit.DAYS);
-        
+
         if ((LocalDate.parse(startDate).until(LocalDate.parse(endDate), ChronoUnit.DAYS)) <= 30) {
              weathers.addAll(Weather.downloadWeather(location, startDate, endDate));
         } else {
@@ -282,10 +288,10 @@ public class Main {
     public static String showSimulationResults(String[] args) throws Exception {
         StringBuilder msgToReturn = new StringBuilder();
         if (args[0] == "fromApi") {
-            Main.startSimulation(1.00 / 12, new Integer(args[1]), args[2], args[3], args[4]);
+            Main.startSimulation( new Integer(args[1]), args[2], args[3], args[4]);
 
         } else if (args[0] == "fromFile") {
-            Main.startSimulation(1, new Integer(args[1]), "C:\\Users\\Zuzanna\\Desktop\\AGH\\Infa\\Semestr 4\\Wind-Farm-Simulation\\Wind-Farm-Simulation\\res\\weather" + args[2] + ".csv");
+            Main.startSimulation( new Integer(args[1]), "C:\\Users\\Zuzanna\\Desktop\\AGH\\Infa\\Semestr 4\\Wind-Farm-Simulation\\Wind-Farm-Simulation\\res\\weather" + args[2] + ".csv");
             //          Main.startSimulation(1, new Integer(args[1]), "./res/weather"+args[2]+".csv");
         }
         msgToReturn.append("====================================\n");
