@@ -69,7 +69,6 @@ public class Main {
             count++;
             if (!((prev_date.split("-")[1]).equals(weather.getDate().split("-")[1]))) {
                 periodProfits.add(oneMonthProfit);
-//                namesForXAxis.add(prev_date.split("-")[1]);
                 namesForXAxis.add(prev_date);
                 System.out.println(prev_date);
                 oneMonthProfit = 0;
@@ -87,7 +86,6 @@ public class Main {
         averageWind = (windSum / count);
         // System.out.println("Średnia wiatru -> " + (windSum / count));
         earnings = earnings * years;
-        System.out.println(namesForXAxis.size());
 
         /*
         W tej częsci potrzebuję od długości czasu z jakiego mamy dane do symulacji.
@@ -132,20 +130,14 @@ public class Main {
 
         LocalDate startDate_tmp = LocalDate.parse(startDate);
         LocalDate endDate_tmp = startDate_tmp.plus(30, ChronoUnit.DAYS);
-        System.out.println(startDate_tmp);
-        System.out.println(endDate_tmp);
-        System.out.println((startDate_tmp.until(LocalDate.parse(endDate), ChronoUnit.DAYS)));
-//        System.out.println(startDate_date.plus(3, ChronoUnit.DAYS));
-        //if((LocalDate.parse(firstData).until(LocalDate.parse(lastData), ChronoUnit.DAYS)) > 60 )
+        
         if ((LocalDate.parse(startDate).until(LocalDate.parse(endDate), ChronoUnit.DAYS)) <= 30) {
-            System.out.println("wersja lite");
              weathers.addAll(Weather.downloadWeather(location, startDate, endDate));
         } else {
             while(endDate_tmp.isBefore(LocalDate.parse(endDate)) ) {
                 weathers.addAll(Weather.downloadWeather(location, startDate_tmp.toString(), endDate_tmp.toString()));
                 startDate_tmp = endDate_tmp.plus(1, ChronoUnit.DAYS);
                 endDate_tmp = startDate_tmp.plus(30, ChronoUnit.DAYS);
-                System.out.println("-----_____-----"+ weathers.size());
             }
             if(endDate_tmp.isEqual(LocalDate.parse(startDate)) || endDate_tmp.isAfter(LocalDate.parse(startDate))){
                 weathers.addAll(Weather.downloadWeather(location, startDate_tmp.toString(), endDate));
@@ -167,6 +159,7 @@ public class Main {
             }
         }
         System.out.println("Średnia wiatru -> " + (windSum / count));
+        averageWind = (windSum / count);
         earnings = earnings * years;
 
         /*
