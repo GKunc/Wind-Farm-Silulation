@@ -49,7 +49,7 @@ public class Main {
         namesForXAxis = new ArrayList<String>();
         listOfFailures = new ArrayList<FailuresInfo>();
         years = 0.0;
-        quantityOfEachFailureType = new Integer[]{0,0,0,0,0,0,0,0};
+        quantityOfEachFailureType = new Integer[]{0, 0, 0, 0, 0, 0, 0, 0};
 
 
         for (int i = 0; i < numberOfTurbines; ++i) {
@@ -67,8 +67,8 @@ public class Main {
         String prev_date = weathers.get(0).getDate();
         startDate = prev_date;
         endDate = weathers.get(weathers.size() - 1).getDate();
-        years = new Double((LocalDate.parse(startDate).until(LocalDate.parse(endDate), ChronoUnit.DAYS))/365.0);
-        System.out.println("YEARs "+years );
+        years = new Double((LocalDate.parse(startDate).until(LocalDate.parse(endDate), ChronoUnit.DAYS)) / 365.0);
+        System.out.println("YEARs " + years);
         for (Weather weather : weathers) { // dla kazdego zapisu z pogody
             //weather.setWind(8.5);
             windSum += weather.getWind();
@@ -123,8 +123,8 @@ public class Main {
         startDate = beginDate;
         endDate = endingDate;
         listOfFailures = new ArrayList<FailuresInfo>();
-        years = new Double((LocalDate.parse(startDate).until(LocalDate.parse(endDate), ChronoUnit.DAYS))/365.0);
-        quantityOfEachFailureType = new Integer[]{0,0,0,0,0,0,0,0};
+        years = new Double((LocalDate.parse(startDate).until(LocalDate.parse(endDate), ChronoUnit.DAYS)) / 365.0);
+        quantityOfEachFailureType = new Integer[]{0, 0, 0, 0, 0, 0, 0, 0};
 
 
         for (int i = 0; i < numberOfTurbines; ++i) {
@@ -134,38 +134,63 @@ public class Main {
         Double windSum = 0.0;
         int count = 1;
         double oneDayProfit = 0.0;
+        double oneMonthProfit = 0.0;
         ArrayList<Weather> weathers = new ArrayList<Weather>();
 
         LocalDate startDate_tmp = LocalDate.parse(startDate);
         LocalDate endDate_tmp = startDate_tmp.plus(30, ChronoUnit.DAYS);
 
         if ((LocalDate.parse(startDate).until(LocalDate.parse(endDate), ChronoUnit.DAYS)) <= 30) {
-             weathers.addAll(Weather.downloadWeather(location, startDate, endDate));
+            weathers.addAll(Weather.downloadWeather(location, startDate, endDate));
         } else {
-            while(endDate_tmp.isBefore(LocalDate.parse(endDate)) ) {
+            while (endDate_tmp.isBefore(LocalDate.parse(endDate))) {
                 weathers.addAll(Weather.downloadWeather(location, startDate_tmp.toString(), endDate_tmp.toString()));
                 startDate_tmp = endDate_tmp.plus(1, ChronoUnit.DAYS);
                 endDate_tmp = startDate_tmp.plus(30, ChronoUnit.DAYS);
             }
-            if(endDate_tmp.isEqual(LocalDate.parse(startDate)) || endDate_tmp.isAfter(LocalDate.parse(startDate))){
+            if (endDate_tmp.isEqual(LocalDate.parse(startDate)) || endDate_tmp.isAfter(LocalDate.parse(startDate))) {
                 weathers.addAll(Weather.downloadWeather(location, startDate_tmp.toString(), endDate));
             }
         }
-
-        for (Weather weather : weathers) { // dla kazdego zapisu z pogody
-            windSum += weather.getWind();
-            count++;
-            if ((count - 1) % (24) == 0) { //pomiary są co  godzinę
-                periodProfits.add(oneDayProfit);
-                oneDayProfit = 0;
-                namesForXAxis.add(weather.getDate());
+        if ((LocalDate.parse(startDate).until(LocalDate.parse(endDate), ChronoUnit.DAYS)) <= 60) {
+            for (Weather weather : weathers) { // dla kazdego zapisu z pogody
+                windSum += weather.getWind();
+                count++;
+                if ((count - 1) % (24) == 0) { //pomiary są co  godzinę
+                    periodProfits.add(oneDayProfit);
+                    oneDayProfit = 0;
+                    namesForXAxis.add(weather.getDate());
+                }
+                for (Turbine turbine : turbines) { // osobno dla kazdej turbiny
+                    Maintanance.preventiveMaintanance(turbine, (double) count / 24);
+                    earnings += turbine.calculateEarnings(weather);
+                    oneDayProfit += turbine.calculateEarnings(weather);
+                }
             }
-            for (Turbine turbine : turbines) { // osobno dla kazdej turbiny
-                Maintanance.preventiveMaintanance(turbine, (double) count / 24);
-                earnings += turbine.calculateEarnings(weather);
-                oneDayProfit += turbine.calculateEarnings(weather);
+        } else {
+            String prev_date = weathers.get(0).getDate();
+            for (Weather weather : weathers) { // dla kazdego zapisu z pogody
+                //weather.setWind(8.5);
+                windSum += weather.getWind();
+                count++;
+                if (!((prev_date.split("-")[1]).equals(weather.getDate().split("-")[1]))) {
+                    periodProfits.add(oneMonthProfit);
+                    namesForXAxis.add(prev_date);
+                    System.out.println(prev_date);
+                    oneMonthProfit = 0;
+                }
+                for (Turbine turbine : turbines) { // osobno dla kazdej turbiny
+                    Maintanance.preventiveMaintanance(turbine, (double) count / 24);
+                    earnings += turbine.calculateEarnings(weather);
+                    oneMonthProfit += turbine.calculateEarnings(weather);
+                }
+                prev_date = weather.getDate();
             }
+            periodProfits.add(oneMonthProfit); //dodanie ostatniej sumy miesięcznych dochodów
+            namesForXAxis.add(prev_date);
         }
+
+
         System.out.println("Średnia wiatru -> " + (windSum / count));
         averageWind = (windSum / count);
         earnings = earnings * years;
@@ -216,56 +241,56 @@ public class Main {
             hourlyDurationTime = (5.0 / 6);
             examineTurbine.failuresList.add(new FailuresInfo(turbineNo, "Za duże napięcie (sieć)", Math.round(hourlyDurationTime * 60) + " min"));
             failuresCost += hourlyDurationTime * averageHourlyProfit;
-            quantityOfEachFailureType[0] ++;
+            quantityOfEachFailureType[0]++;
         }
         tmp_probability = new Random().nextDouble();
         if (tmp_probability < (1.0 / 24)) {
             hourlyDurationTime = (2.0 / 3);
             examineTurbine.failuresList.add(new FailuresInfo(turbineNo, "Awaryjne hamowanie (za duży wiatr)", Math.round(hourlyDurationTime * 60) + " min"));
             failuresCost += hourlyDurationTime * averageHourlyProfit;
-            quantityOfEachFailureType[1] ++;
+            quantityOfEachFailureType[1]++;
         }
         tmp_probability = new Random().nextDouble();
         if (tmp_probability < (18.0 / 24)) {
             hourlyDurationTime = (2 + Math.random() * 3.5);
             examineTurbine.failuresList.add(new FailuresInfo(turbineNo, "Pauza kliknięta na klawiaturze", Math.round(hourlyDurationTime * 60) + " min"));
             failuresCost += hourlyDurationTime * averageHourlyProfit;
-            quantityOfEachFailureType[2] ++;
+            quantityOfEachFailureType[2]++;
         }
         tmp_probability = new Random().nextDouble();
         if (tmp_probability < (2.0 / 24)) {
             hourlyDurationTime = (2.0 / 3);
             examineTurbine.failuresList.add(new FailuresInfo(turbineNo, "Wysoka temperatura", Math.round(hourlyDurationTime * 60) + " min"));
             failuresCost += hourlyDurationTime * averageHourlyProfit;
-            quantityOfEachFailureType[3] ++;
+            quantityOfEachFailureType[3]++;
         }
         tmp_probability = new Random().nextDouble();
         if (tmp_probability < (2.0 / 24)) {
             hourlyDurationTime = (1 + Math.random() * 0.5);
             examineTurbine.failuresList.add(new FailuresInfo(turbineNo, "Awaria konwertera napięcia", Math.round(hourlyDurationTime * 60) + " min"));
             failuresCost += hourlyDurationTime * averageHourlyProfit;
-            quantityOfEachFailureType[4] ++;
+            quantityOfEachFailureType[4]++;
         }
         tmp_probability = new Random().nextDouble();
         if (tmp_probability < (9.0 / 24)) {
             hourlyDurationTime = (5.0 / 60);
             examineTurbine.failuresList.add(new FailuresInfo(turbineNo, "Za wysoka moc", Math.round(hourlyDurationTime * 60) + " min"));
             failuresCost += hourlyDurationTime * averageHourlyProfit;
-            quantityOfEachFailureType[5] ++;
+            quantityOfEachFailureType[5]++;
         }
         tmp_probability = new Random().nextDouble();
         if (tmp_probability < (1.0 / 24)) {
             hourlyDurationTime = (4 + Math.random());
             examineTurbine.failuresList.add(new FailuresInfo(turbineNo, "Awaria skrzyni biegów", Math.round(hourlyDurationTime * 60) + " min"));
             failuresCost += hourlyDurationTime * averageHourlyProfit;
-            quantityOfEachFailureType[6] ++;
+            quantityOfEachFailureType[6]++;
         }
         tmp_probability = new Random().nextDouble();
         if (tmp_probability < (1.0 / 24)) {
             hourlyDurationTime = (3 + Math.random());
             examineTurbine.failuresList.add(new FailuresInfo(turbineNo, "Awaria łopat", Math.round(hourlyDurationTime * 60) + " min"));
             failuresCost += hourlyDurationTime * averageHourlyProfit;
-            quantityOfEachFailureType[7] ++;
+            quantityOfEachFailureType[7]++;
         }
 
         return failuresCost;
@@ -294,6 +319,7 @@ public class Main {
     public static ArrayList<Turbine> getTurbines() {
         return turbines;
     }
+
     public static Double getFailuresExpenses() {
         return failuresExpenses;
     }
@@ -301,10 +327,10 @@ public class Main {
     public static String showSimulationResults(String[] args) throws Exception {
         StringBuilder msgToReturn = new StringBuilder();
         if (args[0] == "fromApi") {
-            Main.startSimulation( new Integer(args[1]), args[2], args[3], args[4]);
+            Main.startSimulation(new Integer(args[1]), args[2], args[3], args[4]);
 
         } else if (args[0] == "fromFile") {
-            Main.startSimulation( new Integer(args[1]), "C:\\Users\\Zuzanna\\Desktop\\AGH\\Infa\\Semestr 4\\Wind-Farm-Simulation\\Wind-Farm-Simulation\\res\\weather" + args[2] + ".csv");
+            Main.startSimulation(new Integer(args[1]), "C:\\Users\\Zuzanna\\Desktop\\AGH\\Infa\\Semestr 4\\Wind-Farm-Simulation\\Wind-Farm-Simulation\\res\\weather" + args[2] + ".csv");
             //          Main.startSimulation(1, new Integer(args[1]), "./res/weather"+args[2]+".csv");
         }
         msgToReturn.append("====================================\n");

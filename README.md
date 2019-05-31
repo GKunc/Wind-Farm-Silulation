@@ -26,7 +26,4 @@
      - wykres slupkowy ilosci awarii w okresie
      - wykres liniowy zwrotu inwestycji ( mozemy zaczynac od -cena turbin i postawienia elektorwnii i isc w gore, lub zaczynac od + cena turbin i w dol)
      
-
-###Bugs ? :
- - nie wyświetla się srednia prędkośc wiatru dla symulaci z API :( 
  
