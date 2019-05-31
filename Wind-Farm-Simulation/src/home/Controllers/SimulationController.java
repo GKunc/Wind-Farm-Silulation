@@ -2,7 +2,6 @@ package home.Controllers;
 
 import home.Agents.FailuresInfo;
 import home.Agents.Main;
-import home.ExceptionScreen;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,13 +18,13 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -53,6 +52,7 @@ public class SimulationController implements Initializable {
     public Button failuresBtn;
     public Button weatherBtn;
     public Button realTimeBtn;
+    public String cityNameMonthlyBarTitle;
 
     ObservableList<String> dataFromFile = FXCollections.observableArrayList("Kielce", "Linowo", "Gdansk");
 
@@ -101,10 +101,16 @@ public class SimulationController implements Initializable {
             Main.cityName = chooseCity.getValue();
             try {
                 startSimulation();
-                loadStage(mouseEvent, "/home/fxml/sideBar/Summary.fxml");
             } catch (Exception e) {
-                ExceptionScreen exceptionScreen = new ExceptionScreen("Uzupełnij wszystkie pola!");
+                e.printStackTrace();
             }
+//            try {
+//                startSimulation();
+//                loadStage(mouseEvent, "/home/fxml/sideBar/Summary.fxml");
+//            } catch (Exception e) {
+//               // ExceptionScreen exceptionScreen = new ExceptionScreen("Uzupełnij wszystkie pola!");
+//                System.out.println(e.getMessage());
+//            }
         }
     }
 
@@ -142,95 +148,201 @@ public class SimulationController implements Initializable {
         window.show();
     }
 
-    public void startSimulation() throws Exception {
-        ArrayList<Double> sumOfProfits;
-        ArrayList<String> namesForXAxis;
-        //private ArrayList<Double> monthlySumExpenses = Main.getPeriodProfits();
+//    public void startSimulation() throws Exception {
+//        ArrayList<Double> sumOfProfits;
+//        ArrayList<String> namesForXAxis;
+//        //private ArrayList<Double> monthlySumExpenses = Main.getPeriodProfits();
+//
+//        if (!cityName.isDisable()) {
+//            windowConsole.clear();
+//            windowConsole.setVisible(true);
+//            windowConsole.setDisable(false);
+//            String firstData = startDataPicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+//            String lastData = endDataPicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+//
+//            windowConsole.appendText(Main.showSimulationResults(new String[]{"fromApi", turbineNumber.getText(), cityName.getText(), firstData, lastData}));
+//
+//            sumOfProfits = Main.getPeriodProfits();
+//            namesForXAxis = Main.getNamesForXAxis();
+//
+//            Stage stage_chats = new Stage();
+//            stage_chats.setTitle("Wykres 1.");
+//            final CategoryAxis xAxis = new CategoryAxis();
+//            final NumberAxis yAxis = new NumberAxis();
+//            xAxis.setLabel("Dzień miesiąca");
+//            yAxis.setLabel("PLN");
+//            final BarChart<String, Number> lineChart =
+//                    new BarChart<String, Number>(xAxis, yAxis);
+//
+//            lineChart.setTitle(cityName.getText() + "\n" + Main.startDate + "  " + Main.endDate);
+//
+//            XYChart.Series series1 = new XYChart.Series();
+//            series1.setName("Dzienne dochody"); //comiesieczna suma zysków w ujęciu jednego roku
+//
+//
+//            //String[] months = {"1","2","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+//            for (Integer i = 0; i < namesForXAxis.size(); i++) {
+//                series1.getData().add(new XYChart.Data(namesForXAxis.get(i), sumOfProfits.get(i)));
+//            }
+//
+//            Scene scene = new Scene(lineChart, 1400, 600);
+//            lineChart.getData().addAll(series1);
+//
+//            stage_chats.setScene(scene);
+//            stage_chats.show();
+//
+//            final ObservableList<FailuresInfo> data =
+//                    FXCollections.observableArrayList(
+//                            Main.getListOfFailures()
+//                    );
+//
+//            failuresTable.setItems(data);
+//        } else if (!chooseCity.isDisable()) {
+//            windowConsole.clear();
+//            windowConsole.setVisible(false);
+//            windowConsole.setDisable(false);
+//            windowConsole.appendText(Main.showSimulationResults(new String[]{"fromFile", turbineNumber.getText(), chooseCity.getValue()}));
+//
+//            sumOfProfits = Main.getPeriodProfits();
+//            namesForXAxis = Main.getNamesForXAxis();
+//
+//            Stage stage_chats = new Stage();
+//            stage_chats.setTitle("Wykres 1.");
+//            final CategoryAxis xAxis = new CategoryAxis();
+//            final NumberAxis yAxis = new NumberAxis();
+//            xAxis.setLabel("Miesiąc");
+//            yAxis.setLabel("PLN");
+//            final BarChart<String, Number> lineChart =
+//                    new BarChart<>(xAxis, yAxis);
+//
+//            lineChart.setTitle(chooseCity.getValue() + "\n" + Main.startDate + "  " + Main.endDate);
+//
+//            XYChart.Series series1 = new XYChart.Series();
+//            series1.setName("Miesięczne dochody"); //comiesieczna suma zysków w ujęciu jednego roku
+//
+//
+//            String[] months = {"Sty", "Lut", "Mar", "Kwi", "Maj", "Cze", "Lip", "Sie", "Wrz", "Paź", "Lis", "Gru"};
+//            for (int i = 0; i < sumOfProfits.size(); i++) {
+//                series1.getData().add(new XYChart.Data(months[(new Integer(namesForXAxis.get(i)) - 1) % 12], sumOfProfits.get(i)));
+//            }
+//
+//            Scene scene = new Scene(lineChart, 800, 600);
+//            lineChart.getData().addAll(series1);
+//
+//            stage_chats.setScene(scene);
+//            stage_chats.show();
+//
+//            final ObservableList<FailuresInfo> data =
+//                    FXCollections.observableArrayList(
+//                            Main.getListOfFailures()
+//                    );
+//            failuresTable.setItems(data);
+//        }
+//    }
+//}
+public void startSimulation() throws Exception {
+    ArrayList<Double> sumOfProfits;
+    ArrayList<String> namesForXAxis;
 
-        if (!cityName.isDisable()) {
-            windowConsole.clear();
-            windowConsole.setVisible(true);
-            windowConsole.setDisable(false);
-            String firstData = startDataPicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            String lastData = endDataPicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
-            windowConsole.appendText(Main.showSimulationResults(new String[]{"fromApi", turbineNumber.getText(), cityName.getText(), firstData, lastData}));
-
-            sumOfProfits = Main.getPeriodProfits();
-            namesForXAxis = Main.getNamesForXAxis();
-
-            Stage stage_chats = new Stage();
-            stage_chats.setTitle("Wykres 1.");
-            final CategoryAxis xAxis = new CategoryAxis();
-            final NumberAxis yAxis = new NumberAxis();
-            xAxis.setLabel("Dzień miesiąca");
-            yAxis.setLabel("PLN");
-            final BarChart<String, Number> lineChart =
-                    new BarChart<String, Number>(xAxis, yAxis);
-
-            lineChart.setTitle(cityName.getText() + "\n" + Main.startDate + "  " + Main.endDate);
-
-            XYChart.Series series1 = new XYChart.Series();
-            series1.setName("Dzienne dochody"); //comiesieczna suma zysków w ujęciu jednego roku
+    //private ArrayList<Double> monthlySumExpenses = Main.getPeriodProfits();
+    windowConsole.clear();
+    windowConsole.setVisible(true);
+    windowConsole.setDisable(false);
 
 
-            //String[] months = {"1","2","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
-            for (Integer i = 0; i < namesForXAxis.size(); i++) {
-                series1.getData().add(new XYChart.Data(namesForXAxis.get(i), sumOfProfits.get(i)));
-            }
+    if (!cityName.isDisable()) {
+        cityNameMonthlyBarTitle = cityName.getText();
+        String firstData = startDataPicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String lastData = endDataPicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
-            Scene scene = new Scene(lineChart, 1400, 600);
-            lineChart.getData().addAll(series1);
+        windowConsole.appendText(Main.showSimulationResults(new String[]{"fromApi", turbineNumber.getText(), cityName.getText(), firstData, lastData}));
 
-            stage_chats.setScene(scene);
-            stage_chats.show();
-
-            final ObservableList<FailuresInfo> data =
-                    FXCollections.observableArrayList(
-                            Main.getListOfFailures()
-                    );
-
-            failuresTable.setItems(data);
-        } else if (!chooseCity.isDisable()) {
-            windowConsole.clear();
-            windowConsole.setVisible(false);
-            windowConsole.setDisable(false);
-            windowConsole.appendText(Main.showSimulationResults(new String[]{"fromFile", turbineNumber.getText(), chooseCity.getValue()}));
-
-            sumOfProfits = Main.getPeriodProfits();
-            namesForXAxis = Main.getNamesForXAxis();
-
-            Stage stage_chats = new Stage();
-            stage_chats.setTitle("Wykres 1.");
-            final CategoryAxis xAxis = new CategoryAxis();
-            final NumberAxis yAxis = new NumberAxis();
-            xAxis.setLabel("Miesiąc");
-            yAxis.setLabel("PLN");
-            final BarChart<String, Number> lineChart =
-                    new BarChart<>(xAxis, yAxis);
-
-            lineChart.setTitle(chooseCity.getValue() + "\n" + Main.startDate + "  " + Main.endDate);
-
-            XYChart.Series series1 = new XYChart.Series();
-            series1.setName("Miesięczne dochody"); //comiesieczna suma zysków w ujęciu jednego roku
-
-
-            String[] months = {"Sty", "Lut", "Mar", "Kwi", "Maj", "Cze", "Lip", "Sie", "Wrz", "Paź", "Lis", "Gru"};
-            for (int i = 0; i < sumOfProfits.size(); i++) {
-                series1.getData().add(new XYChart.Data(months[(new Integer(namesForXAxis.get(i)) - 1) % 12], sumOfProfits.get(i)));
-            }
-
-            Scene scene = new Scene(lineChart, 800, 600);
-            lineChart.getData().addAll(series1);
-
-            stage_chats.setScene(scene);
-            stage_chats.show();
-
-            final ObservableList<FailuresInfo> data =
-                    FXCollections.observableArrayList(
-                            Main.getListOfFailures()
-                    );
-            failuresTable.setItems(data);
+        if ((LocalDate.parse(firstData).until(LocalDate.parse(lastData), ChronoUnit.DAYS)) > 60) {
+            displayChartMonthly();
+        } else {
+            dispalyChartDaily();
         }
+
+    } else if (!chooseCity.isDisable()) {
+        cityNameMonthlyBarTitle = chooseCity.getValue();
+        windowConsole.appendText(Main.showSimulationResults(new String[]{"fromFile", turbineNumber.getText(), chooseCity.getValue()}));
+        displayChartMonthly();
+
+    }
+}
+
+    public void displayChartMonthly() {
+        Stage stage_chats = new Stage();
+        stage_chats.setTitle("Wykres zysków");
+
+        final CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Miesiąc");
+        final NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("PLN");
+
+        final BarChart<String, Number> barChart =
+                new BarChart<String, Number>(xAxis, yAxis);
+        barChart.setTitle(cityNameMonthlyBarTitle + "\n" + Main.startDate + "  " + Main.endDate);
+
+        XYChart.Series series1 = new XYChart.Series();
+        series1.setName("Miesięczne dochody"); //comiesieczna suma zysków w ujęciu jednego roku
+
+        ArrayList<Double> sumOfProfits = Main.getPeriodProfits();
+        ArrayList<String> namesForXAxis = Main.getNamesForXAxis();
+
+
+        String[] months = {"Sty", "Lut", "Mar", "Kwi", "Maj", "Cze", "Lip", "Sie", "Wrz", "Paź", "Lis", "Gru"};
+        for (int i = 0; i < sumOfProfits.size(); i++) {
+            series1.getData().add(new XYChart.Data((months[(new Integer(namesForXAxis.get(i).split("-")[1]) - 1) % 12] +" "+ namesForXAxis.get(i).split("-")[0]), sumOfProfits.get(i)));
+
+        }
+
+        Scene scene = new Scene(barChart, 800, 600);
+        barChart.getData().addAll(series1);
+
+        stage_chats.setScene(scene);
+        stage_chats.show();
+
+        final ObservableList<FailuresInfo> data =
+                FXCollections.observableArrayList(
+                        Main.getListOfFailures()
+                );
+        failuresTable.setItems(data);
+    }
+
+    public void dispalyChartDaily() {
+        Stage stage_chats = new Stage();
+        stage_chats.setTitle("Wykres zysków");
+        final CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Dzień miesiąca");
+        final NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("PLN");
+
+        final BarChart<String, Number> barChart =
+                new BarChart<String, Number>(xAxis, yAxis);
+        barChart.setTitle(cityNameMonthlyBarTitle + "\n" + Main.startDate + "  " + Main.endDate);
+
+        XYChart.Series series1 = new XYChart.Series();
+        series1.setName("Dzienne dochody"); //comiesieczna suma zysków w ujęciu jednego roku
+
+        ArrayList<Double> sumOfProfits = Main.getPeriodProfits();
+        ArrayList<String> namesForXAxis = Main.getNamesForXAxis();
+
+
+        for (Integer i = 0; i < namesForXAxis.size(); i++) {
+            series1.getData().add(new XYChart.Data(namesForXAxis.get(i), sumOfProfits.get(i)));
+        }
+
+        Scene scene = new Scene(barChart, 800, 600);
+        barChart.getData().addAll(series1);
+
+        stage_chats.setScene(scene);
+        stage_chats.show();
+
+        final ObservableList<FailuresInfo> data =
+                FXCollections.observableArrayList(
+                        Main.getListOfFailures()
+                );
+        failuresTable.setItems(data);
     }
 }
