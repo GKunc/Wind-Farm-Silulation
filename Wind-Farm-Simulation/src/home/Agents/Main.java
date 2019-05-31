@@ -23,6 +23,7 @@ public class Main {
     public static Double averageWind = 0.0;
     private static ArrayList<FailuresInfo> listOfFailures;
     private static Double years = 0.0;
+    public static Integer quantityOfEachFailureType[];
 
     public static double total = 0;
 
@@ -47,7 +48,8 @@ public class Main {
         periodProfits = new ArrayList<Double>();
         namesForXAxis = new ArrayList<String>();
         listOfFailures = new ArrayList<FailuresInfo>();
-        years =0.0;
+        years = 0.0;
+        quantityOfEachFailureType = new Integer[]{0,0,0,0,0,0,0,0};
 
 
         for (int i = 0; i < numberOfTurbines; ++i) {
@@ -122,7 +124,7 @@ public class Main {
         endDate = endingDate;
         listOfFailures = new ArrayList<FailuresInfo>();
         years = new Double((LocalDate.parse(startDate).until(LocalDate.parse(endDate), ChronoUnit.DAYS))/365.0);
-        System.out.println("YEARs "+years );
+        quantityOfEachFailureType = new Integer[]{0,0,0,0,0,0,0,0};
 
 
         for (int i = 0; i < numberOfTurbines; ++i) {
@@ -214,48 +216,56 @@ public class Main {
             hourlyDurationTime = (5.0 / 6);
             examineTurbine.failuresList.add(new FailuresInfo(turbineNo, "Za duże napięcie (sieć)", Math.round(hourlyDurationTime * 60) + " min"));
             failuresCost += hourlyDurationTime * averageHourlyProfit;
+            quantityOfEachFailureType[0] ++;
         }
         tmp_probability = new Random().nextDouble();
         if (tmp_probability < (1.0 / 24)) {
             hourlyDurationTime = (2.0 / 3);
             examineTurbine.failuresList.add(new FailuresInfo(turbineNo, "Awaryjne hamowanie (za duży wiatr)", Math.round(hourlyDurationTime * 60) + " min"));
             failuresCost += hourlyDurationTime * averageHourlyProfit;
+            quantityOfEachFailureType[1] ++;
         }
         tmp_probability = new Random().nextDouble();
         if (tmp_probability < (18.0 / 24)) {
             hourlyDurationTime = (2 + Math.random() * 3.5);
             examineTurbine.failuresList.add(new FailuresInfo(turbineNo, "Pauza kliknięta na klawiaturze", Math.round(hourlyDurationTime * 60) + " min"));
             failuresCost += hourlyDurationTime * averageHourlyProfit;
+            quantityOfEachFailureType[2] ++;
         }
         tmp_probability = new Random().nextDouble();
         if (tmp_probability < (2.0 / 24)) {
             hourlyDurationTime = (2.0 / 3);
             examineTurbine.failuresList.add(new FailuresInfo(turbineNo, "Wysoka temperatura", Math.round(hourlyDurationTime * 60) + " min"));
             failuresCost += hourlyDurationTime * averageHourlyProfit;
+            quantityOfEachFailureType[3] ++;
         }
         tmp_probability = new Random().nextDouble();
         if (tmp_probability < (2.0 / 24)) {
             hourlyDurationTime = (1 + Math.random() * 0.5);
             examineTurbine.failuresList.add(new FailuresInfo(turbineNo, "Awaria konwertera napięcia", Math.round(hourlyDurationTime * 60) + " min"));
             failuresCost += hourlyDurationTime * averageHourlyProfit;
+            quantityOfEachFailureType[4] ++;
         }
         tmp_probability = new Random().nextDouble();
         if (tmp_probability < (9.0 / 24)) {
             hourlyDurationTime = (5.0 / 60);
             examineTurbine.failuresList.add(new FailuresInfo(turbineNo, "Za wysoka moc", Math.round(hourlyDurationTime * 60) + " min"));
             failuresCost += hourlyDurationTime * averageHourlyProfit;
+            quantityOfEachFailureType[5] ++;
         }
         tmp_probability = new Random().nextDouble();
         if (tmp_probability < (1.0 / 24)) {
             hourlyDurationTime = (4 + Math.random());
             examineTurbine.failuresList.add(new FailuresInfo(turbineNo, "Awaria skrzyni biegów", Math.round(hourlyDurationTime * 60) + " min"));
             failuresCost += hourlyDurationTime * averageHourlyProfit;
+            quantityOfEachFailureType[6] ++;
         }
         tmp_probability = new Random().nextDouble();
         if (tmp_probability < (1.0 / 24)) {
             hourlyDurationTime = (3 + Math.random());
             examineTurbine.failuresList.add(new FailuresInfo(turbineNo, "Awaria łopat", Math.round(hourlyDurationTime * 60) + " min"));
             failuresCost += hourlyDurationTime * averageHourlyProfit;
+            quantityOfEachFailureType[7] ++;
         }
 
         return failuresCost;
@@ -283,6 +293,9 @@ public class Main {
 
     public static ArrayList<Turbine> getTurbines() {
         return turbines;
+    }
+    public static Double getFailuresExpenses() {
+        return failuresExpenses;
     }
 
     public static String showSimulationResults(String[] args) throws Exception {
