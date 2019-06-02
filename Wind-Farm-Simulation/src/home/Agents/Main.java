@@ -24,6 +24,7 @@ public class Main {
     private static ArrayList<FailuresInfo> listOfFailures;
     private static Double years = 0.0;
     public static Integer quantityOfEachFailureType[];
+    public static String yearlyRateOfReturn;
 
     public static double total = 0;
 
@@ -67,7 +68,7 @@ public class Main {
 
         String prev_date = weathers.get(0).getDate();
         startDate = prev_date;
-        endDate = weathers.get(weathers.size() - 1).getDate();
+        endDate = weathers.get(weathers.size()-1).getDate();
         years = new Double((LocalDate.parse(startDate).until(LocalDate.parse(endDate), ChronoUnit.DAYS)) / 365.0);
         System.out.println("YEARs " + years);
         for (Weather weather : weathers) { // dla kazdego zapisu z pogody
@@ -114,6 +115,7 @@ public class Main {
                     listOfFailures.addAll((turbines.get(j)).failuresList);
                 }
                 monthlyExpenses.add((-1) * tmp_montlyFailuresExpences);
+                failuresExpenses += tmp_montlyFailuresExpences;
                 tmp_montlyFailuresExpences = 0.0;
             }
             prev_date = weather.getDate();
@@ -143,7 +145,7 @@ public class Main {
         System.out.println(total_str);
         //tuatj nie jestem na 100% pewna czy tak się liczy roczną stope zwrotu ale
         //(wszystkie zyski)/(wszytskie wydatki) * 1/years *100%
-        String yearlyRateOfReturn = String.format("%.4f", ((1/years) * 100* earnings/(otherExpenses+turbineExpenses+failuresExpenses))) +" %";
+        yearlyRateOfReturn = String.format("%.4f", ((1/years) * 100* earnings/(otherExpenses+turbineExpenses+failuresExpenses))) +" %";
         System.out.println(yearlyRateOfReturn);
     }
 
@@ -279,7 +281,7 @@ public class Main {
         System.out.println(total_str);
         //tuatj nie jestem na 100% pewna czy tak się liczy roczną stope zwrotu ale
         //(wszystkie zyski)/(wszytskie wydatki) * 1/years *100%
-        String yearlyRateOfReturn = String.format("%.4f", ((1/years) * 100* earnings/(otherExpenses+turbineExpenses+failuresExpenses))) +" %";
+        yearlyRateOfReturn = String.format("%.4f", ((1/years) * 100 * earnings/(otherExpenses+turbineExpenses+failuresExpenses))) +" %";
         System.out.println(yearlyRateOfReturn);
     }
 

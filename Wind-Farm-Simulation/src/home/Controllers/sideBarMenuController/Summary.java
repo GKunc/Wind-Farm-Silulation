@@ -5,25 +5,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class Summary implements Initializable {
@@ -47,6 +38,7 @@ public class Summary implements Initializable {
     public Label suma_txt;
     public Label turbiny_txt;
     public Label wiatr_txt;
+    public Label zwrot_txt;
 
 
     @FXML
@@ -77,11 +69,12 @@ public class Summary implements Initializable {
         // zainicjalizowac danymi z ekranu opcji symulacji
 
 
-        turbiny_wydatki_txt.setText("" + Main.turbineExpenses);
-        naprawy_wydatki_txt.setText("" + Main.failuresExpenses);
-        inne_wydatki_txt.setText("" + Main.otherExpenses);
-        zarobki_txt.setText("" + Main.earnings);
-        suma_txt.setText("" + Main.total);
+        turbiny_wydatki_txt.setText("" + String.format ("%.4f", Main.turbineExpenses)+ " PLN");
+        naprawy_wydatki_txt.setText("" + String.format("%.4f", Main.failuresExpenses)+ " PLN");
+        inne_wydatki_txt.setText("" + String.format("%.4f", Main.otherExpenses)+ " PLN");
+        zarobki_txt.setText("" + String.format("%.4f", Main.earnings)+ " PLN");
+        suma_txt.setText("" + String.format("%.4f", Main.total)+ " PLN");
+        zwrot_txt.setText("" + Main.yearlyRateOfReturn);
 
         turbiny_txt.setText("" + Main.numberOfTurbines);
         wiatr_txt.setText("" + (double)Math.round(Main.averageWind * 100000d) / 100000d);
