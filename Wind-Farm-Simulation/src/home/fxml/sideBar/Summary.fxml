@@ -229,6 +229,12 @@
                         </padding>
                     </HBox>
 
+                    <Button fx:id="zarobki_wykres" layoutX="50" layoutY="500" text="Miesięczne zarobki" prefWidth="300" prefHeight="40" styleClass="btns_sim" onAction="#handleButtonClicks"/>
+                    <Button fx:id="" layoutX="50" layoutY="550" text="Miesięczna liczba awarii" prefWidth="300" prefHeight="40" styleClass="btns_sim" onAction="#handleButtonClicks"/>
+                    <Button fx:id="" layoutX="390" layoutY="500" text="Poszczególne elementy" prefWidth="300" prefHeight="40" styleClass="btns_sim" onAction="#handleButtonClicks"/>
+                    <Button fx:id="" layoutX="390" layoutY="550" text="Zwrot inewstycji" prefWidth="300" prefHeight="40" styleClass="btns_sim" onAction="#handleButtonClicks"/>
+
+
                 </Pane>
             </children>
         </VBox>

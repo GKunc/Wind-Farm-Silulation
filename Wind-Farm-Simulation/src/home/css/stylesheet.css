@@ -128,7 +128,7 @@
 }
 
 .sidebar{
-    -fx-background-color: rgba(32, 45, 76, 1);;
+    -fx-background-color: rgba(32, 45, 76, 1);
 }
 
 .btns
@@ -164,4 +164,17 @@
 #chooseCity .label
 {
     -fx-text-fill: black;
+}
+
+.btns_sim
+{
+    -fx-background-color: rgba(32, 45, 76, 1);
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+}
+
+.btns_sim : hover
+{
+    -fx-background-color: #202332;
+    -fx-cursor: hand;
 }

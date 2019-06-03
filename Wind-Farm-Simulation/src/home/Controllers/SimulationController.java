@@ -97,6 +97,7 @@ public class SimulationController implements Initializable {
             Main.cityName = chooseCity.getValue();
             try {
                 startSimulation();
+                loadStage(mouseEvent, "/home/fxml/sideBar/Summary.fxml");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -150,7 +151,7 @@ public class SimulationController implements Initializable {
 
         //private ArrayList<Double> monthlySumExpenses = Main.getPeriodProfits();
         windowConsole.clear();
-        windowConsole.setVisible(true);
+        windowConsole.setVisible(false);
         windowConsole.setDisable(false);
 
 

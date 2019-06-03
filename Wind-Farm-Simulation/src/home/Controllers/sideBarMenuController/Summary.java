@@ -48,6 +48,7 @@ public class Summary implements Initializable {
     public Label turbiny_txt;
     public Label wiatr_txt;
 
+    public Button zarobki_wykres;
 
     @FXML
     public void handleButtonClicks(javafx.event.ActionEvent mouseEvent) throws IOException {
@@ -68,6 +69,9 @@ public class Summary implements Initializable {
         }
         else if (mouseEvent.getSource() == weatherBtn) {
             loadStage(mouseEvent, "/home/fxml/sideBar/Weather.fxml");
+        }
+        else if (mouseEvent.getSource() == zarobki_wykres) {
+
         }
     }
 
