@@ -165,6 +165,8 @@ public class SimulationController implements Initializable {
             if ((LocalDate.parse(firstData).until(LocalDate.parse(lastData), ChronoUnit.DAYS)) > 60) {
                 displayChartMonthly();
                 displayPieChartOfCosts();
+                displayBarChartQuantityOfEachFailureType();
+                displayMonthlyBalance();
             } else {
                 displayChartDaily();
                 displayPieChartOfCosts();
@@ -176,7 +178,7 @@ public class SimulationController implements Initializable {
             displayChartMonthly();
             displayPieChartOfCosts();
             displayBarChartQuantityOfEachFailureType();
-
+            displayMonthlyBalance();
         }
     }
 
@@ -266,8 +268,6 @@ public class SimulationController implements Initializable {
                 FXCollections.observableArrayList(
                         new PieChart.Data("Koszty awarii", (100 * Main.getFailuresExpenses() / (Main.getFailuresExpenses() + Main.getOtherExpenses()))),
                         new PieChart.Data("Koszty konserwacji", (100 * Main.getOtherExpenses() / (Main.getFailuresExpenses() + Main.getOtherExpenses()))));
-
-
         final PieChart chart = new PieChart(pieChartData);
         chart.setTitle(cityNameMonthlyBarTitle + " Rozkład kosztów na kategorie");
         chart.setLabelLineLength(10);
@@ -322,6 +322,39 @@ public class SimulationController implements Initializable {
 
         for (Integer i = 0; i < 8; i++) {
             series1.getData().add(new XYChart.Data(namesForXAxis[i], Main.quantityOfEachFailureType[i]));
+        }
+
+        Scene scene = new Scene(barChart, 800, 600);
+        barChart.getData().addAll(series1);
+
+        stage_chats.setScene(scene);
+        stage_chats.show();
+    }
+
+    public void displayMonthlyBalance() {
+        Stage stage_chats = new Stage();
+        stage_chats.setTitle("Bilans przychodów i kosztów");
+
+        final CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Miesiąc");
+        final NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("PLN");
+
+        final LineChart<String, Number> barChart =
+                new LineChart<String, Number>(xAxis, yAxis);
+        barChart.setTitle(cityNameMonthlyBarTitle + "\n" + Main.startDate + "  " + Main.endDate);
+
+        XYChart.Series series1 = new XYChart.Series();
+        series1.setName("Miesięczny bilans"); //comiesieczna suma zysków w ujęciu jednego roku
+
+        ArrayList<Double> sumOfBalance = Main.monthlyExpenses;
+        ArrayList<String> namesForXAxis = Main.getNamesForXAxis();
+
+
+        String[] months = {"Sty", "Lut", "Mar", "Kwi", "Maj", "Cze", "Lip", "Sie", "Wrz", "Paź", "Lis", "Gru"};
+        for (int i = 0; i < sumOfBalance.size(); i++) {
+            series1.getData().add(new XYChart.Data((months[(new Integer(namesForXAxis.get(i).split("-")[1]) - 1) % 12] + " " + namesForXAxis.get(i).split("-")[0]), sumOfBalance.get(i)));
+
         }
 
         Scene scene = new Scene(barChart, 800, 600);

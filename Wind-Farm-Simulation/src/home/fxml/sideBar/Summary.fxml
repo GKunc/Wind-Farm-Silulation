@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -50,7 +43,7 @@
 
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
                     <children>
-                        <Button fx:id="optionsBtn" onAction="#handleButtonClicks" text="Opcje symulacji" textFill="white" styleClass="btns">
+                        <Button fx:id="optionsBtn" onAction="#handleButtonClicks" styleClass="btns" text="Opcje symulacji" textFill="white">
                             <font>
                                 <Font name="Calibri Light" size="15.0" />
                             </font>
@@ -71,7 +64,7 @@
                 </HBox>
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="132.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
                     <children>
-                        <Button fx:id="summaryBtn" onAction="#handleButtonClicks" text="Podsumowanie" textFill="white" styleClass="btns">
+                        <Button fx:id="summaryBtn" onAction="#handleButtonClicks" styleClass="btns" text="Podsumowanie" textFill="white">
                             <font>
                                 <Font name="Calibri Light" size="15.0" />
                             </font>
@@ -90,7 +83,7 @@
 
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="132.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
                     <children>
-                        <Button fx:id="failuresBtn" onAction="#handleButtonClicks" text="Lista awarii" textFill="white" styleClass="btns">
+                        <Button fx:id="failuresBtn" onAction="#handleButtonClicks" styleClass="btns" text="Lista awarii" textFill="white">
                             <font>
                                 <Font name="Calibri Light" size="15.0" />
                             </font>
@@ -108,7 +101,7 @@
                 </HBox>
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="172.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
                     <children>
-                        <Button fx:id="weatherBtn" onAction="#handleButtonClicks" text="Pogoda" textFill="white" styleClass="btns">
+                        <Button fx:id="weatherBtn" onAction="#handleButtonClicks" styleClass="btns" text="Pogoda" textFill="white">
                             <font>
                                 <Font name="Calibri Light" size="15.0" />
                             </font>
@@ -126,7 +119,7 @@
                 </HBox>
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="252.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
                     <children>
-                        <Button fx:id="realTimeBtn" onAction="#handleButtonClicks" text="Symulacja real-time?!?!" textFill="white" styleClass="btns">
+                        <Button fx:id="realTimeBtn" onAction="#handleButtonClicks" styleClass="btns" text="Symulacja real-time?!?!" textFill="white">
                             <font>
                                 <Font name="Calibri Light" size="15.0" />
                             </font>
@@ -161,8 +154,8 @@
 
                     <HBox alignment="CENTER_LEFT" layoutX="200.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="500.0">
                         <children>
-                            <Label style="-fx-text-fill: black; -fx-font-size: 20;" text="Wydatki turbiny: " textFill="black"/>
-                            <Label layoutX="50" fx:id="turbiny_wydatki_txt" style="-fx-text-fill: red; -fx-font-size: 20;" text="" textFill="red"/>
+                            <Label style="-fx-text-fill: black; -fx-font-size: 20;" text="Wydatki turbiny: " textFill="black" />
+                            <Label fx:id="turbiny_wydatki_txt" layoutX="50" style="-fx-text-fill: red; -fx-font-size: 20;" text="" textFill="red" />
                         </children>
                         <padding>
                             <Insets left="10.0" />
@@ -171,8 +164,8 @@
 
                     <HBox alignment="CENTER_LEFT" layoutX="200.0" layoutY="190.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="500.0">
                         <children>
-                            <Label style="-fx-text-fill: black; -fx-font-size: 20;" text="Wydatki naprawy: " textFill="black"/>
-                            <Label layoutX="50" fx:id="naprawy_wydatki_txt" style="-fx-text-fill: red; -fx-font-size: 20;" text="" textFill="red"/>
+                            <Label style="-fx-text-fill: black; -fx-font-size: 20;" text="Wydatki naprawy: " textFill="black" />
+                            <Label fx:id="naprawy_wydatki_txt" layoutX="50" style="-fx-text-fill: red; -fx-font-size: 20;" text="" textFill="red" />
                         </children>
                         <padding>
                             <Insets left="10.0" />
@@ -181,8 +174,8 @@
 
                     <HBox alignment="CENTER_LEFT" layoutX="200.0" layoutY="220.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="500.0">
                         <children>
-                            <Label style="-fx-text-fill: black; -fx-font-size: 20;" text="Wydatki inne: " textFill="black"/>
-                            <Label layoutX="50" fx:id="inne_wydatki_txt" style="-fx-text-fill: red; -fx-font-size: 20;" text="" textFill="red"/>
+                            <Label style="-fx-text-fill: black; -fx-font-size: 20;" text="Wydatki inne: " textFill="black" />
+                            <Label fx:id="inne_wydatki_txt" layoutX="50" style="-fx-text-fill: red; -fx-font-size: 20;" text="" textFill="red" />
                         </children>
                         <padding>
                             <Insets left="10.0" />
@@ -191,8 +184,8 @@
 
                     <HBox alignment="CENTER_LEFT" layoutX="200.0" layoutY="250.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="500.0">
                         <children>
-                            <Label style="-fx-text-fill: black; -fx-font-size: 20;" text="Zarobki: " textFill="black"/>
-                            <Label layoutX="50" fx:id="zarobki_txt" style="-fx-text-fill: green; -fx-font-size: 20;" text="" textFill="green"/>
+                            <Label style="-fx-text-fill: black; -fx-font-size: 20;" text="Zarobki: " textFill="black" />
+                            <Label fx:id="zarobki_txt" layoutX="50" style="-fx-text-fill: green; -fx-font-size: 20;" text="" textFill="green" />
                         </children>
                         <padding>
                             <Insets left="10.0" />
@@ -201,8 +194,8 @@
 
                     <HBox alignment="CENTER_LEFT" layoutX="200.0" layoutY="280.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="500.0">
                         <children>
-                            <Label style="-fx-text-fill: black; -fx-font-size: 20;" text="Suma: " textFill="black"/>
-                            <Label layoutX="50" fx:id="suma_txt" style="-fx-text-fill: purple; -fx-font-size: 20;" text="" textFill="purple"/>
+                            <Label style="-fx-text-fill: black; -fx-font-size: 20;" text="Suma: " textFill="black" />
+                            <Label fx:id="suma_txt" layoutX="50" style="-fx-text-fill: purple; -fx-font-size: 20;" text="" textFill="purple" />
                         </children>
                         <padding>
                             <Insets left="10.0" />
@@ -211,8 +204,8 @@
 
                     <HBox alignment="CENTER_LEFT" layoutX="200.0" layoutY="370.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="500.0">
                         <children>
-                            <Label style="-fx-text-fill: black; -fx-font-size: 20;" text="Ilość turbin: " textFill="black"/>
-                            <Label layoutX="50" fx:id="turbiny_txt" style="-fx-text-fill: black; -fx-font-size: 20;" text="" textFill="black"/>
+                            <Label style="-fx-text-fill: black; -fx-font-size: 20;" text="Ilość turbin: " textFill="black" />
+                            <Label fx:id="turbiny_txt" layoutX="50" style="-fx-text-fill: black; -fx-font-size: 20;" text="" textFill="black" />
                         </children>
                         <padding>
                             <Insets left="10.0" />
@@ -221,13 +214,22 @@
 
                     <HBox alignment="CENTER_LEFT" layoutX="200.0" layoutY="400.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="500.0">
                         <children>
-                            <Label style="-fx-text-fill: black; -fx-font-size: 20;" text="Średnia prędkość wiatru: " textFill="black"/>
-                            <Label layoutX="50" fx:id="wiatr_txt" style="-fx-text-fill: black; -fx-font-size: 20;" text="" textFill="black"/>
+                            <Label style="-fx-text-fill: black; -fx-font-size: 20;" text="Średnia prędkość wiatru: " textFill="black" />
+                            <Label fx:id="wiatr_txt" layoutX="50" style="-fx-text-fill: black; -fx-font-size: 20;" text="" textFill="black" />
                         </children>
                         <padding>
                             <Insets left="10.0" />
                         </padding>
                     </HBox>
+               <HBox alignment="CENTER_LEFT" layoutX="200.0" layoutY="310.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="500.0">
+                  <children>
+                     <Label style="-fx-text-fill: black; -fx-font-size: 20;" text="Roczny procent zwrotu: " textFill="black" />
+                     <Label fx:id="zwrot_txt" layoutX="50" style="-fx-text-fill: purple; -fx-font-size: 20;" text="" textFill="purple" />
+                  </children>
+                  <padding>
+                     <Insets left="10.0" />
+                  </padding>
+               </HBox>
 
                     <Button fx:id="zarobki_wykres" layoutX="50" layoutY="500" text="Miesięczne zarobki" prefWidth="300" prefHeight="40" styleClass="btns_sim" onAction="#handleButtonClicks"/>
                     <Button fx:id="" layoutX="50" layoutY="550" text="Miesięczna liczba awarii" prefWidth="300" prefHeight="40" styleClass="btns_sim" onAction="#handleButtonClicks"/>

@@ -14,7 +14,7 @@ public class Main {
     public static Double otherExpenses = 0.0;
     public static Double failuresExpenses = 0.0;
     public static ArrayList<Double> periodProfits = new ArrayList<Double>(); //miesieczny(z pliku) lub dzienny(z api) zysk
-    //public static ArrayList<Double> monthlyExpenses = new ArrayList<Double>(); // to do użycia jak będą śmigać awarie
+    public static ArrayList<Double> monthlyExpenses = new ArrayList<Double>(); // to do użycia jak będą śmigać awarie
     private static ArrayList<String> namesForXAxis;
     public static String startDate;
     public static String endDate;
@@ -24,6 +24,7 @@ public class Main {
     private static ArrayList<FailuresInfo> listOfFailures;
     private static Double years = 0.0;
     public static Integer quantityOfEachFailureType[];
+    public static String yearlyRateOfReturn;
 
     public static double total = 0;
 
@@ -50,6 +51,7 @@ public class Main {
         listOfFailures = new ArrayList<FailuresInfo>();
         years = 0.0;
         quantityOfEachFailureType = new Integer[]{0, 0, 0, 0, 0, 0, 0, 0};
+        monthlyExpenses = new ArrayList<Double>();
 
 
         for (int i = 0; i < numberOfTurbines; ++i) {
@@ -66,7 +68,7 @@ public class Main {
 
         String prev_date = weathers.get(0).getDate();
         startDate = prev_date;
-        endDate = weathers.get(weathers.size() - 1).getDate();
+        endDate = weathers.get(weathers.size()-1).getDate();
         years = new Double((LocalDate.parse(startDate).until(LocalDate.parse(endDate), ChronoUnit.DAYS)) / 365.0);
         System.out.println("YEARs " + years);
         for (Weather weather : weathers) { // dla kazdego zapisu z pogody
@@ -98,17 +100,53 @@ public class Main {
         Przyjmuję, że miesiąc trwa 30 dni, a każdego dni mamy 24 pomiary pogody.
         */
 
-        for (int i = 0; i <= (weathers.size() / (30 * 24)); i++) {
-            for (int j = 0; j < turbines.size(); j++) {
-                failuresExpenses += failuresGenerator(turbines.get(j), j + 1, earnings / count);
-                listOfFailures.addAll((turbines.get(j)).failuresList);
+//        for (int i = 0; i <= (weathers.size() / (30 * 24)); i++) {
+//            for (int j = 0; j < turbines.size(); j++) {
+//                failuresExpenses += failuresGenerator(turbines.get(j), j + 1, earnings / count);
+//                listOfFailures.addAll((turbines.get(j)).failuresList);
+//            }
+//        }
+        prev_date = weathers.get(0).getDate();
+        Double tmp_montlyFailuresExpences = 0.0;
+        for (Weather weather : weathers) { // dla kazdego zapisu z pogody
+            if (!((prev_date.split("-")[1]).equals(weather.getDate().split("-")[1]))) {
+                for (int j = 0; j < turbines.size(); j++) {
+                    tmp_montlyFailuresExpences += failuresGenerator(turbines.get(j), j + 1, earnings / count);
+                    listOfFailures.addAll((turbines.get(j)).failuresList);
+                }
+                monthlyExpenses.add((-1) * tmp_montlyFailuresExpences);
+                failuresExpenses += tmp_montlyFailuresExpences;
+                tmp_montlyFailuresExpences = 0.0;
             }
+            prev_date = weather.getDate();
         }
+        monthlyExpenses.add(tmp_montlyFailuresExpences); //dodanie ostatniej sumy
+        failuresExpenses += tmp_montlyFailuresExpences;
         //otherExpenses = 1200000.0 * years; // z faktury 2546305.0
         otherExpenses = turbines.size() * turbineExpenses * 0.015 * years; // 1.5% na rok
         total = earnings - turbineExpenses - otherExpenses - failuresExpenses;
 
+        //bilans zystków i start -  miesiecznie
+        monthlyExpenses.set(0, (monthlyExpenses.get(0) + (-1) * (turbineExpenses + otherExpenses) + periodProfits.get(0)));
 
+        for (int i = 1; i < monthlyExpenses.size(); i++) {
+            monthlyExpenses.set(i, (monthlyExpenses.get(i) + periodProfits.get(i) + monthlyExpenses.get(i - 1)));
+        }
+
+        String turbineExpenses_str = String.format ("%.4f", turbineExpenses)+ " PLN";
+        System.out.println(turbineExpenses_str);
+        String failuresExpenses_str = String.format ("%.4f", failuresExpenses)+ " PLN";
+        System.out.println(failuresExpenses_str);
+        String otherExpenses_str = String.format ("%.4f", otherExpenses)+ " PLN";
+        System.out.println(otherExpenses_str);
+        String profits_str = String.format ("%.4f", earnings)+ " PLN";
+        System.out.println(profits_str);
+        String total_str = String.format ("%.4f", total)+ " PLN";
+        System.out.println(total_str);
+        //tuatj nie jestem na 100% pewna czy tak się liczy roczną stope zwrotu ale
+        //(wszystkie zyski)/(wszytskie wydatki) * 1/years *100%
+        yearlyRateOfReturn = String.format("%.4f", ((1/years) * 100* earnings/(otherExpenses+turbineExpenses+failuresExpenses))) +" %";
+        System.out.println(yearlyRateOfReturn);
     }
 
 
@@ -125,6 +163,7 @@ public class Main {
         listOfFailures = new ArrayList<FailuresInfo>();
         years = new Double((LocalDate.parse(startDate).until(LocalDate.parse(endDate), ChronoUnit.DAYS)) / 365.0);
         quantityOfEachFailureType = new Integer[]{0, 0, 0, 0, 0, 0, 0, 0};
+        monthlyExpenses = new ArrayList<Double>();
 
 
         for (int i = 0; i < numberOfTurbines; ++i) {
@@ -200,15 +239,50 @@ public class Main {
         Przyjmuję, że miesiąc trwa 30 dni, a każdego dni mamy 24 pomiary pogody.
         */
 
-        for (int i = 0; i <= (weathers.size() / (30 * 24)); i++) {
-            for (int j = 0; j < turbines.size(); j++) {
-                failuresExpenses += failuresGenerator(turbines.get(j), j + 1, earnings / count);
-                listOfFailures.addAll((turbines.get(j)).failuresList);
+//        for (int i = 0; i <= (weathers.size() / (30 * 24)); i++) {
+//            for (int j = 0; j < turbines.size(); j++) {
+//                failuresExpenses += failuresGenerator(turbines.get(j), j + 1, earnings / count);
+//                listOfFailures.addAll((turbines.get(j)).failuresList);
+//            }
+//        }
+        String prev_date = weathers.get(0).getDate();
+        Double tmp_montlyFailuresExpences = 0.0;
+        for (Weather weather : weathers) { // dla kazdego zapisu z pogody
+            if (!((prev_date.split("-")[1]).equals(weather.getDate().split("-")[1]))) {
+                for (int j = 0; j < turbines.size(); j++) {
+                    tmp_montlyFailuresExpences += failuresGenerator(turbines.get(j), j + 1, earnings / count);
+                    listOfFailures.addAll((turbines.get(j)).failuresList);
+                }
+                monthlyExpenses.add((-1) * tmp_montlyFailuresExpences);
+                failuresExpenses += tmp_montlyFailuresExpences;
+                tmp_montlyFailuresExpences = 0.0;
             }
+            prev_date = weather.getDate();
         }
+        monthlyExpenses.add(tmp_montlyFailuresExpences);
+        failuresExpenses += tmp_montlyFailuresExpences;
         //otherExpenses = 1200000.0 * years; // z faktury 2546305.0
         otherExpenses = turbines.size() * turbineExpenses * 0.015 * years; // 1.5% na rok
         total = earnings - turbineExpenses - otherExpenses - failuresExpenses;
+        monthlyExpenses.set(0, (monthlyExpenses.get(0) + (-1) * (turbineExpenses + otherExpenses) + periodProfits.get(0)));
+
+        for (int i = 1; i < monthlyExpenses.size(); i++) {
+            monthlyExpenses.set(i, (monthlyExpenses.get(i) + periodProfits.get(i) + monthlyExpenses.get(i - 1)));
+        }
+        String turbineExpenses_str = String.format ("%.4f", turbineExpenses)+ " PLN";
+        System.out.println(turbineExpenses_str);
+        String failuresExpenses_str = String.format ("%.4f", failuresExpenses)+ " PLN";
+        System.out.println(failuresExpenses_str);
+        String otherExpenses_str = String.format ("%.4f", otherExpenses)+ " PLN";
+        System.out.println(otherExpenses_str);
+        String profits_str = String.format ("%.4f", earnings)+ " PLN";
+        System.out.println(profits_str);
+        String total_str = String.format ("%.4f", total)+ " PLN";
+        System.out.println(total_str);
+        //tuatj nie jestem na 100% pewna czy tak się liczy roczną stope zwrotu ale
+        //(wszystkie zyski)/(wszytskie wydatki) * 1/years *100%
+        yearlyRateOfReturn = String.format("%.4f", ((1/years) * 100 * earnings/(otherExpenses+turbineExpenses+failuresExpenses))) +" %";
+        System.out.println(yearlyRateOfReturn);
     }
 
     public static void buildTurbine() {
