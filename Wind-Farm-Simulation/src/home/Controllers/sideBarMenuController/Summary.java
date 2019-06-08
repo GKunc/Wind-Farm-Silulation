@@ -108,9 +108,12 @@ public class Summary implements Initializable {
                 String firstData = SimulationController.firstData;
                 String lastData = SimulationController.lastData;
 
-                if ((LocalDate.parse(firstData).until(LocalDate.parse(lastData), ChronoUnit.DAYS)) > 60) {
+                if (SimulationController.fromFile == true) {
                     displayMonthlyBalance();
-                } else {
+                }
+                 else if ((LocalDate.parse(firstData).until(LocalDate.parse(lastData), ChronoUnit.DAYS)) > 60) {
+                    displayMonthlyBalance();
+                }  else {
                     displayChartDaily();
                 }
             } catch (Exception e) {
@@ -298,7 +301,7 @@ public class Summary implements Initializable {
 
         String namesForXAxis[] = {"Za duże napięcie (sieć)",
                 "Awaryjne hamowanie (za duży wiatr)",
-                "Pauza kliknięta na klawiaturze",
+                "Zatrzymanie manualne",
                 "Wysoka temperatura",
                 "Awaria konwertera napięcia",
                 "Za wysoka moc",

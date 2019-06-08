@@ -53,7 +53,9 @@ public class SimulationController implements Initializable {
     public static String firstData;
     public static String lastData;
 
-    ObservableList<String> dataFromFile = FXCollections.observableArrayList("Kielce", "Linowo", "Gdansk");
+    public static boolean fromFile = false;
+
+    ObservableList<String> dataFromFile = FXCollections.observableArrayList("Kielce", "Gdansk");
 
     final ToggleGroup group = new ToggleGroup();
 
@@ -153,16 +155,10 @@ public class SimulationController implements Initializable {
 
             windowConsole.appendText(Main.showSimulationResults(new String[]{"fromApi", turbineNumber.getText(), cityName.getText(), firstData, lastData}));
 
-            if ((LocalDate.parse(firstData).until(LocalDate.parse(lastData), ChronoUnit.DAYS)) > 60) {
-
-            } else {
-
-            }
-
         } else if (!chooseCity.isDisable()) {
             Main.cityNameMonthlyBarTitle = chooseCity.getValue();
             windowConsole.appendText(Main.showSimulationResults(new String[]{"fromFile", turbineNumber.getText(), chooseCity.getValue()}));
-
+            fromFile = true;
         }
     }
 

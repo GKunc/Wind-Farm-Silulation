@@ -65,12 +65,14 @@ public class Main {
         int count = 1;
         double oneMonthProfit = 0.0;
         ArrayList<Weather> weathers = Weather.parseWeatherFromFile(filePath);
+
 //        Weather.setWind("./res/windLinowo.csv", weathers);
 //        Weather.setWind("C:\\Users\\Zuzanna\\Desktop\\AGH\\Infa\\Semestr 4\\Wind-Farm-Simulation\\Wind-Farm-Simulation\\res\\windLinowo.csv", weathers);
 
         String prev_date = weathers.get(0).getDate();
         startDate = prev_date;
         endDate = weathers.get(weathers.size()-1).getDate();
+        //System.out.println(endDate);
         years = new Double((LocalDate.parse(startDate).until(LocalDate.parse(endDate), ChronoUnit.DAYS)) / 365.0);
         for (Weather weather : weathers) { // dla kazdego zapisu z pogody
             //weather.setWind(8.5);
@@ -390,7 +392,8 @@ public class Main {
             Main.startSimulation(new Integer(args[1]), args[2], args[3], args[4]);
 
         } else if (args[0] == "fromFile") {
-            Main.startSimulation(new Integer(args[1]), "C:\\Users\\Zuzanna\\Desktop\\AGH\\Infa\\Semestr 4\\Wind-Farm-Simulation\\Wind-Farm-Simulation\\res\\weather" + args[2] + ".csv");
+            Main.startSimulation(new Integer(args[1]), "./res/weather" + args[2] + ".csv");
+           // Main.startSimulation(new Integer(args[1]), "C:\\Users\\Zuzanna\\Desktop\\AGH\\Infa\\Semestr 4\\Wind-Farm-Simulation\\Wind-Farm-Simulation\\res\\weather" + args[2] + ".csv");
             //          Main.startSimulation(1, new Integer(args[1]), "./res/weather"+args[2]+".csv");
         }
         msgToReturn.append("====================================\n");

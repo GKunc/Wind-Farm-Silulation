@@ -179,7 +179,8 @@ public class Weather {
                 String _wind = data[7].substring(1, data[7].length() - 1);
                 String _preassure = data[2].substring(1, data[2].length() - 1);
                 String _temperature = data[1].substring(1, data[1].length() - 1);
-                String _date = data[0].split(" ")[1].substring(1, 11); //teraz data w fromacie dd.mm.rrrr
+                String date_tmp = data[0].replaceAll("( )+", " ");
+                String _date = date_tmp.split(" ")[1].substring(1, 11); //teraz data w fromacie dd.mm.rrrr
                 //unifikacja do rrrr-mm-dd
                 String tmp_data[] = _date.split("\\.");
                 _date = new String(tmp_data[2] + "-" + tmp_data[1] + "-" + tmp_data[0]);

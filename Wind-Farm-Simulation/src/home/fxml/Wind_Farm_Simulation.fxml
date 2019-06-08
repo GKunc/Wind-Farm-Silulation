@@ -133,7 +133,7 @@
 
                 <HBox alignment="CENTER" layoutX="10.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="600.0">
                     <children>
-                        <TextField fx:id="turbineNumber" disable="true" layoutX="110.0" layoutY="80.0" prefHeight="30.0" prefWidth="180.0" promptText="Ilość turbin">
+                        <TextField fx:id="turbineNumber" disable="false" layoutX="110.0" layoutY="80.0" prefHeight="30.0" prefWidth="180.0" promptText="Ilość turbin">
                             <font>
                                 <Font name="Calibri Light" size="15.0" />
                             </font>
