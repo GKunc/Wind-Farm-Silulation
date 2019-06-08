@@ -26,6 +26,8 @@ public class Main {
     public static Integer quantityOfEachFailureType[];
     public static String yearlyRateOfReturn;
 
+    public static String cityNameMonthlyBarTitle;
+
     public static double total = 0;
 
     // stworzyc zadana ilosc turbin
@@ -70,7 +72,6 @@ public class Main {
         startDate = prev_date;
         endDate = weathers.get(weathers.size()-1).getDate();
         years = new Double((LocalDate.parse(startDate).until(LocalDate.parse(endDate), ChronoUnit.DAYS)) / 365.0);
-        System.out.println("YEARs " + years);
         for (Weather weather : weathers) { // dla kazdego zapisu z pogody
             //weather.setWind(8.5);
             windSum += weather.getWind();
@@ -78,7 +79,6 @@ public class Main {
             if (!((prev_date.split("-")[1]).equals(weather.getDate().split("-")[1]))) {
                 periodProfits.add(oneMonthProfit);
                 namesForXAxis.add(prev_date);
-                System.out.println(prev_date);
                 oneMonthProfit = 0;
             }
             for (Turbine turbine : turbines) { // osobno dla kazdej turbiny
@@ -134,19 +134,13 @@ public class Main {
         }
 
         String turbineExpenses_str = String.format ("%.4f", turbineExpenses)+ " PLN";
-        System.out.println(turbineExpenses_str);
         String failuresExpenses_str = String.format ("%.4f", failuresExpenses)+ " PLN";
-        System.out.println(failuresExpenses_str);
         String otherExpenses_str = String.format ("%.4f", otherExpenses)+ " PLN";
-        System.out.println(otherExpenses_str);
         String profits_str = String.format ("%.4f", earnings)+ " PLN";
-        System.out.println(profits_str);
         String total_str = String.format ("%.4f", total)+ " PLN";
-        System.out.println(total_str);
         //tuatj nie jestem na 100% pewna czy tak się liczy roczną stope zwrotu ale
         //(wszystkie zyski)/(wszytskie wydatki) * 1/years *100%
         yearlyRateOfReturn = String.format("%.4f", ((1/years) * 100* earnings/(otherExpenses+turbineExpenses+failuresExpenses))) +" %";
-        System.out.println(yearlyRateOfReturn);
     }
 
 
@@ -215,7 +209,6 @@ public class Main {
                 if (!((prev_date.split("-")[1]).equals(weather.getDate().split("-")[1]))) {
                     periodProfits.add(oneMonthProfit);
                     namesForXAxis.add(prev_date);
-                    System.out.println(prev_date);
                     oneMonthProfit = 0;
                 }
                 for (Turbine turbine : turbines) { // osobno dla kazdej turbiny
@@ -230,7 +223,6 @@ public class Main {
         }
 
 
-        System.out.println("Średnia wiatru -> " + (windSum / count));
         averageWind = (windSum / count);
         earnings = earnings * years;
 
@@ -270,19 +262,13 @@ public class Main {
             monthlyExpenses.set(i, (monthlyExpenses.get(i) + periodProfits.get(i) + monthlyExpenses.get(i - 1)));
         }
         String turbineExpenses_str = String.format ("%.4f", turbineExpenses)+ " PLN";
-        System.out.println(turbineExpenses_str);
         String failuresExpenses_str = String.format ("%.4f", failuresExpenses)+ " PLN";
-        System.out.println(failuresExpenses_str);
         String otherExpenses_str = String.format ("%.4f", otherExpenses)+ " PLN";
-        System.out.println(otherExpenses_str);
         String profits_str = String.format ("%.4f", earnings)+ " PLN";
-        System.out.println(profits_str);
         String total_str = String.format ("%.4f", total)+ " PLN";
-        System.out.println(total_str);
         //tuatj nie jestem na 100% pewna czy tak się liczy roczną stope zwrotu ale
         //(wszystkie zyski)/(wszytskie wydatki) * 1/years *100%
         yearlyRateOfReturn = String.format("%.4f", ((1/years) * 100 * earnings/(otherExpenses+turbineExpenses+failuresExpenses))) +" %";
-        System.out.println(yearlyRateOfReturn);
     }
 
     public static void buildTurbine() {
@@ -327,7 +313,7 @@ public class Main {
         tmp_probability = new Random().nextDouble();
         if (tmp_probability < (18.0 / 24)) {
             hourlyDurationTime = (2 + Math.random() * 3.5);
-            examineTurbine.failuresList.add(new FailuresInfo(turbineNo, "Pauza kliknięta na klawiaturze", Math.round(hourlyDurationTime * 60) + " min"));
+            examineTurbine.failuresList.add(new FailuresInfo(turbineNo, "Zatrzymanie manualne", Math.round(hourlyDurationTime * 60) + " min"));
             failuresCost += hourlyDurationTime * averageHourlyProfit;
             quantityOfEachFailureType[2]++;
         }

@@ -49,6 +49,5 @@ public class OneTurbineSimulation {
 
     public static void main(String [] argv) throws Exception {
         OneTurbineSimulation sim = new OneTurbineSimulation("Warszawa");
-        System.out.println(sim.weather);
     }
 }

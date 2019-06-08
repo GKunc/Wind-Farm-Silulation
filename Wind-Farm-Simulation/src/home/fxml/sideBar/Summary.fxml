@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.TableView?>
 <AnchorPane fx:id="parent" prefHeight="640" prefWidth="960.0" styleClass="parent" stylesheets="@../../css/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.Controllers.sideBarMenuController.Summary">
     <children>
 
@@ -84,42 +85,6 @@
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="132.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
                     <children>
                         <Button fx:id="failuresBtn" onAction="#handleButtonClicks" styleClass="btns" text="Lista awarii" textFill="white">
-                            <font>
-                                <Font name="Calibri Light" size="15.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                        </Button>
-                    </children>
-                    <padding>
-                        <Insets left="10.0" />
-                    </padding>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </HBox>
-                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="172.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
-                    <children>
-                        <Button fx:id="weatherBtn" onAction="#handleButtonClicks" styleClass="btns" text="Pogoda" textFill="white">
-                            <font>
-                                <Font name="Calibri Light" size="15.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                        </Button>
-                    </children>
-                    <padding>
-                        <Insets left="10.0" />
-                    </padding>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </HBox>
-                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="252.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
-                    <children>
-                        <Button fx:id="realTimeBtn" onAction="#handleButtonClicks" styleClass="btns" text="Symulacja real-time?!?!" textFill="white">
                             <font>
                                 <Font name="Calibri Light" size="15.0" />
                             </font>
@@ -232,12 +197,14 @@
                </HBox>
 
                     <Button fx:id="zarobki_wykres" layoutX="50" layoutY="500" text="Miesięczne zarobki" prefWidth="300" prefHeight="40" styleClass="btns_sim" onAction="#handleButtonClicks"/>
-                    <Button fx:id="" layoutX="50" layoutY="550" text="Miesięczna liczba awarii" prefWidth="300" prefHeight="40" styleClass="btns_sim" onAction="#handleButtonClicks"/>
-                    <Button fx:id="" layoutX="390" layoutY="500" text="Poszczególne elementy" prefWidth="300" prefHeight="40" styleClass="btns_sim" onAction="#handleButtonClicks"/>
-                    <Button fx:id="" layoutX="390" layoutY="550" text="Zwrot inewstycji" prefWidth="300" prefHeight="40" styleClass="btns_sim" onAction="#handleButtonClicks"/>
+                    <Button fx:id="awarie_wykres" layoutX="50" layoutY="550" text="Miesięczna liczba awarii" prefWidth="300" prefHeight="40" styleClass="btns_sim" onAction="#handleButtonClicks"/>
+                    <Button fx:id="elementy_wykres" layoutX="390" layoutY="500" text="Poszczególne elementy" prefWidth="300" prefHeight="40" styleClass="btns_sim" onAction="#handleButtonClicks"/>
+                    <Button fx:id="zwrot_wykres" layoutX="390" layoutY="550" text="Zwrot inewstycji" prefWidth="300" prefHeight="40" styleClass="btns_sim" onAction="#handleButtonClicks"/>
 
 
                 </Pane>
+                <TableView fx:id="failuresTable" prefHeight="200.0" prefWidth="200.0" visible="false"/>
+
             </children>
         </VBox>
     </children>

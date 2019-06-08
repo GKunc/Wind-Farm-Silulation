@@ -150,7 +150,7 @@ public class Weather {
 
                         Weather w = new Weather(_wind, _pressure, _temperature, _date);
                         weathers.add(w.weatherAtHeight(Turbine.towerHeight));
-                        System.out.println(w);
+                        //System.out.println(w);
                     }
                 }
             } else if (s.contains("date")) {
