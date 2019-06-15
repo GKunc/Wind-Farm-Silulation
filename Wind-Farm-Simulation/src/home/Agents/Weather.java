@@ -128,7 +128,7 @@ public class Weather {
         HttpResponse<String> response = client.send(request, BodyHandler.asString());
         //System.out.println(response.statusCode());
         String result = response.body();
-        //System.out.println(result);
+        System.out.println(result);
         String data[] = result.split("\\{");
 
         for (String s : data) {
@@ -145,9 +145,9 @@ public class Weather {
             } else if (s.contains("pressure")) {
                 String hourly[] = s.split(",");
                 for (String h : hourly) {
-                    if (h.contains("pressure")) {
+                    if (h.contains("pressure") && !h.contains("pressureInches")) {
                         _pressure = Double.parseDouble(h.split(":")[1].substring(1, h.split(":")[1].length() - 1));
-
+                        System.out.println("DZIALA: " +_pressure);
                         Weather w = new Weather(_wind, _pressure, _temperature, _date);
                         weathers.add(w.weatherAtHeight(Turbine.towerHeight));
                         //System.out.println(w);

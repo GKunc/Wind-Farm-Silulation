@@ -35,6 +35,8 @@ public class Turbine {
 
     public boolean getStatus() { return status; }
 
+    public double getEfficiency() { return efficiency; }
+    public void setEfficiency(double _efficiency) { efficiency = _efficiency; }
     public void    turnOn()    { status = true; }
     public void    turnOff()   { status = false; }
 
@@ -68,11 +70,16 @@ public class Turbine {
 
     public void setAlert(boolean _alert) { alert = _alert; }
 
-    public static void main(String [] argv) {
+    public static void main(String [] argv) throws Exception {
         Turbine tur = new Turbine();
-        Weather w = new Weather(7.7,1000.0,10.0, "0000-00-00");
-        System.out.println("Gestosc -> " + w.getDensity());
-        System.out.println("ENERGIA -> " + tur.calculatePower(w)*24*365);
+
+        ArrayList<Weather> we = Weather.downloadWeather("Linowo","2018-11-06","2018-11-07");
+
+        Weather w = we.get(1);
+        w.setWind(12.0);
+        tur.setEfficiency(0.30);
+        Double power = tur.calculatePower(w) * 14.5/60;
+        System.out.println("ENERGIA -> " + power);
     }
 
 }

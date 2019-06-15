@@ -84,6 +84,9 @@ public class Main {
                 oneMonthProfit = 0;
             }
             for (Turbine turbine : turbines) { // osobno dla kazdej turbiny
+                if(weather.getWind() > 10.0) {
+                    turbine.setEfficiency(0.30);
+                }
                 Maintanance.preventiveMaintanance(turbine, (double) count / 24);
                 earnings += turbine.calculateEarnings(weather);
                 oneMonthProfit += turbine.calculateEarnings(weather);
