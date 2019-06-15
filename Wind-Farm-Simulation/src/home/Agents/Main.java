@@ -60,7 +60,6 @@ public class Main {
             Main.buildTurbine();
         }
 
-        //weather.downloadWeather();
         Double windSum = 0.0;
         int count = 1;
         double oneMonthProfit = 0.0;
@@ -72,10 +71,8 @@ public class Main {
         String prev_date = weathers.get(0).getDate();
         startDate = prev_date;
         endDate = weathers.get(weathers.size()-1).getDate();
-        //System.out.println(endDate);
         years = new Double((LocalDate.parse(startDate).until(LocalDate.parse(endDate), ChronoUnit.DAYS)) / 365.0);
         for (Weather weather : weathers) { // dla kazdego zapisu z pogody
-            //weather.setWind(8.5);
             windSum += weather.getWind();
             count++;
             if (!((prev_date.split("-")[1]).equals(weather.getDate().split("-")[1]))) {
@@ -90,27 +87,15 @@ public class Main {
                 Maintanance.preventiveMaintanance(turbine, (double) count / 24);
                 earnings += turbine.calculateEarnings(weather);
                 oneMonthProfit += turbine.calculateEarnings(weather);
-                //otherExpenses += 200/24;
             }
             prev_date = weather.getDate();
         }
         periodProfits.add(oneMonthProfit); //dodanie ostatniej sumy miesięcznych dochodów
         namesForXAxis.add(prev_date); //dodatnie znacznika ostatniego miesiąca
         averageWind = (windSum / count);
-        // System.out.println("Średnia wiatru -> " + (windSum / count));
         earnings = earnings * years;
 
-        /*
-        W tej częsci potrzebuję od długości czasu z jakiego mamy dane do symulacji.
-        Przyjmuję, że miesiąc trwa 30 dni, a każdego dni mamy 24 pomiary pogody.
-        */
 
-//        for (int i = 0; i <= (weathers.size() / (30 * 24)); i++) {
-//            for (int j = 0; j < turbines.size(); j++) {
-//                failuresExpenses += failuresGenerator(turbines.get(j), j + 1, earnings / count);
-//                listOfFailures.addAll((turbines.get(j)).failuresList);
-//            }
-//        }
         prev_date = weathers.get(0).getDate();
         Double tmp_montlyFailuresExpences = 0.0;
         for (Weather weather : weathers) { // dla kazdego zapisu z pogody
