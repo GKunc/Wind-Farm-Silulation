@@ -64,10 +64,11 @@ public class DisplayResultsController {
         Double allExpences ;
 
         if(!cityName.isDisable()) {
+            Main m = new Main();
             windowConsole.clear();
             windowConsole.setVisible(true);
             windowConsole.setDisable(false);
-            windowConsole.appendText(Main.showSimulationResults(new String[]{cityName.getText(), "fromApi"}));
+            windowConsole.appendText(m.showSimulationResults(new String[]{cityName.getText(), "fromApi"}));
 
             sumOfProfits = Main.getPeriodProfits();
             allExpences = Main.getOtherExpenses() + Main.getTurbineExpenses();
@@ -106,10 +107,11 @@ public class DisplayResultsController {
             stage_chats.show();
         }
         else if(!chooseCity.isDisable()) {
+            Main m = new Main();
             windowConsole.clear();
             windowConsole.setVisible(true);
             windowConsole.setDisable(false);
-            windowConsole.appendText(Main.showSimulationResults(new String[]{chooseCity.getValue(), "fromFile"}));
+            windowConsole.appendText(m.showSimulationResults(new String[]{chooseCity.getValue(), "fromFile"}));
 
             sumOfProfits = Main.getPeriodProfits();
             allExpences = Main.getOtherExpenses() + Main.getTurbineExpenses();

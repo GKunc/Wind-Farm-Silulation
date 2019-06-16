@@ -149,16 +149,20 @@ public class SimulationController implements Initializable {
 
 
         if (!cityName.isDisable()) {
+            Main m = new Main();
+
             Main.cityNameMonthlyBarTitle = cityName.getText();
             firstData = startDataPicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             lastData = endDataPicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
-            windowConsole.appendText(Main.showSimulationResults(new String[]{"fromApi", turbineNumber.getText(), cityName.getText(), firstData, lastData}));
+            fromFile = false;
+            windowConsole.appendText(m.showSimulationResults(new String[]{"fromApi", turbineNumber.getText(), cityName.getText(), firstData, lastData}));
 
         } else if (!chooseCity.isDisable()) {
+            Main m = new Main();
+
             Main.cityNameMonthlyBarTitle = chooseCity.getValue();
-            windowConsole.appendText(Main.showSimulationResults(new String[]{"fromFile", turbineNumber.getText(), chooseCity.getValue()}));
             fromFile = true;
+            windowConsole.appendText(m.showSimulationResults(new String[]{"fromFile", turbineNumber.getText(), chooseCity.getValue()}));
         }
     }
 

@@ -1,13 +1,10 @@
 package home.Agents;
 
-import jdk.incubator.http.HttpClient;
-import jdk.incubator.http.HttpRequest;
-import jdk.incubator.http.HttpResponse;
-import jdk.incubator.http.HttpResponse.BodyHandler;
+import home.ExceptionScreen;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import okhttp3.*;
+
+import java.io.*;
 import java.net.URI;
 import java.util.ArrayList;
 
@@ -113,21 +110,22 @@ public class Weather {
         Double _temperature = 0.0;
         String _date = "NaN";
 
-        HttpClient client = HttpClient.newHttpClient(); // sunnyvale,ca
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(URL + "?key=" + key
+
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(URL + "?key=" + key
                         + "&q=" + city
                         + "&format=json"
                         + "&date=" + startDate
                         + "&enddate=" + endDate
                         + "&tp=1" //status pogodowy raz na godzinę
-                ))
-                .GET()
-                .build();
+                ).build();
 
-        HttpResponse<String> response = client.send(request, BodyHandler.asString());
-        //System.out.println(response.statusCode());
-        String result = response.body();
+        Response response = client.newCall(request).execute();
+
+        String result = response.body().string();
+        response.close();
+
         String data[] = result.split("\\{");
 
         for (String s : data) {
@@ -164,9 +162,12 @@ public class Weather {
         return weathers;
     }
 
-    public static ArrayList<Weather> parseWeatherFromFile(String filePath) throws IOException { // Arraylist dla calego pliku
+    public ArrayList<Weather> parseWeatherFromFile(String filePath) throws IOException { // Arraylist dla calego pliku
         String data[] = null;
-        BufferedReader br = new BufferedReader(new FileReader(filePath));
+        InputStream inputStream = Weather.class.getResourceAsStream(filePath);
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+
         ArrayList<Weather> weather = new ArrayList<>();
 
         try {
